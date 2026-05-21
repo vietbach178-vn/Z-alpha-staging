@@ -23,20 +23,8 @@ export default function NewsCard({ item, lang }: Props) {
     catLabel, item.source ?? '',
   ].join(' ').toLowerCase();
 
-  const Anchor = isExternal ? 'a' : Link;
-  const anchorProps = isExternal
-    ? { href, target: '_blank' as const, rel: 'noopener noreferrer' }
-    : { href };
-
-  return (
-    // @ts-expect-error — Link vs a polymorphism
-    <Anchor
-      {...anchorProps}
-      className="research-card-v2"
-      data-card="true"
-      data-category={item.category}
-      data-search={searchCorpus}
-    >
+  const body = (
+    <>
       <div className={`research-card-v2__media tone-${catTone}`}>
         {item.imageUrl ? (
           <img src={item.imageUrl} alt="" loading="lazy" />
@@ -65,6 +53,19 @@ export default function NewsCard({ item, lang }: Props) {
           )}
         </div>
       </div>
-    </Anchor>
+    </>
+  );
+
+  const commonProps = {
+    className: 'research-card-v2',
+    'data-card': 'true',
+    'data-category': item.category,
+    'data-search': searchCorpus,
+  };
+
+  return isExternal ? (
+    <a {...commonProps} href={href} target="_blank" rel="noopener noreferrer">{body}</a>
+  ) : (
+    <Link {...commonProps} href={href}>{body}</Link>
   );
 }

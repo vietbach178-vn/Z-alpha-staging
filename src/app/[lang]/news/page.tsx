@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
 import { NEWS_CATEGORIES, getSortedNews } from '@/data/news-sample';
@@ -42,19 +43,21 @@ export default async function NewsIndexPage({ params }: PageProps<'/[lang]/news'
 
       <section className="section" style={{ paddingTop: 32 }}>
         <div className="container">
-          <FilterToolbar
-            paramName="cat"
-            chips={chips}
-            dataAttr="data-category"
-            dict={{
-              filterAll: t(dict, 'news.filterAll'),
-              searchPlaceholder: t(dict, 'news.searchPlaceholder'),
-              searchLabel: t(dict, 'news.searchLabel'),
-              filterLabel: t(dict, 'news.filterLabel'),
-              noResults: t(dict, 'news.noResults'),
-              clearFilters: t(dict, 'news.clearFilters'),
-            }}
-          />
+          <Suspense fallback={null}>
+            <FilterToolbar
+              paramName="cat"
+              chips={chips}
+              dataAttr="data-category"
+              dict={{
+                filterAll: t(dict, 'news.filterAll'),
+                searchPlaceholder: t(dict, 'news.searchPlaceholder'),
+                searchLabel: t(dict, 'news.searchLabel'),
+                filterLabel: t(dict, 'news.filterLabel'),
+                noResults: t(dict, 'news.noResults'),
+                clearFilters: t(dict, 'news.clearFilters'),
+              }}
+            />
+          </Suspense>
 
           <div className="research-grid-3" data-filter-grid>
             {items.map((item) => (

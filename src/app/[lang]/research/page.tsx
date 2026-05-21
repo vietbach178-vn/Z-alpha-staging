@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
 import { TOPICS, getFeaturedItems, getNonFeaturedItems } from '@/data/research-sample';
@@ -62,19 +63,21 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
             <h2 className="research-section-title">{t(dict, 'research.allHeading')}</h2>
           </div>
 
-          <FilterToolbar
-            paramName="topic"
-            chips={chips}
-            dataAttr="data-topic"
-            dict={{
-              filterAll: t(dict, 'research.filterAll'),
-              searchPlaceholder: t(dict, 'research.searchPlaceholder'),
-              searchLabel: t(dict, 'research.searchLabel'),
-              filterLabel: t(dict, 'research.filterLabel'),
-              noResults: t(dict, 'research.noResults'),
-              clearFilters: t(dict, 'research.clearFilters'),
-            }}
-          />
+          <Suspense fallback={null}>
+            <FilterToolbar
+              paramName="topic"
+              chips={chips}
+              dataAttr="data-topic"
+              dict={{
+                filterAll: t(dict, 'research.filterAll'),
+                searchPlaceholder: t(dict, 'research.searchPlaceholder'),
+                searchLabel: t(dict, 'research.searchLabel'),
+                filterLabel: t(dict, 'research.filterLabel'),
+                noResults: t(dict, 'research.noResults'),
+                clearFilters: t(dict, 'research.clearFilters'),
+              }}
+            />
+          </Suspense>
 
           <div className="research-grid-3" data-filter-grid>
             {rest.map((item) => (
