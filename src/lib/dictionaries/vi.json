@@ -1,0 +1,136 @@
+{
+  "brand": { "eyebrow": "Sáng Kiến", "name": "Z & Alpha" },
+  "nav": {
+    "about": "Về Z & Alpha",
+    "research": "Nghiên cứu",
+    "news": "Tin tức",
+    "team": "Con người",
+    "contact": "Liên hệ"
+  },
+  "common": {
+    "readMore": "Đọc tiếp",
+    "readMoreInline": "Đọc thêm",
+    "viewAll": "Xem tất cả",
+    "backToList": "Quay lại danh sách",
+    "publishedOn": "Đăng ngày",
+    "by": "bởi",
+    "minRead": "phút đọc",
+    "share": "Chia sẻ",
+    "notFound": "Không tìm thấy",
+    "loading": "Đang tải…",
+    "search": "Tìm kiếm",
+    "tags": "Tag",
+    "relatedArticles": "Bài liên quan",
+    "openMenu": "Mở menu"
+  },
+  "home": {
+    "metaTitle": "Z & Alpha Initiative — Nghiên cứu, Kết nối, Hành động",
+    "metaDescription": "Dự án tiên phong tại Việt Nam về nâng cao nhận thức, kỹ năng số và sức khỏe tinh thần cho thanh thiếu niên trong kỷ nguyên công nghệ.",
+    "hero": {
+      "eyebrow": "Z & Alpha Initiative",
+      "slogan1": "Nghiên cứu",
+      "slogan2": "Kết nối",
+      "slogan3": "Hành động",
+      "subline": "vì thế hệ Z & Alpha hiểu biết và an toàn trên môi trường số",
+      "body": "Z & Alpha Initiative là dự án tiên phong tại Việt Nam, tập trung vào việc nâng cao nhận thức, kỹ năng số và sức khỏe tinh thần cho thanh thiếu niên trong kỷ nguyên công nghệ. Chúng tôi tin rằng một thế giới số lành mạnh chỉ hình thành khi thế hệ trẻ được trang bị tri thức sâu rộng, sự thấu hiểu và tinh thần nhân văn bền vững.",
+      "ctaPrimary": "Khám phá nghiên cứu",
+      "ctaSecondary": "Về chúng tôi"
+    },
+    "featured": {
+      "titlePrefix": "Nghiên cứu",
+      "titleAccent": "nổi bật",
+      "badge": "Báo cáo nghiên cứu",
+      "fallbackTitle": "72 giờ không Facebook",
+      "fallbackDesc": "72 giờ không Facebook giới thiệu một thử nghiệm nhỏ ghi nhận cách người trẻ phản ứng, thích nghi và tự điều chỉnh khi tạm rời khỏi mạng xã hội quen thuộc trong đời sống hằng ngày.",
+      "fallbackSlug": "72h-no-facebook",
+      "viewAllBtn": "Đọc các nghiên cứu của chúng tôi"
+    },
+    "what": {
+      "titlePrefix": "Chúng tôi",
+      "titleAccent": "làm gì",
+      "lead": "Z & Alpha Initiative hoạt động tại giao điểm giữa nghiên cứu, giáo dục và chính sách, hướng đến việc xây dựng một môi trường số lành mạnh cho thế hệ trẻ.",
+      "intro": "Công việc của chúng tôi bao gồm:",
+      "bullet1": "Nghiên cứu chuyên sâu về tác động xã hội, tâm lý và hành vi của thanh thiếu niên trong môi trường số.",
+      "bullet2": "Đề xuất chính sách và khuyến nghị dựa trên bằng chứng khoa học, phục vụ nhà trường, phụ huynh và cơ quan quản lý.",
+      "bullet3": "Tổ chức chương trình đào tạo, hội thảo và chiến dịch truyền thông nhằm nâng cao nhận thức cộng đồng về sử dụng mạng xã hội an toàn, lành mạnh.",
+      "principleText": "Trong mọi hoạt động, <strong>sự độc lập về mặt học thuật</strong> là giá trị cốt lõi của chúng tôi.",
+      "principleCta": "Tìm hiểu thêm về chính sách của chúng tôi"
+    },
+    "focus": {
+      "title": "Lĩnh vực trọng tâm",
+      "card1": {
+        "title": "Giáo dục",
+        "body": "Thiết kế các chương trình học, workshop và tài liệu hướng dẫn giúp học sinh, giáo viên và phụ huynh hiểu rõ hơn về năng lực số, kỹ năng tư duy phản biện và sức khỏe tinh thần trong thời đại mạng xã hội."
+      },
+      "card2": {
+        "title": "Khuyến nghị chính sách",
+        "body": "Cung cấp dữ liệu và bằng chứng thực nghiệm cho các cơ quan, tổ chức trong việc xây dựng chính sách liên quan đến trẻ em và thanh thiếu niên trong môi trường số."
+      },
+      "card3": {
+        "title": "Nghiên cứu",
+        "body": "Thực hiện các công trình nghiên cứu định tính, định lượng và liên ngành về mối quan hệ giữa công nghệ, tâm lý và xã hội, đặc biệt tập trung vào nhóm tuổi 13–18."
+      },
+      "linkLabel": "Xem nghiên cứu"
+    },
+    "newsletter": {
+      "title": "Đăng ký nhận bản tin",
+      "lead": "Đăng ký email để nhận tin tức và cập nhật mới nhất từ chúng tôi.",
+      "placeholder": "Địa chỉ email của bạn",
+      "submit": "Đăng ký"
+    }
+  },
+  "footer": {
+    "tagline": "Nghiên cứu – Kết nối – Hành động<br />vì thế hệ Z & Alpha hiểu biết và an toàn trên môi trường số",
+    "linksHeading": "Liên kết",
+    "contactHeading": "Liên hệ",
+    "address": "HeiTower, 1 Ngụy Như Kon Tum, Thanh Xuân, Hà Nội, Việt Nam",
+    "phone": "+84 918 061 515",
+    "email": "contact@z-alpha.org",
+    "rights": "© {year} – Bản quyền thuộc về Z & Alpha Initiative.",
+    "iconsBy": "Icons by Lucide",
+    "privacy": "Chính sách bảo mật"
+  },
+  "team": {
+    "metaTitle": "Con người — Z & Alpha Initiative",
+    "title": "Đội ngũ",
+    "researcher": "Nghiên cứu viên",
+    "youngResearcher": "Nghiên cứu viên trẻ"
+  },
+  "contact": {
+    "metaTitle": "Liên hệ — Z & Alpha Initiative",
+    "title": "Liên hệ"
+  },
+  "research": {
+    "metaTitle": "Nghiên cứu — Z & Alpha Initiative",
+    "title": "Nghiên cứu & Dự án",
+    "lead": "Phần nghiên cứu giới thiệu các công trình, thực nghiệm và phân tích được thực hiện với mục tiêu hiểu sâu hơn về tác động của truyền thông và công nghệ đối với con người trong đời sống hiện đại.",
+    "featuredHeading": "Nghiên cứu nổi bật",
+    "allHeading": "Tất cả nghiên cứu",
+    "filterAll": "Tất cả",
+    "filterLabel": "Lọc theo chủ đề",
+    "searchPlaceholder": "Tìm theo tiêu đề, từ khoá…",
+    "searchLabel": "Tìm bài nghiên cứu",
+    "minRead": "phút đọc",
+    "resultsCount": "{count} bài",
+    "noResults": "Không tìm thấy bài nào khớp",
+    "clearFilters": "Xoá bộ lọc"
+  },
+  "news": {
+    "metaTitle": "Tin tức — Z & Alpha Initiative",
+    "title": "Tin tức",
+    "lead": "Cập nhật mới nhất về Z & Alpha và các hoạt động của chúng tôi — sự kiện, thông cáo, bài viết và tin tức truyền thông.",
+    "filterAll": "Tất cả",
+    "filterLabel": "Lọc theo loại tin",
+    "searchPlaceholder": "Tìm tin tức…",
+    "searchLabel": "Tìm tin tức",
+    "resultsCount": "{count} tin",
+    "noResults": "Không tìm thấy tin nào khớp",
+    "clearFilters": "Xoá bộ lọc"
+  },
+  "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Chuyển sang {lang}" },
+  "error": {
+    "404title": "404 — Không tìm thấy trang",
+    "404body": "Trang bạn đang tìm không tồn tại hoặc đã bị di chuyển.",
+    "404cta": "Về trang chủ"
+  }
+}

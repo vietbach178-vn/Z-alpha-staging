@@ -1,0 +1,179 @@
+// Z-Alpha — content + admin schema.
+// Run after editing: npx prisma migrate dev --name <description>
+// Prisma 7 emits the client to ../src/generated/prisma — import from @/generated/prisma.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// AUTH
+// ---------------------------------------------------------------------------
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// ---------------------------------------------------------------------------
+// RESEARCH
+// ---------------------------------------------------------------------------
+model ResearchArticle {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  titleVi     String
+  titleEn     String?
+  excerptVi   String?
+  excerptEn   String?
+  bodyVi      Json          @default("[]") // BlockNote document JSON
+  bodyEn      Json?
+  heroImage   String? // Supabase storage public URL
+  topicId     String?
+  topic       Topic?        @relation(fields: [topicId], references: [id])
+  tags        Tag[]
+  authorId    String?
+  author      Author?       @relation(fields: [authorId], references: [id])
+  readingTime Int?
+  typeVi      String? // "Thực nghiệm", "Báo cáo", ...
+  typeEn      String?
+  featured    Boolean       @default(false)
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  seoTitleVi  String?
+  seoTitleEn  String?
+  seoDescVi   String?
+  seoDescEn   String?
+  seoOgImage  String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([topicId])
+}
+
+model Topic {
+  id       String            @id @default(cuid())
+  slug     String            @unique
+  labelVi  String
+  labelEn  String?
+  tone     String            @default("blue") // teal | blue | orange | red | purple
+  order    Int               @default(0)
+  articles ResearchArticle[]
+}
+
+// ---------------------------------------------------------------------------
+// NEWS
+// ---------------------------------------------------------------------------
+model NewsItem {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  titleVi     String
+  titleEn     String?
+  excerptVi   String?
+  excerptEn   String?
+  bodyVi      Json          @default("[]")
+  bodyEn      Json?
+  heroImage   String?
+  categoryId  String?
+  category    NewsCategory? @relation(fields: [categoryId], references: [id])
+  source      String? // "Báo Tuổi Trẻ" etc.
+  externalUrl String? // when card links out
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  seoTitleVi  String?
+  seoTitleEn  String?
+  seoDescVi   String?
+  seoDescEn   String?
+  seoOgImage  String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+}
+
+model NewsCategory {
+  id      String     @id @default(cuid())
+  slug    String     @unique
+  labelVi String
+  labelEn String?
+  tone    String     @default("blue")
+  order   Int        @default(0)
+  items   NewsItem[]
+}
+
+// ---------------------------------------------------------------------------
+// TEAM
+// ---------------------------------------------------------------------------
+model TeamMember {
+  id        String   @id @default(cuid())
+  fullName  String
+  initials  String?
+  roleVi    String?
+  roleEn    String?
+  bioVi     String?
+  bioEn     String?
+  avatar    String?
+  group     String? // 'researcher' | 'youngResearcher'
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// AUTHOR + TAG
+// ---------------------------------------------------------------------------
+model Author {
+  id       String            @id @default(cuid())
+  name     String
+  avatar   String?
+  bioVi    String?
+  bioEn    String?
+  articles ResearchArticle[]
+}
+
+model Tag {
+  id       String            @id @default(cuid())
+  slug     String            @unique
+  labelVi  String
+  labelEn  String?
+  articles ResearchArticle[]
+}
+
+// ---------------------------------------------------------------------------
+// MEDIA ASSETS (image/video/pdf uploaded via admin)
+// ---------------------------------------------------------------------------
+model Asset {
+  id         String   @id @default(cuid())
+  url        String // Supabase storage public URL
+  type       String // image | video | pdf
+  filename   String
+  sizeBytes  Int
+  width      Int?
+  height     Int?
+  alt        String?
+  uploadedAt DateTime @default(now())
+
+  @@index([type])
+}

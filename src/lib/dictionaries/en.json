@@ -1,0 +1,136 @@
+{
+  "brand": { "eyebrow": "Initiative", "name": "Z & Alpha" },
+  "nav": {
+    "about": "About Z & Alpha",
+    "research": "Research",
+    "news": "News",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "common": {
+    "readMore": "Read more",
+    "readMoreInline": "Read more",
+    "viewAll": "View all",
+    "backToList": "Back to list",
+    "publishedOn": "Published on",
+    "by": "by",
+    "minRead": "min read",
+    "share": "Share",
+    "notFound": "Not found",
+    "loading": "Loading…",
+    "search": "Search",
+    "tags": "Tags",
+    "relatedArticles": "Related articles",
+    "openMenu": "Open menu"
+  },
+  "home": {
+    "metaTitle": "Z & Alpha Initiative — Research, Connection, Taking Action",
+    "metaDescription": "A pioneering project in Vietnam dedicated to enhancing digital awareness, digital skills, and mental well-being for young people in the technology era.",
+    "hero": {
+      "eyebrow": "Z & Alpha Initiative",
+      "slogan1": "Research",
+      "slogan2": "Connection",
+      "slogan3": "Taking Action",
+      "subline": "for Generation Z & Alpha — knowledgeable and safe in the digital environment",
+      "body": "Z & Alpha Initiative is a pioneering project in Vietnam, dedicated to enhancing digital awareness, digital skills, and mental well-being for young people in the technology era. We believe that a healthy digital world can only be built when the younger generations are equipped with deep knowledge, empathy, and enduring human values.",
+      "ctaPrimary": "Explore research",
+      "ctaSecondary": "About us"
+    },
+    "featured": {
+      "titlePrefix": "Featured",
+      "titleAccent": "research",
+      "badge": "Research report",
+      "fallbackTitle": "72 Hours Without Facebook",
+      "fallbackDesc": "72 Hours Without Facebook introduces a small-scale experiment exploring how young people respond, adapt, and self-regulate when temporarily stepping away from a familiar social media platform.",
+      "fallbackSlug": "72h-no-facebook",
+      "viewAllBtn": "Read our research"
+    },
+    "what": {
+      "titlePrefix": "What we",
+      "titleAccent": "do",
+      "lead": "Z & Alpha Initiative operates at the intersection of research, education, and policy, aiming to build a healthy digital environment for the next generations.",
+      "intro": "Our work includes:",
+      "bullet1": "Conducting in-depth studies on the social, psychological, and behavioral impacts of the digital environment on adolescents.",
+      "bullet2": "Providing policy recommendations and evidence-based insights for schools, parents, and regulatory bodies.",
+      "bullet3": "Organizing training programs, workshops, and communication campaigns to raise community awareness about safe and healthy social media use.",
+      "principleText": "Across all our work, <strong>intellectual independence</strong> is a core value.",
+      "principleCta": "Read about our funding & independence policy"
+    },
+    "focus": {
+      "title": "Our focus areas",
+      "card1": {
+        "title": "Education",
+        "body": "Designing curricula, workshops, and guidelines to help students, teachers, and parents better understand digital literacy, critical thinking skills, and mental health in the age of social media."
+      },
+      "card2": {
+        "title": "Policy Recommendations",
+        "body": "Providing data and empirical evidence to agencies and organizations in developing policies related to children and young people in the digital environment."
+      },
+      "card3": {
+        "title": "Research",
+        "body": "Conducting qualitative, quantitative, and interdisciplinary research on the relationship between technology, psychology, and society, particularly focusing on the 13–18 age group."
+      },
+      "linkLabel": "View research"
+    },
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "lead": "Sign up with your email to receive news and updates.",
+      "placeholder": "Your email address",
+      "submit": "Subscribe"
+    }
+  },
+  "footer": {
+    "tagline": "Research – Connection – Taking Action<br />for Generation Z & Alpha — knowledgeable and safe in the digital environment",
+    "linksHeading": "Links",
+    "contactHeading": "Contact",
+    "address": "HeiTower, 1 Nguy Nhu Kon Tum St., Thanh Xuan, Hanoi, Vietnam",
+    "phone": "+84 918 061 515",
+    "email": "contact@z-alpha.org",
+    "rights": "© {year} – Z & Alpha Initiative. All rights reserved.",
+    "iconsBy": "Icons by Lucide",
+    "privacy": "Privacy policy"
+  },
+  "team": {
+    "metaTitle": "Team — Z & Alpha Initiative",
+    "title": "Our team",
+    "researcher": "Researchers",
+    "youngResearcher": "Young researchers"
+  },
+  "contact": {
+    "metaTitle": "Contact — Z & Alpha Initiative",
+    "title": "Contact"
+  },
+  "research": {
+    "metaTitle": "Research — Z & Alpha Initiative",
+    "title": "Research & Projects",
+    "lead": "This section introduces the studies, experiments, and analyses we conduct to better understand the impact of media and technology on people in modern life.",
+    "featuredHeading": "Featured research",
+    "allHeading": "All research",
+    "filterAll": "All",
+    "filterLabel": "Filter by topic",
+    "searchPlaceholder": "Search title, keywords…",
+    "searchLabel": "Search research",
+    "minRead": "min read",
+    "resultsCount": "{count} articles",
+    "noResults": "No matching articles",
+    "clearFilters": "Clear filters"
+  },
+  "news": {
+    "metaTitle": "News — Z & Alpha Initiative",
+    "title": "News",
+    "lead": "The latest from Z & Alpha and our activities — events, announcements, articles, and press coverage.",
+    "filterAll": "All",
+    "filterLabel": "Filter by type",
+    "searchPlaceholder": "Search news…",
+    "searchLabel": "Search news",
+    "resultsCount": "{count} items",
+    "noResults": "No matching news",
+    "clearFilters": "Clear filters"
+  },
+  "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Switch to {lang}" },
+  "error": {
+    "404title": "404 — Page not found",
+    "404body": "The page you're looking for doesn't exist or has been moved.",
+    "404cta": "Back to home"
+  }
+}
