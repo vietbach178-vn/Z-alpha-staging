@@ -40,14 +40,21 @@ export default function ResearchForm({ topics, initial }: Props) {
   const [pending, startTransition] = useTransition();
   const [activeLang, setActiveLang] = useState<'vi' | 'en'>('vi');
   const [state, setState] = useState<Initial>(initial);
+  const [error, setError] = useState<{ field?: string; message: string } | null>(null);
 
   function set<K extends keyof Initial>(key: K, val: Initial[K]) {
     setState((s) => ({ ...s, [key]: val }));
   }
 
   function submit(status: 'DRAFT' | 'PUBLISHED') {
+    if (!state.titleVi.trim()) {
+      setError({ field: 'titleVi', message: 'Tiêu đề VI bắt buộc' });
+      setActiveLang('vi');
+      return;
+    }
+    setError(null);
     startTransition(async () => {
-      await saveResearch({
+      const res = await saveResearch({
         id: state.id,
         slug: state.slug,
         titleVi: state.titleVi,
@@ -64,6 +71,10 @@ export default function ResearchForm({ topics, initial }: Props) {
         bodyVi: state.bodyVi,
         bodyEn: state.bodyEn,
       });
+      if (!res.ok) {
+        setError({ field: res.field, message: res.error });
+        return;
+      }
       router.push('/admin/research');
     });
   }
@@ -97,6 +108,9 @@ export default function ResearchForm({ topics, initial }: Props) {
               background: 'transparent',
             }}
           />
+          {error?.field === 'titleVi' && activeLang === 'vi' && (
+            <p style={{ color: '#b91c1c', fontSize: '.85rem', margin: '4px 0 0' }}>{error.message}</p>
+          )}
           <textarea
             placeholder={activeLang === 'vi' ? 'Mô tả ngắn (VI)…' : 'Short description (EN)…'}
             rows={2}
@@ -150,6 +164,11 @@ export default function ResearchForm({ topics, initial }: Props) {
       {/* SIDEBAR */}
       <aside style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ background: '#fff', padding: 16, borderRadius: 12, border: '1px solid #e5e7eb' }}>
+          {error && error.field !== 'titleVi' && (
+            <div style={{ background: '#fef2f2', color: '#b91c1c', padding: 8, borderRadius: 6, fontSize: '.85rem', marginBottom: 8 }}>
+              {error.message}
+            </div>
+          )}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <button
               type="button"

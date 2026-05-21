@@ -35,9 +35,16 @@ async function requireAdmin() {
   if (!session) redirect('/admin/login');
 }
 
-export async function saveNews(input: z.infer<typeof schema>) {
+export type ActionResult = { ok: true } | { ok: false; error: string; field?: string };
+
+export async function saveNews(input: z.infer<typeof schema>): Promise<ActionResult> {
   await requireAdmin();
-  const data = schema.parse(input);
+  const parsed = schema.safeParse(input);
+  if (!parsed.success) {
+    const issue = parsed.error.issues[0];
+    return { ok: false, error: issue.message, field: String(issue.path[0] ?? '') };
+  }
+  const data = parsed.data;
   const slug = (data.slug && data.slug.trim()) || slugify(data.titleVi);
 
   const common = {
@@ -56,10 +63,17 @@ export async function saveNews(input: z.infer<typeof schema>) {
     bodyEn: data.bodyEn ?? null,
   };
 
-  if (data.id) {
-    await prisma.newsItem.update({ where: { id: data.id }, data: common });
-  } else {
-    await prisma.newsItem.create({ data: common });
+  try {
+    if (data.id) {
+      await prisma.newsItem.update({ where: { id: data.id }, data: common });
+    } else {
+      await prisma.newsItem.create({ data: common });
+    }
+  } catch (e: unknown) {
+    if (typeof e === 'object' && e && 'code' in e && (e as { code: string }).code === 'P2002') {
+      return { ok: false, error: 'Slug đã tồn tại — đổi slug khác hoặc đổi tiêu đề.', field: 'slug' };
+    }
+    throw e;
   }
 
   revalidatePath('/admin/news');
@@ -67,6 +81,7 @@ export async function saveNews(input: z.infer<typeof schema>) {
   revalidatePath('/en/news');
   revalidatePath(`/vi/news/${slug}`);
   revalidatePath(`/en/news/${slug}`);
+  return { ok: true };
 }
 
 export async function deleteNews(id: string) {
