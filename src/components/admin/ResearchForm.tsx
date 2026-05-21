@@ -1,0 +1,272 @@
+'use client';
+
+import { useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import { saveResearch, deleteResearch } from '@/app/admin/research/actions';
+
+const BlockEditor = dynamic(() => import('@/components/editor/BlockEditor'), { ssr: false });
+
+interface Topic {
+  id: string;
+  labelVi: string;
+}
+
+interface Initial {
+  id?: string;
+  slug: string;
+  titleVi: string;
+  titleEn: string;
+  excerptVi: string;
+  excerptEn: string;
+  topicId: string;
+  typeVi: string;
+  typeEn: string;
+  readingTime: number | '';
+  heroImage: string;
+  featured: boolean;
+  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
+  bodyVi: unknown[];
+  bodyEn: unknown[] | null;
+}
+
+interface Props {
+  topics: Topic[];
+  initial: Initial;
+}
+
+export default function ResearchForm({ topics, initial }: Props) {
+  const router = useRouter();
+  const [pending, startTransition] = useTransition();
+  const [activeLang, setActiveLang] = useState<'vi' | 'en'>('vi');
+  const [state, setState] = useState<Initial>(initial);
+
+  function set<K extends keyof Initial>(key: K, val: Initial[K]) {
+    setState((s) => ({ ...s, [key]: val }));
+  }
+
+  function submit(status: 'DRAFT' | 'PUBLISHED') {
+    startTransition(async () => {
+      await saveResearch({
+        id: state.id,
+        slug: state.slug,
+        titleVi: state.titleVi,
+        titleEn: state.titleEn,
+        excerptVi: state.excerptVi,
+        excerptEn: state.excerptEn,
+        topicId: state.topicId,
+        typeVi: state.typeVi,
+        typeEn: state.typeEn,
+        readingTime: typeof state.readingTime === 'number' ? state.readingTime : undefined,
+        heroImage: state.heroImage,
+        featured: state.featured,
+        status,
+        bodyVi: state.bodyVi,
+        bodyEn: state.bodyEn,
+      });
+      router.push('/admin/research');
+    });
+  }
+
+  async function onUploadHero(file: File) {
+    const fd = new FormData();
+    fd.set('file', file);
+    fd.set('prefix', 'research/hero');
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const json = await res.json();
+    if (json.url) set('heroImage', json.url);
+  }
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32 }}>
+      {/* MAIN */}
+      <div>
+        <header style={{ marginBottom: 24 }}>
+          <input
+            type="text"
+            placeholder={activeLang === 'vi' ? 'Tiêu đề (VI)' : 'Title (EN)'}
+            value={activeLang === 'vi' ? state.titleVi : state.titleEn}
+            onChange={(e) => set(activeLang === 'vi' ? 'titleVi' : 'titleEn', e.target.value)}
+            style={{
+              width: '100%',
+              fontSize: '2rem',
+              fontWeight: 700,
+              border: 'none',
+              outline: 'none',
+              padding: '8px 0',
+              background: 'transparent',
+            }}
+          />
+          <textarea
+            placeholder={activeLang === 'vi' ? 'Mô tả ngắn (VI)…' : 'Short description (EN)…'}
+            rows={2}
+            value={activeLang === 'vi' ? state.excerptVi : state.excerptEn}
+            onChange={(e) => set(activeLang === 'vi' ? 'excerptVi' : 'excerptEn', e.target.value)}
+            style={{
+              width: '100%',
+              border: 'none',
+              outline: 'none',
+              fontSize: '1rem',
+              color: '#475569',
+              resize: 'vertical',
+              padding: '4px 0',
+              background: 'transparent',
+            }}
+          />
+        </header>
+
+        {/* Language tabs */}
+        <div style={{ display: 'flex', gap: 4, marginBottom: 12, borderBottom: '1px solid #e5e7eb' }}>
+          {(['vi', 'en'] as const).map((l) => (
+            <button
+              key={l}
+              type="button"
+              onClick={() => setActiveLang(l)}
+              style={{
+                padding: '8px 16px',
+                background: 'transparent',
+                border: 'none',
+                borderBottom: activeLang === l ? '2px solid #1d4ed8' : '2px solid transparent',
+                cursor: 'pointer',
+                fontWeight: activeLang === l ? 700 : 400,
+                color: activeLang === l ? '#1d4ed8' : '#64748b',
+              }}
+            >
+              {l === 'vi' ? 'Tiếng Việt' : 'English'}
+            </button>
+          ))}
+        </div>
+
+        <BlockEditor
+          key={activeLang}
+          initialContent={activeLang === 'vi' ? state.bodyVi : (state.bodyEn ?? [])}
+          onChange={(blocks) => {
+            if (activeLang === 'vi') set('bodyVi', blocks);
+            else set('bodyEn', blocks);
+          }}
+        />
+      </div>
+
+      {/* SIDEBAR */}
+      <aside style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ background: '#fff', padding: 16, borderRadius: 12, border: '1px solid #e5e7eb' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <button
+              type="button"
+              onClick={() => submit('PUBLISHED')}
+              disabled={pending}
+              className="btn btn-primary"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              {pending ? 'Đang lưu…' : 'Xuất bản'}
+            </button>
+            <button
+              type="button"
+              onClick={() => submit('DRAFT')}
+              disabled={pending}
+              className="btn btn-outline"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              Lưu nháp
+            </button>
+            {state.id && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (confirm('Xóa bài này vĩnh viễn?')) {
+                    startTransition(async () => {
+                      await deleteResearch(state.id!);
+                    });
+                  }
+                }}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid #fecaca',
+                  color: '#b91c1c',
+                  padding: '8px',
+                  borderRadius: 8,
+                  cursor: 'pointer',
+                  fontSize: '.85rem',
+                }}
+              >
+                Xóa
+              </button>
+            )}
+          </div>
+        </div>
+
+        <Field label="Slug (URL)">
+          <input
+            type="text"
+            value={state.slug}
+            onChange={(e) => set('slug', e.target.value)}
+            placeholder="auto-generated từ tiêu đề"
+          />
+        </Field>
+
+        <Field label="Chủ đề">
+          <select value={state.topicId} onChange={(e) => set('topicId', e.target.value)}>
+            <option value="">(Chưa chọn)</option>
+            {topics.map((t) => (
+              <option key={t.id} value={t.id}>{t.labelVi}</option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label="Loại bài">
+          <input type="text" value={state.typeVi} onChange={(e) => set('typeVi', e.target.value)} placeholder="VD: Thực nghiệm" />
+          <input type="text" value={state.typeEn} onChange={(e) => set('typeEn', e.target.value)} placeholder="VD: Field experiment" />
+        </Field>
+
+        <Field label="Thời gian đọc (phút)">
+          <input
+            type="number"
+            min={1}
+            value={state.readingTime}
+            onChange={(e) => set('readingTime', e.target.value === '' ? '' : Number(e.target.value))}
+          />
+        </Field>
+
+        <Field label="Ảnh bìa">
+          {state.heroImage ? (
+            <div>
+              <img src={state.heroImage} alt="" style={{ width: '100%', borderRadius: 8, marginBottom: 8 }} />
+              <button
+                type="button"
+                onClick={() => set('heroImage', '')}
+                style={{ fontSize: '.8rem', color: '#b91c1c', background: 'transparent', border: 'none', cursor: 'pointer' }}
+              >
+                Xóa ảnh
+              </button>
+            </div>
+          ) : (
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) onUploadHero(f);
+              }}
+            />
+          )}
+        </Field>
+
+        <Field label="Nổi bật">
+          <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <input type="checkbox" checked={state.featured} onChange={(e) => set('featured', e.target.checked)} />
+            Hiển thị trong section "Nghiên cứu nổi bật"
+          </label>
+        </Field>
+      </aside>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div style={{ background: '#fff', padding: 16, borderRadius: 12, border: '1px solid #e5e7eb' }}>
+      <label style={{ display: 'block', fontSize: '.85rem', fontWeight: 600, color: '#475569', marginBottom: 8 }}>{label}</label>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{children}</div>
+    </div>
+  );
+}

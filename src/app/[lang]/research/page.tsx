@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
-import { TOPICS, getFeaturedItems, getNonFeaturedItems } from '@/data/research-sample';
-import ResearchCard from '@/components/public/ResearchCard';
-import FeaturedResearch from '@/components/public/FeaturedResearch';
+import Link from 'next/link';
+import { isLang, getDictionary, localizedHref, t, type Lang } from '@/lib/i18n';
+import { listPublishedResearch, listTopics, pickL } from '@/lib/repos';
 import FilterToolbar from '@/components/public/FilterToolbar';
 import Newsletter from '@/components/public/Newsletter';
+
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/research'>): Promise<Metadata> {
   const { lang } = await params;
@@ -15,20 +16,30 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/research'>
   return { title: t(dict, 'research.metaTitle') };
 }
 
+const fmtDate = (iso: Date, lang: Lang) =>
+  iso.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { year: 'numeric', month: 'long' });
+
 export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/research'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
   const dict = await getDictionary(lang);
 
-  const featured = getFeaturedItems();
-  const rest = getNonFeaturedItems();
+  const [allItems, topics] = await Promise.all([
+    listPublishedResearch(),
+    listTopics(),
+  ]);
 
-  const chips = TOPICS.map((topic) => ({
-    id: topic.id,
-    label: topic.label[lang],
+  const featured = allItems.filter((a) => a.featured).slice(0, 4);
+  const rest = allItems.filter((a) => !a.featured);
+
+  const chips = topics.map((topic) => ({
+    id: topic.slug,
+    label: pickL(topic.labelVi, topic.labelEn, lang),
     tone: topic.tone,
   }));
+
+  const [hero, ...sideFeatured] = featured;
 
   return (
     <>
@@ -43,7 +54,7 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
         </div>
       </section>
 
-      {featured.length > 0 && (
+      {hero && (
         <section className="section" style={{ paddingTop: 32 }}>
           <div className="container">
             <div className="research-section-head">
@@ -52,7 +63,80 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
                 {t(dict, 'research.featuredHeading')}
               </span>
             </div>
-            <FeaturedResearch items={featured} lang={lang} dict={dict} />
+
+            <div className={`featured-research-grid ${sideFeatured.length === 0 ? 'is-hero-only' : ''}`}>
+              <Link href={localizedHref(`research/${hero.slug}`, lang)} className="featured-hero-card">
+                <div className={`featured-hero-card__media tone-${hero.topic?.tone ?? 'blue'}`}>
+                  {hero.heroImage ? (
+                    <img src={hero.heroImage} alt="" />
+                  ) : (
+                    <div className="featured-hero-card__icon-stack" aria-hidden="true">
+                      <div className="t1"><i data-lucide="users" className="icon-xl" /></div>
+                      <div className="t3"><i data-lucide="brain" className="icon-lg" /></div>
+                      <div className="t2"><i data-lucide="message-circle-off" className="icon-lg" /></div>
+                    </div>
+                  )}
+                </div>
+                <div className="featured-hero-card__body">
+                  {hero.topic && (
+                    <span className={`topic-chip topic-chip--${hero.topic.tone}`}>
+                      {pickL(hero.topic.labelVi, hero.topic.labelEn, lang)}
+                    </span>
+                  )}
+                  <h3 className="featured-hero-card__title">{pickL(hero.titleVi, hero.titleEn, lang)}</h3>
+                  <p className="featured-hero-card__excerpt">{pickL(hero.excerptVi, hero.excerptEn, lang)}</p>
+                  <div className="featured-hero-card__footer">
+                    {hero.publishedAt && <time>{fmtDate(hero.publishedAt, lang)}</time>}
+                    {hero.readingTime && (
+                      <>
+                        <span className="dot" aria-hidden="true">·</span>
+                        <span>{hero.readingTime} {t(dict, 'research.minRead')}</span>
+                      </>
+                    )}
+                    <span className="featured-hero-card__cta">
+                      {t(dict, 'common.readMoreInline')}
+                      <i data-lucide="arrow-right" className="icon-sm" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+
+              {sideFeatured.length > 0 && (
+                <div className="featured-side-stack">
+                  {sideFeatured.map((item) => (
+                    <Link key={item.id} href={localizedHref(`research/${item.slug}`, lang)} className="featured-side-card">
+                      <div className={`featured-side-card__media tone-${item.topic?.tone ?? 'blue'}`}>
+                        {item.heroImage ? (
+                          <img src={item.heroImage} alt="" loading="lazy" />
+                        ) : (
+                          <div className="featured-side-card__placeholder" aria-hidden="true">
+                            <i data-lucide="file-text" className="icon-lg" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="featured-side-card__body">
+                        {item.topic && (
+                          <span className={`topic-chip topic-chip--${item.topic.tone}`}>
+                            {pickL(item.topic.labelVi, item.topic.labelEn, lang)}
+                          </span>
+                        )}
+                        <h4 className="featured-side-card__title">{pickL(item.titleVi, item.titleEn, lang)}</h4>
+                        <p className="featured-side-card__excerpt">{pickL(item.excerptVi, item.excerptEn, lang)}</p>
+                        <div className="featured-side-card__footer">
+                          {item.publishedAt && <time>{fmtDate(item.publishedAt, lang)}</time>}
+                          {item.readingTime && (
+                            <>
+                              <span className="dot" aria-hidden="true">·</span>
+                              <span>{item.readingTime} {t(dict, 'research.minRead')}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </section>
       )}
@@ -80,9 +164,61 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
           </Suspense>
 
           <div className="research-grid-3" data-filter-grid>
-            {rest.map((item) => (
-              <ResearchCard key={item.id} item={item} lang={lang} dict={dict} />
-            ))}
+            {rest.length === 0 ? (
+              <p style={{ color: '#6b7280', gridColumn: '1 / -1' }}>
+                {lang === 'vi' ? 'Chưa có bài nghiên cứu nào ngoài bài nổi bật.' : 'No more articles beyond featured.'}
+              </p>
+            ) : (
+              rest.map((item) => {
+                const title = pickL(item.titleVi, item.titleEn, lang);
+                const excerpt = pickL(item.excerptVi, item.excerptEn, lang) ?? '';
+                const topicLabel = item.topic ? pickL(item.topic.labelVi, item.topic.labelEn, lang) : '';
+                const search = [item.titleVi, item.titleEn ?? '', item.excerptVi ?? '', item.excerptEn ?? '', topicLabel]
+                  .join(' ').toLowerCase();
+                return (
+                  <Link
+                    key={item.id}
+                    href={localizedHref(`research/${item.slug}`, lang)}
+                    className="research-card-v2"
+                    data-card="true"
+                    data-topic={item.topic?.slug ?? ''}
+                    data-search={search}
+                  >
+                    <div className={`research-card-v2__media tone-${item.topic?.tone ?? 'blue'}`}>
+                      {item.heroImage ? (
+                        <img src={item.heroImage} alt="" loading="lazy" />
+                      ) : (
+                        <div className="research-card-v2__icon-stack" aria-hidden="true">
+                          <div className="t1"><i data-lucide="users" className="icon-lg" /></div>
+                          <div className="t3"><i data-lucide="brain" className="icon-md" /></div>
+                          <div className="t2"><i data-lucide="message-circle-off" className="icon-md" /></div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="research-card-v2__body">
+                      <div className="research-card-v2__meta">
+                        {item.topic && (
+                          <span className={`topic-chip topic-chip--${item.topic.tone}`}>{topicLabel}</span>
+                        )}
+                      </div>
+                      <h3 className="research-card-v2__title">{title}</h3>
+                      <p className="research-card-v2__excerpt">{excerpt}</p>
+                      <div className="research-card-v2__footer">
+                        {item.publishedAt && (
+                          <time className="research-card-v2__date">{fmtDate(item.publishedAt, lang)}</time>
+                        )}
+                        {item.readingTime && (
+                          <>
+                            <span className="research-card-v2__dot" aria-hidden="true">·</span>
+                            <span className="research-card-v2__read">{item.readingTime} {t(dict, 'research.minRead')}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </div>
       </section>
