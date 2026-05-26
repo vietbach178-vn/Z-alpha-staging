@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/team'>): P
 }
 
 const placeholder = (initials: string) =>
-  `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
+  `https://placehold.co/300x300/f3f4f6/111827?text=${encodeURIComponent(initials)}`;
 
 export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
   const { lang: rawLang } = await params;
@@ -46,31 +46,26 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
       {/* THÀNH VIÊN TỔ CHỨC */}
       <section className="section" id="organizers" style={{ paddingTop: 32 }}>
         <div className="container">
-          <div className="group-header g-blue">
-            <span className="group-bar" aria-hidden="true" />
-            <h2>{t(dict, 'team.organizer')}</h2>
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'team.organizer')}</h2>
           </div>
 
-          <div className="org-members">
+          <div className="team-org-list">
             {FALLBACK_ORGANIZERS.map((p) => (
-              <article key={p.initials} className="org-member">
-                <div className="org-member__left">
-                  <div className="org-member__portrait">
-                    {p.avatar ? (
-                      <img src={p.avatar} alt={p.name} />
-                    ) : (
-                      <span className="org-member__initials">{p.initials}</span>
-                    )}
+              <article key={p.initials} className="team-org-card">
+                <div>
+                  <div className="team-org-card__photo">
+                    {p.avatar ? <img src={p.avatar} alt={p.name} /> : <span>{p.initials}</span>}
                   </div>
-                  <p className="org-member__name">{p.name}</p>
-                  <p className="org-member__role">{p.role[lang]}</p>
+                  <p className="team-org-card__name t-h4">{p.name}</p>
+                  <p className="team-org-card__role t-meta">{p.role[lang]}</p>
                 </div>
-                <div className="org-member__right">
+                <div>
                   {p.bio[lang].map((para, i) => (
-                    <p key={i} className="org-member__bio">{para}</p>
+                    <p key={i} className="team-org-card__bio">{para}</p>
                   ))}
                   {p.bullets && (
-                    <ul className="org-member__bullets">
+                    <ul className="team-org-card__bullets">
                       {p.bullets[lang].map((b, i) => <li key={i}>{b}</li>)}
                     </ul>
                   )}
@@ -85,16 +80,15 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
       {FALLBACK_RESEARCHERS.length > 0 && (
         <section className="section section--muted" id="researchers">
           <div className="container">
-            <div className="group-header g-blue">
-              <span className="group-bar" aria-hidden="true" />
-              <h2>{t(dict, 'team.researcher')}</h2>
+            <div className="section-header">
+              <h2 className="section-title">{t(dict, 'team.researcher')}</h2>
             </div>
 
             <div className="people-grid">
               {FALLBACK_RESEARCHERS.map((p) => (
                 <div key={p.initials} className="person-card">
                   <div className="person-photo">
-                    {p.avatar ? <img src={p.avatar} alt={p.name} /> : <img src={placeholder(p.initials)} alt={p.name} />}
+                    <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
                   </div>
                   <div className="person-body">
                     <p className="person-name">{p.name}</p>
@@ -110,16 +104,15 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
       {/* CỘNG TÁC VIÊN */}
       <section className="section" id="collaborators">
         <div className="container">
-          <div className="group-header g-orange">
-            <span className="group-bar" aria-hidden="true" />
-            <h2>{t(dict, 'team.collaborator')}</h2>
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'team.collaborator')}</h2>
           </div>
 
           <div className="people-grid">
             {FALLBACK_COLLABORATORS.map((p) => (
               <div key={p.initials} className="person-card">
                 <div className="person-photo">
-                  {p.avatar ? <img src={p.avatar} alt={p.name} /> : <img src={placeholder(p.initials)} alt={p.name} />}
+                  <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
                 </div>
                 <div className="person-body">
                   <p className="person-name">{p.name}</p>
