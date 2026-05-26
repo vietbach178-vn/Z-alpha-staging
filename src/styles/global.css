@@ -1348,3 +1348,351 @@ section { position: relative; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ===========================================================
+ * Header dropdown — Về Z & Alpha
+ * =========================================================== */
+.nav-dropdown { position: relative; }
+.nav-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-dropdown__caret {
+  font-size: 10px;
+  color: var(--fg-3);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.nav-dropdown:hover .nav-dropdown__caret,
+.nav-dropdown:focus-within .nav-dropdown__caret { transform: rotate(180deg); }
+
+.nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 280px;
+  background: #fff;
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 30px -8px rgba(15, 23, 42, .15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .15s ease-out, transform .15s ease-out, visibility .15s;
+  z-index: 50;
+}
+.nav-dropdown:hover .nav-dropdown__menu,
+.nav-dropdown:focus-within .nav-dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dropdown__item {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--fg-1) !important;
+  background: transparent !important;
+}
+.nav-dropdown__item:hover { background: var(--gray-50, #f8fafc) !important; }
+
+.mobile-menu__group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+}
+.mobile-menu__group-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--fg-3);
+  padding: 4px 12px;
+}
+.mobile-menu__sub {
+  padding-left: 24px !important;
+  font-size: 14px !important;
+}
+
+/* ===========================================================
+ * About → Social Media Vietnam page
+ * =========================================================== */
+.about-hero {
+  padding: 56px 0 24px;
+}
+.about-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  background: var(--blue-50);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.about-hero__title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--fg-1);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+.about-hero__subtitle {
+  font-size: 18px;
+  color: var(--fg-3);
+  margin: 0 0 16px;
+}
+.about-hero__lead {
+  max-width: 720px;
+  color: var(--fg-2);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.scholar-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+@media (max-width: 768px) { .scholar-row { grid-template-columns: 1fr; } }
+
+.scholar-card {
+  background: var(--gray-50, #f8fafc);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.scholar-card__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.scholar-card__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blue-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.scholar-card__name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg-1);
+  margin: 0;
+}
+.scholar-card__role {
+  font-size: 14px;
+  color: var(--fg-2);
+  margin: 2px 0 0;
+}
+.scholar-card__meta {
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  margin: 0;
+}
+.scholar-card__meta strong { color: var(--fg-1); }
+
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.quote-card-dark {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-radius: 16px;
+  padding: 24px;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.quote-card-dark::before {
+  content: "“";
+  position: absolute;
+  top: 4px;
+  left: 16px;
+  font-size: 56px;
+  line-height: 1;
+  color: rgba(255, 255, 255, .4);
+  font-family: Georgia, serif;
+}
+.quote-card-dark__text {
+  padding-left: 36px;
+}
+.vn-context-card {
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100, #dbeafe);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+.vn-context-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue-700);
+}
+.vn-context-card p {
+  margin: 0;
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* numbered cards */
+.numbered-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) { .numbered-grid { grid-template-columns: 1fr; } }
+.numbered-card {
+  background: var(--gray-50, #f8fafc);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.numbered-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.numbered-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.numbered-card__num {
+  font-size: 32px;
+  font-weight: 700;
+  font-style: italic;
+}
+.numbered-card.t-blue   .numbered-card__icon { background: var(--blue-500); }
+.numbered-card.t-blue   .numbered-card__num  { color: var(--blue-600); }
+.numbered-card.t-teal   .numbered-card__icon { background: var(--teal-600); }
+.numbered-card.t-teal   .numbered-card__num  { color: var(--teal-700); }
+.numbered-card.t-orange .numbered-card__icon { background: var(--orange-600); }
+.numbered-card.t-orange .numbered-card__num  { color: var(--orange-600); }
+.numbered-card__label {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fg-1);
+  margin: 0;
+}
+.numbered-card__labelEn {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--fg-3);
+  margin: 2px 0 8px;
+}
+.numbered-card__body {
+  font-size: 14.5px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* impact 2-col */
+.impact-block {
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 16px;
+  padding: 28px;
+  background: #fff;
+}
+.impact-block__title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--fg-1);
+  margin: 0 0 8px;
+}
+.impact-block__lead {
+  color: var(--fg-2);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.impact-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.impact-pill {
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+.impact-pill.t-blue { background: var(--blue-600); }
+.impact-pill.t-red  { background: var(--red-600); }
+.impact-pill-center {
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .impact-header { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+}
+.impact-col { display: flex; flex-direction: column; gap: 12px; }
+.impact-card {
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.impact-card h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fg-1);
+}
+.impact-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+.impact-col.t-blue .impact-card { background: var(--blue-50); border: 1px solid var(--blue-100, #dbeafe); }
+.impact-col.t-red  .impact-card { background: var(--red-50);  border: 1px solid var(--red-200); }

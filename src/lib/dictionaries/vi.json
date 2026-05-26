@@ -4,8 +4,13 @@
     "about": "Về Z & Alpha",
     "research": "Nghiên cứu",
     "news": "Tin tức",
-    "team": "Con người",
-    "contact": "Liên hệ"
+    "team": "Đội ngũ",
+    "contact": "Liên hệ",
+    "aboutMenu": {
+      "socialMedia": "Mạng xã hội và thế hệ tương lai của Việt Nam",
+      "whatWeDo": "Điều chúng tôi làm",
+      "team": "Đội ngũ của chúng tôi"
+    }
   },
   "common": {
     "readMore": "Đọc tiếp",
@@ -126,6 +131,71 @@
     "resultsCount": "{count} tin",
     "noResults": "Không tìm thấy tin nào khớp",
     "clearFilters": "Xoá bộ lọc"
+  },
+  "aboutSocialMedia": {
+    "metaTitle": "Mạng xã hội và thế hệ tương lai của Việt Nam — Z & Alpha",
+    "heroEyebrow": "Về Z & Alpha",
+    "heroTitle": "Sự tái cấu trúc toàn diện tuổi thơ trong kỷ nguyên số",
+    "heroSubtitle": "The Great Rewiring of Childhood",
+    "heroLead": "Vì sao Z & Alpha tồn tại — và bối cảnh khoa học mà chúng tôi đang dựa vào để hiểu thế hệ trẻ Việt Nam.",
+    "scholar": {
+      "name": "Jonathan Haidt",
+      "role": "Giáo sư Tâm lý học Xã hội, NYU Stern",
+      "phdLabel": "Học vị",
+      "phd": "Tiến sĩ (PhD) Tâm lý học Xã hội, Đại học Pennsylvania",
+      "expertiseLabel": "Chuyên môn",
+      "expertise": "Nghiên cứu về đạo đức, hành vi xã hội và tác động của công nghệ đến thế hệ trẻ",
+      "publishedLabel": "Công bố",
+      "published": "Năm 2024, dựa trên dữ liệu tổng hợp từ nhiều khảo sát quy mô lớn (hàng chục nghìn người, giai đoạn 2010–2023)",
+      "scopeLabel": "Phạm vi",
+      "scope": "Mỹ, Canada, Úc và các quốc gia châu Âu"
+    },
+    "quote": "Trẻ em đang chuyển từ môi trường phát triển dựa trên trải nghiệm thực tế sang môi trường tương tác hoàn toàn qua màn hình.",
+    "vnContextHeading": "Bối cảnh Việt Nam",
+    "vnContextBody": "Việt Nam là một trong những quốc gia mà quá trình \"tái cấu trúc tuổi thơ\" đang diễn ra với tốc độ rất nhanh. Tỷ lệ người trẻ sử dụng mạng xã hội gần như phổ cập và mức độ phụ thuộc cao vào thiết bị di động.",
+    "featuresHeading": "Đặc điểm nổi bật của môi trường số mà thế hệ trẻ Việt Nam đang lớn lên",
+    "features": [
+      {
+        "num": "01",
+        "icon": "link",
+        "tone": "blue",
+        "label": "Kết nối liên tục",
+        "labelEn": "Always-On Connectivity",
+        "body": "Các nền tảng thiết kế thông báo liên tục (notifications) và cơ chế cập nhật theo thời gian thực khiến người dùng duy trì trạng thái online gần như không gián đoạn."
+      },
+      {
+        "num": "02",
+        "icon": "message-circle",
+        "tone": "teal",
+        "label": "Tương tác xã hội qua nền tảng số",
+        "labelEn": "Digital-First Social Interaction",
+        "body": "Phần lớn hoạt động giao tiếp — nhắn tin, chia sẻ, kết bạn, giải trí — diễn ra trên các ứng dụng mạng xã hội, thay thế dần các hình thức tương tác trực tiếp."
+      },
+      {
+        "num": "03",
+        "icon": "shuffle",
+        "tone": "orange",
+        "label": "Ranh giới thực – ảo ngày càng mờ",
+        "labelEn": "Blurred Digital-Physical Boundaries",
+        "body": "Việc cá nhân hóa nội dung và chia sẻ đời sống lên mạng xã hội khiến trải nghiệm online phản ánh và định hình hành vi ngoài đời. Học tập, giải trí, mua sắm và xây dựng hình ảnh cá nhân đều diễn ra song song trên cả hai không gian."
+      }
+    ],
+    "impactHeading": "Tác động của mạng xã hội đến thế hệ trẻ Việt Nam",
+    "impactLead": "Việt Nam đang nằm đúng quỹ đạo mà Haidt mô tả, nhưng với cường độ cao hơn do đặc tính \"mobile-first society\". Tác động không chỉ dừng ở nội dung mà là hệ sinh thái ảnh hưởng tới hành vi, tâm lý và phát triển xã hội của trẻ.",
+    "impactDirect": "I. Tác động trực tiếp",
+    "impactIndirect": "II. Tác động gián tiếp",
+    "impactCenter": "Tác động của Social Media tại Việt Nam",
+    "direct": [
+      { "title": "Phân mảnh sự chú ý", "body": "Tái cấu trúc hành vi và khả năng tập trung (attention fragmentation)" },
+      { "title": "Suy giảm tương tác trực tiếp", "body": "Chuyển dịch từ \"Play-based childhood\" sang \"Phone-based childhood\"" },
+      { "title": "Lo âu & so sánh xã hội", "body": "Tác động tâm lý: lo âu, so sánh xã hội, và tự đánh giá bản thân" },
+      { "title": "Nghịch lý bảo vệ", "body": "\"Overprotected offline – Underprotected online\"" }
+    ],
+    "indirect": [
+      { "title": "Hạ tầng của rủi ro", "body": "Các vụ lừa đảo trẻ em thường không tách rời khỏi social media" },
+      { "title": "Thao túng tâm lý trong lừa đảo", "body": "Cơ chế khai thác tâm lý qua các nền tảng số" },
+      { "title": "Khoảng trống năng lực số", "body": "Digital literacy gap – thiếu kỹ năng số để tự bảo vệ" }
+    ]
   },
   "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Chuyển sang {lang}" },
   "error": {

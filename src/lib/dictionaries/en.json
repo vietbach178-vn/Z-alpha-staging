@@ -5,7 +5,12 @@
     "research": "Research",
     "news": "News",
     "team": "Team",
-    "contact": "Contact"
+    "contact": "Contact",
+    "aboutMenu": {
+      "socialMedia": "Social media and Vietnam's next generation",
+      "whatWeDo": "What we do",
+      "team": "Our team"
+    }
   },
   "common": {
     "readMore": "Read more",
@@ -126,6 +131,71 @@
     "resultsCount": "{count} items",
     "noResults": "No matching news",
     "clearFilters": "Clear filters"
+  },
+  "aboutSocialMedia": {
+    "metaTitle": "Social media and Vietnam's next generation — Z & Alpha",
+    "heroEyebrow": "About Z & Alpha",
+    "heroTitle": "The Great Rewiring of Childhood",
+    "heroSubtitle": "Sự tái cấu trúc toàn diện tuổi thơ trong kỷ nguyên số",
+    "heroLead": "Why Z & Alpha exists — and the scientific context we draw on to understand Vietnam's young generation.",
+    "scholar": {
+      "name": "Jonathan Haidt",
+      "role": "Professor of Social Psychology, NYU Stern",
+      "phdLabel": "Degree",
+      "phd": "PhD in Social Psychology, University of Pennsylvania",
+      "expertiseLabel": "Expertise",
+      "expertise": "Research on moral foundations, social behavior, and the impact of technology on young generations",
+      "publishedLabel": "Published",
+      "published": "2024, synthesizing data from large-scale surveys (tens of thousands of respondents, 2010–2023)",
+      "scopeLabel": "Scope",
+      "scope": "U.S., Canada, Australia, and European countries"
+    },
+    "quote": "Children are shifting from a development environment grounded in real-world experience to one mediated entirely through screens.",
+    "vnContextHeading": "The Vietnam context",
+    "vnContextBody": "Vietnam is among the countries where the \"rewiring of childhood\" is unfolding at an exceptionally fast pace. Social media adoption among youth is near-universal and reliance on mobile devices is unusually high.",
+    "featuresHeading": "Defining traits of the digital environment Vietnam's young generation is growing up in",
+    "features": [
+      {
+        "num": "01",
+        "icon": "link",
+        "tone": "blue",
+        "label": "Always-On Connectivity",
+        "labelEn": "Kết nối liên tục",
+        "body": "Platforms engineer continuous notifications and real-time update loops, keeping users in an almost uninterrupted online state."
+      },
+      {
+        "num": "02",
+        "icon": "message-circle",
+        "tone": "teal",
+        "label": "Digital-First Social Interaction",
+        "labelEn": "Tương tác xã hội qua nền tảng số",
+        "body": "Most communication — messaging, sharing, making friends, entertainment — now happens inside social apps, gradually replacing in-person interaction."
+      },
+      {
+        "num": "03",
+        "icon": "shuffle",
+        "tone": "orange",
+        "label": "Blurred Digital-Physical Boundaries",
+        "labelEn": "Ranh giới thực – ảo ngày càng mờ",
+        "body": "Personalised content and the habit of broadcasting daily life means online experience both reflects and reshapes offline behaviour. Learning, leisure, shopping, and self-presentation all play out across both spaces in parallel."
+      }
+    ],
+    "impactHeading": "How social media is impacting Vietnam's young generation",
+    "impactLead": "Vietnam is on the trajectory Haidt describes, but with greater intensity given its \"mobile-first society\" characteristics. The impact is not just about content — it's an ecosystem shaping behaviour, psychology, and the social development of children.",
+    "impactDirect": "I. Direct impact",
+    "impactIndirect": "II. Indirect impact",
+    "impactCenter": "Social media impact in Vietnam",
+    "direct": [
+      { "title": "Attention fragmentation", "body": "Restructuring of behaviour and attention capacity (attention fragmentation)" },
+      { "title": "Reduced face-to-face interaction", "body": "Shift from \"Play-based childhood\" to \"Phone-based childhood\"" },
+      { "title": "Anxiety & social comparison", "body": "Psychological impact: anxiety, social comparison, and self-evaluation" },
+      { "title": "The protection paradox", "body": "\"Overprotected offline – Underprotected online\"" }
+    ],
+    "indirect": [
+      { "title": "Infrastructure of risk", "body": "Scams targeting children are rarely separable from social media" },
+      { "title": "Psychological manipulation in scams", "body": "Mechanisms exploiting psychology through digital platforms" },
+      { "title": "Digital literacy gap", "body": "Missing digital skills to self-protect" }
+    ]
   },
   "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Switch to {lang}" },
   "error": {
