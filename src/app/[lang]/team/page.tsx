@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/team'>): P
 }
 
 const placeholder = (initials: string) =>
-  `https://placehold.co/300x300/f3f4f6/111827?text=${encodeURIComponent(initials)}`;
+  `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
 
 export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
   const { lang: rawLang } = await params;

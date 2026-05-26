@@ -1454,12 +1454,12 @@ section { position: relative; }
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: var(--r-md);
-  background: var(--gray-100);
+  background: #d4b896; /* team portrait sand — brand-specific placeholder bg */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: var(--fg-1);
+  color: #1a1a1a;
   font-weight: 700;
   font-size: 44px;
   letter-spacing: -0.02em;
