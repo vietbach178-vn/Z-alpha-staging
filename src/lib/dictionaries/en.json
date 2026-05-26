@@ -139,9 +139,12 @@
   "aboutSocialMedia": {
     "metaTitle": "Social media and Vietnam's next generation — Z & Alpha",
     "heroEyebrow": "About Z & Alpha",
-    "heroTitle": "The Great Rewiring of Childhood",
-    "heroSubtitle": "Sự tái cấu trúc toàn diện tuổi thơ trong kỷ nguyên số",
+    "heroTitle": "Social media and Vietnam's next generation",
     "heroLead": "Why Z & Alpha exists — and the scientific context we draw on to understand Vietnam's young generation.",
+    "haidtEyebrow": "Scientific basis",
+    "haidtTitle": "The Great Rewiring of Childhood",
+    "haidtSubtitle": "Sự tái cấu trúc toàn diện tuổi thơ trong kỷ nguyên số",
+    "haidtLead": "Foundational research by Jonathan Haidt (NYU Stern, 2024) — Z & Alpha builds on it to explain why Vietnam's young generation is growing up in an environment unlike any prior one.",
     "scholar": {
       "name": "Jonathan Haidt",
       "role": "Professor of Social Psychology, NYU Stern",

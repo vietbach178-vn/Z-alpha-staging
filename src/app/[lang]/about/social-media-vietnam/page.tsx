@@ -53,68 +53,77 @@ export default async function AboutSocialMediaPage({ params }: PageProps<'/[lang
         <span className="glow glow-teal" />
         <span className="glow glow-blue" />
         <div className="container">
-          <span className="hero-eyebrow">
-            <i data-lucide="info" className="icon-sm" />
-            {t(dict, 'aboutSocialMedia.heroEyebrow')}
-          </span>
+          <div>
+            <span className="hero-eyebrow">
+              <i data-lucide="info" className="icon-sm" />
+              {t(dict, 'aboutSocialMedia.heroEyebrow')}
+            </span>
+          </div>
           <h1>{t(dict, 'aboutSocialMedia.heroTitle')}</h1>
-          <p className="section-lead">{t(dict, 'aboutSocialMedia.heroSubtitle')}</p>
+          <p className="section-lead">{t(dict, 'aboutSocialMedia.heroLead')}</p>
         </div>
       </section>
 
-      {/* SCHOLAR + QUOTE */}
+      {/* SCHOLAR — Haidt (centered header + 2x2 meta grid) + QUOTE */}
       <section className="section" style={{ paddingTop: 32 }}>
         <div className="container">
-          <div className="what-grid">
+          <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
             <div>
-              <div className="section-header" style={{ marginBottom: 0 }}>
-                <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
-                  <i data-lucide="graduation-cap" className="icon-sm" />
-                  {lang === 'vi' ? 'Bối cảnh khoa học' : 'Scientific context'}
-                </span>
-                <h2 className="section-title">
-                  {t(dict, 'aboutSocialMedia.scholar.name')}
-                </h2>
-                <p className="section-lead">{t(dict, 'aboutSocialMedia.scholar.role')}</p>
-                <p style={{ marginTop: 12, color: 'var(--fg-3)', fontSize: 15 }}>
-                  {t(dict, 'aboutSocialMedia.heroLead')}
-                </p>
-              </div>
+              <span className="hero-eyebrow" style={{ marginBottom: 0 }}>
+                <i data-lucide="graduation-cap" className="icon-sm" />
+                {t(dict, 'aboutSocialMedia.haidtEyebrow')}
+              </span>
             </div>
-
-            <div>
-              <ul className="bullet-list">
-                <li className="bullet-item">
-                  <span className="glyph"><i data-lucide="award" className="icon" /></span>
-                  <p>
-                    <strong>{t(dict, 'aboutSocialMedia.scholar.phdLabel')}: </strong>
-                    {t(dict, 'aboutSocialMedia.scholar.phd')}
-                  </p>
-                </li>
-                <li className="bullet-item">
-                  <span className="glyph"><i data-lucide="book-open" className="icon" /></span>
-                  <p>
-                    <strong>{t(dict, 'aboutSocialMedia.scholar.expertiseLabel')}: </strong>
-                    {t(dict, 'aboutSocialMedia.scholar.expertise')}
-                  </p>
-                </li>
-                <li className="bullet-item">
-                  <span className="glyph"><i data-lucide="calendar" className="icon" /></span>
-                  <p>
-                    <strong>{t(dict, 'aboutSocialMedia.scholar.publishedLabel')}: </strong>
-                    {t(dict, 'aboutSocialMedia.scholar.published')}
-                  </p>
-                </li>
-                <li className="bullet-item">
-                  <span className="glyph"><i data-lucide="globe" className="icon" /></span>
-                  <p>
-                    <strong>{t(dict, 'aboutSocialMedia.scholar.scopeLabel')}: </strong>
-                    {t(dict, 'aboutSocialMedia.scholar.scope')}
-                  </p>
-                </li>
-              </ul>
-            </div>
+            <h2 className="section-title" style={{ margin: '12px auto 4px' }}>
+              {t(dict, 'aboutSocialMedia.haidtTitle')}
+            </h2>
+            <p className="t-meta" style={{ margin: '0 auto 12px', fontStyle: 'italic' }}>
+              {t(dict, 'aboutSocialMedia.haidtSubtitle')}
+            </p>
+            <p className="section-lead" style={{ margin: '0 auto', maxWidth: 760 }}>
+              <strong style={{ color: 'var(--fg-1)' }}>Jonathan Haidt</strong>
+              {' — '}{t(dict, 'aboutSocialMedia.scholar.role')}. {t(dict, 'aboutSocialMedia.haidtLead')}
+            </p>
           </div>
+
+          <ul
+            className="bullet-list"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 16,
+              margin: 0,
+            }}
+          >
+            <li className="bullet-item">
+              <span className="glyph"><i data-lucide="award" className="icon" /></span>
+              <p>
+                <strong>{t(dict, 'aboutSocialMedia.scholar.phdLabel')}: </strong>
+                {t(dict, 'aboutSocialMedia.scholar.phd')}
+              </p>
+            </li>
+            <li className="bullet-item">
+              <span className="glyph"><i data-lucide="book-open" className="icon" /></span>
+              <p>
+                <strong>{t(dict, 'aboutSocialMedia.scholar.expertiseLabel')}: </strong>
+                {t(dict, 'aboutSocialMedia.scholar.expertise')}
+              </p>
+            </li>
+            <li className="bullet-item">
+              <span className="glyph"><i data-lucide="calendar" className="icon" /></span>
+              <p>
+                <strong>{t(dict, 'aboutSocialMedia.scholar.publishedLabel')}: </strong>
+                {t(dict, 'aboutSocialMedia.scholar.published')}
+              </p>
+            </li>
+            <li className="bullet-item">
+              <span className="glyph"><i data-lucide="globe" className="icon" /></span>
+              <p>
+                <strong>{t(dict, 'aboutSocialMedia.scholar.scopeLabel')}: </strong>
+                {t(dict, 'aboutSocialMedia.scholar.scope')}
+              </p>
+            </li>
+          </ul>
 
           {/* QUOTE */}
           <div className="principle-banner">
@@ -132,11 +141,13 @@ export default async function AboutSocialMediaPage({ params }: PageProps<'/[lang
       <section className="section section--muted">
         <div className="container">
           <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
-            <span className="hero-eyebrow" style={{ marginBottom: 8 }}>
-              <i data-lucide="map-pin" className="icon-sm" />
-              {lang === 'vi' ? 'Bối cảnh' : 'Context'}
-            </span>
-            <h2 className="section-title" style={{ margin: '0 auto' }}>
+            <div>
+              <span className="hero-eyebrow" style={{ marginBottom: 0 }}>
+                <i data-lucide="map-pin" className="icon-sm" />
+                {lang === 'vi' ? 'Bối cảnh' : 'Context'}
+              </span>
+            </div>
+            <h2 className="section-title" style={{ margin: '12px auto 0' }}>
               {t(dict, 'aboutSocialMedia.vnContextHeading')}
             </h2>
             <p className="section-lead" style={{ margin: '12px auto 0', maxWidth: 760 }}>
