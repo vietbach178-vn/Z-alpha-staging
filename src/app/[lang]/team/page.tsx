@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
-import { FALLBACK_RESEARCHERS, FALLBACK_YOUNG_RESEARCHERS } from '@/data/team-sample';
+import {
+  FALLBACK_ORGANIZERS,
+  FALLBACK_RESEARCHERS,
+  FALLBACK_COLLABORATORS,
+} from '@/data/team-sample';
 import Newsletter from '@/components/public/Newsletter';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/team'>): Promise<Metadata> {
@@ -28,7 +32,7 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
         <div className="container">
           <span className="hero-eyebrow">
             <i data-lucide="users" className="icon-sm" />
-            {t(dict, 'nav.team')}
+            {t(dict, 'nav.aboutMenu.team')}
           </span>
           <h1>{t(dict, 'team.title')}</h1>
           <p className="section-lead">
@@ -39,43 +43,89 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
         </div>
       </section>
 
-      <section className="section" id="researchers" style={{ paddingTop: 32 }}>
+      {/* THÀNH VIÊN TỔ CHỨC */}
+      <section className="section" id="organizers" style={{ paddingTop: 32 }}>
         <div className="container">
           <div className="group-header g-blue">
             <span className="group-bar" aria-hidden="true" />
-            <h2>{t(dict, 'team.researcher')}</h2>
+            <h2>{t(dict, 'team.organizer')}</h2>
           </div>
 
-          <div className="people-grid">
-            {FALLBACK_RESEARCHERS.map((p) => (
-              <a key={p.initials} href="#" className="person-card">
-                <div className="person-photo"><img src={placeholder(p.initials)} alt={p.name} /></div>
-                <div className="person-body">
-                  <p className="person-name">{p.name}</p>
-                  <p className="person-role">{p.role[lang]}</p>
+          <div className="org-members">
+            {FALLBACK_ORGANIZERS.map((p) => (
+              <article key={p.initials} className="org-member">
+                <div className="org-member__left">
+                  <div className="org-member__portrait">
+                    {p.avatar ? (
+                      <img src={p.avatar} alt={p.name} />
+                    ) : (
+                      <span className="org-member__initials">{p.initials}</span>
+                    )}
+                  </div>
+                  <p className="org-member__name">{p.name}</p>
+                  <p className="org-member__role">{p.role[lang]}</p>
                 </div>
-              </a>
+                <div className="org-member__right">
+                  {p.bio[lang].map((para, i) => (
+                    <p key={i} className="org-member__bio">{para}</p>
+                  ))}
+                  {p.bullets && (
+                    <ul className="org-member__bullets">
+                      {p.bullets[lang].map((b, i) => <li key={i}>{b}</li>)}
+                    </ul>
+                  )}
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section--muted" id="young-researchers">
+      {/* NGHIÊN CỨU VIÊN */}
+      {FALLBACK_RESEARCHERS.length > 0 && (
+        <section className="section section--muted" id="researchers">
+          <div className="container">
+            <div className="group-header g-blue">
+              <span className="group-bar" aria-hidden="true" />
+              <h2>{t(dict, 'team.researcher')}</h2>
+            </div>
+
+            <div className="people-grid">
+              {FALLBACK_RESEARCHERS.map((p) => (
+                <div key={p.initials} className="person-card">
+                  <div className="person-photo">
+                    {p.avatar ? <img src={p.avatar} alt={p.name} /> : <img src={placeholder(p.initials)} alt={p.name} />}
+                  </div>
+                  <div className="person-body">
+                    <p className="person-name">{p.name}</p>
+                    <p className="person-role">{p.role[lang]}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CỘNG TÁC VIÊN */}
+      <section className="section" id="collaborators">
         <div className="container">
           <div className="group-header g-orange">
             <span className="group-bar" aria-hidden="true" />
-            <h2>{t(dict, 'team.youngResearcher')}</h2>
+            <h2>{t(dict, 'team.collaborator')}</h2>
           </div>
 
           <div className="people-grid">
-            {FALLBACK_YOUNG_RESEARCHERS.map((p) => (
-              <a key={p.initials} href="#" className="person-card">
-                <div className="person-photo"><img src={placeholder(p.initials)} alt={p.name} /></div>
+            {FALLBACK_COLLABORATORS.map((p) => (
+              <div key={p.initials} className="person-card">
+                <div className="person-photo">
+                  {p.avatar ? <img src={p.avatar} alt={p.name} /> : <img src={placeholder(p.initials)} alt={p.name} />}
+                </div>
                 <div className="person-body">
                   <p className="person-name">{p.name}</p>
                   <p className="person-role">{p.role[lang]}</p>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
 

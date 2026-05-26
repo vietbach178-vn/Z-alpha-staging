@@ -10,17 +10,107 @@ export interface FallbackPerson {
   initials: string;
   name: string;
   role: Record<Lang, string>;
+  /** Optional override URL for portrait (e.g. uploaded asset URL). Falls back to initials placeholder. */
+  avatar?: string;
 }
 
-export const FALLBACK_RESEARCHERS: FallbackPerson[] = [
+export interface FallbackOrganizer extends FallbackPerson {
+  /** Bio paragraphs (each item = one paragraph). */
+  bio: Record<Lang, string[]>;
+  /** Optional bullet list of past roles / achievements. */
+  bullets?: Record<Lang, string[]>;
+}
+
+export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
   {
     initials: 'CHN',
     name: 'ThS. Cao Hoàng Nam',
     role: {
-      vi: 'Điều phối viên trưởng Z & Alpha Initiatives',
-      en: 'Lead Coordinator, Z & Alpha Initiatives',
+      vi: 'Sáng lập viên – Giám đốc điều hành',
+      en: 'Co-founder – Executive Director',
+    },
+    bio: {
+      vi: [
+        'Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines & Malaysia.',
+      ],
+      en: [
+        'Nearly 20 years of experience in corporate communications planning, social-media crisis management and government relations for the corporate sector in Vietnam. MA in Economics and International Relations at the University of Oregon, USA. Public Affairs Director for TOMRA in Vietnam, the Philippines & Malaysia.',
+      ],
+    },
+    bullets: {
+      vi: [
+        'Cựu điều phối viên trưởng tại Vietnam Program for Internet & Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
+        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo VN.',
+      ],
+      en: [
+        'Former lead coordinator at the Vietnam Program for Internet & Society (VPIS), a pioneering interdisciplinary research program on Internet and society in Vietnam.',
+        'Former Head of Public Policy, Government Relations & Communications at PepsiCo Vietnam.',
+      ],
     },
   },
+  {
+    initials: 'NTV',
+    name: 'TS. Nguyễn Thanh Vân',
+    role: {
+      vi: 'Sáng lập viên – Giám đốc chuyên môn',
+      en: 'Co-founder – Director of Programs',
+    },
+    bio: {
+      vi: [
+        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Tiến sỹ chuyên ngành giáo dục tại ĐH Sophia, Thạc sĩ Quan hệ Quốc tế ĐH Waseda (Nhật Bản) với các nghiên cứu lý luận chuyên sâu về hợp tác xã hội, giáo dục công dân toàn cầu, giáo dục phát triển bền vững, giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu. Quản lý sản xuất nội dung giáo dục & xuất bản khoa học tại Oddly normal podcast.',
+      ],
+      en: [
+        'Over 10 years of experience in project management, building global education programs, and coordinating cross-sector partnerships between multinational corporations, governments, NGOs and education institutions. PhD in Education at Sophia University and MA in International Relations at Waseda University (Japan), with research focused on social partnerships, global citizenship education, education for sustainable development, and social-emotional learning amid rapid technological change and systemic global risks. Education content & scientific publishing lead at Oddly Normal Podcast.',
+      ],
+    },
+  },
+  {
+    initials: 'PHC',
+    name: 'TS. Phạm Hải Chung',
+    role: {
+      vi: 'Sáng lập viên – Cố vấn chuyên môn',
+      en: 'Co-founder – Senior Advisor',
+    },
+    bio: {
+      vi: [
+        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Tiến sĩ Truyền thông tại Đại học Bournemouth (Anh Quốc), Thạc sĩ Báo chí Quốc tế tại Đại học Baptist Hồng Kông (Hồng Kông), nghiên cứu viên tại Trường Harvard Kennedy, Đại học Harvard (Mỹ). Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975. Đã và đang tham gia viết bài cho các tờ báo lớn như Financial Times, VnExpress và các tạp chí khoa học có uy tín tại Châu Âu.',
+      ],
+      en: [
+        'Over 16 years of academic and applied experience, currently teaching at a UK university. PhD in Communications at Bournemouth University (UK), MA in International Journalism at Hong Kong Baptist University (Hong Kong), research fellow at the Harvard Kennedy School, Harvard University (USA). Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975. Contributing writer for major outlets such as Financial Times, VnExpress and reputable European academic journals.',
+      ],
+    },
+  },
+  {
+    initials: 'VTL',
+    name: 'Vũ Thùy Linh',
+    role: {
+      vi: 'Quản lý Vận hành',
+      en: 'Operations Manager',
+    },
+    bio: {
+      vi: [
+        'Hơn 14 năm kinh nghiệm trong lĩnh vực quản trị nhân sự, phát triển nhân tài, tuyển dụng tại các tập đoàn lớn trong và ngoài nước. Đã tổ chức và tham gia nhiều chuỗi chương trình định hướng nghề nghiệp cho gần 1000 sinh viên và người đi làm, sinh viên tại các trường đại học. Là diễn giả, ban giám khảo của nhiều chương trình được tổ chức nhằm hỗ trợ các bạn sinh viên chuẩn bị hành trang để chinh phục sự nghiệp.',
+      ],
+      en: [
+        'Over 14 years of experience in HR management, talent development and recruitment at major domestic and international corporations. Has organised and participated in many career-orientation programs for nearly 1,000 students and young professionals. Frequent speaker and judge for programs supporting university students preparing for their careers.',
+      ],
+    },
+    bullets: {
+      vi: [
+        'Cựu Giám đốc Nhân sự tại Satom Venture Studio',
+        'Cựu Quản lý Thu hút và Phát triển nhân tài tại Vingroup, Carlsberg Việt Nam',
+        'Cựu Trưởng phòng Phát triển tổ chức tại DVG',
+      ],
+      en: [
+        'Former HR Director at Satom Venture Studio',
+        'Former Talent Acquisition & Development Manager at Vingroup, Carlsberg Vietnam',
+        'Former Head of Organizational Development at DVG',
+      ],
+    },
+  },
+];
+
+export const FALLBACK_RESEARCHERS: FallbackPerson[] = [
   {
     initials: 'NPL',
     name: 'ThS. Nguyễn Phương Liên',
@@ -29,22 +119,14 @@ export const FALLBACK_RESEARCHERS: FallbackPerson[] = [
       en: 'Researcher, Internet & Media Division',
     },
   },
-  {
-    initials: 'NTV',
-    name: 'TS. Nguyễn Thanh Vân',
-    role: {
-      vi: 'Nghiên cứu viên',
-      en: 'Researcher',
-    },
-  },
 ];
 
-export const FALLBACK_YOUNG_RESEARCHERS: FallbackPerson[] = [
-  { initials: 'LHKC', name: 'Lưu Hồ Khánh Chi', role: { vi: 'Nghiên cứu viên trẻ', en: 'Young researcher' } },
-  { initials: 'TML', name: 'Trần Mỹ Linh', role: { vi: 'Nghiên cứu viên trẻ', en: 'Young researcher' } },
-  { initials: 'CAL', name: 'Cao An Lê', role: { vi: 'Nghiên cứu viên trẻ', en: 'Young researcher' } },
-  { initials: 'LKM', name: 'Lý Khải Minh', role: { vi: 'Nghiên cứu viên trẻ', en: 'Young researcher' } },
-  { initials: 'NVHN', name: 'Nguyễn Văn Hoàng Nhân', role: { vi: 'Nghiên cứu viên trẻ', en: 'Young researcher' } },
+export const FALLBACK_COLLABORATORS: FallbackPerson[] = [
+  { initials: 'LHKC', name: 'Lưu Hồ Khánh Chi', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
+  { initials: 'TML', name: 'Trần Mỹ Linh', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
+  { initials: 'CAL', name: 'Cao An Lê', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
+  { initials: 'LKM', name: 'Lý Khải Minh', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
+  { initials: 'NVHN', name: 'Nguyễn Văn Hoàng Nhân', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
 ];
 
 export interface FallbackNewsCard {

@@ -162,10 +162,14 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <div className="icon-tile"><i data-lucide="graduation-cap" className="icon-lg" /></div>
               <h3>{t(dict, 'home.focus.card1.title')}</h3>
               <p>{t(dict, 'home.focus.card1.body')}</p>
-              <Link href={localizedHref('research', l)} className="focus-link">
-                {t(dict, 'home.focus.linkLabel')}
-                <i data-lucide="arrow-right" className="icon-sm" />
-              </Link>
+              <span
+                className="focus-link focus-link--disabled"
+                aria-disabled="true"
+                title={t(dict, 'home.focus.card1.comingSoon')}
+              >
+                {t(dict, 'home.focus.card1.linkLabel')}
+                <i data-lucide="download" className="icon-sm" />
+              </span>
             </article>
 
             <article className="focus-card t-blue">
@@ -173,7 +177,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <h3>{t(dict, 'home.focus.card2.title')}</h3>
               <p>{t(dict, 'home.focus.card2.body')}</p>
               <Link href={localizedHref('research', l)} className="focus-link">
-                {t(dict, 'home.focus.linkLabel')}
+                {t(dict, 'home.focus.card2.linkLabel')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>
             </article>
@@ -183,7 +187,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <h3>{t(dict, 'home.focus.card3.title')}</h3>
               <p>{t(dict, 'home.focus.card3.body')}</p>
               <Link href={localizedHref('research', l)} className="focus-link">
-                {t(dict, 'home.focus.linkLabel')}
+                {t(dict, 'home.focus.card3.linkLabel')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>
             </article>

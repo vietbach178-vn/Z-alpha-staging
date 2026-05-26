@@ -65,17 +65,20 @@
       "title": "Lĩnh vực trọng tâm",
       "card1": {
         "title": "Giáo dục",
-        "body": "Thiết kế các chương trình học, workshop và tài liệu hướng dẫn giúp học sinh, giáo viên và phụ huynh hiểu rõ hơn về năng lực số, kỹ năng tư duy phản biện và sức khỏe tinh thần trong thời đại mạng xã hội."
+        "body": "Thiết kế các chương trình học, workshop và tài liệu hướng dẫn giúp học sinh, giáo viên và phụ huynh hiểu rõ hơn về năng lực số, kỹ năng tư duy phản biện và sức khỏe tinh thần trong thời đại mạng xã hội.",
+        "linkLabel": "Tải nội dung đầy đủ",
+        "comingSoon": "Sắp ra mắt"
       },
       "card2": {
         "title": "Khuyến nghị chính sách",
-        "body": "Cung cấp dữ liệu và bằng chứng thực nghiệm cho các cơ quan, tổ chức trong việc xây dựng chính sách liên quan đến trẻ em và thanh thiếu niên trong môi trường số."
+        "body": "Cung cấp dữ liệu và bằng chứng thực nghiệm cho các cơ quan, tổ chức trong việc xây dựng chính sách liên quan đến trẻ em và thanh thiếu niên trong môi trường số.",
+        "linkLabel": "Xem nghiên cứu"
       },
       "card3": {
         "title": "Nghiên cứu",
-        "body": "Thực hiện các công trình nghiên cứu định tính, định lượng và liên ngành về mối quan hệ giữa công nghệ, tâm lý và xã hội, đặc biệt tập trung vào nhóm tuổi 13–18."
-      },
-      "linkLabel": "Xem nghiên cứu"
+        "body": "Thực hiện các công trình nghiên cứu định tính, định lượng và liên ngành về mối quan hệ giữa công nghệ, tâm lý và xã hội, đặc biệt tập trung vào nhóm tuổi 13–18.",
+        "linkLabel": "Xem nghiên cứu"
+      }
     },
     "newsletter": {
       "title": "Đăng ký nhận bản tin",
@@ -96,10 +99,11 @@
     "privacy": "Chính sách bảo mật"
   },
   "team": {
-    "metaTitle": "Con người — Z & Alpha Initiative",
+    "metaTitle": "Đội ngũ — Z & Alpha Initiative",
     "title": "Đội ngũ",
+    "organizer": "Thành viên tổ chức",
     "researcher": "Nghiên cứu viên",
-    "youngResearcher": "Nghiên cứu viên trẻ"
+    "collaborator": "Cộng tác viên"
   },
   "contact": {
     "metaTitle": "Liên hệ — Z & Alpha Initiative",

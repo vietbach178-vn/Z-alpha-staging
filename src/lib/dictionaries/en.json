@@ -65,17 +65,20 @@
       "title": "Our focus areas",
       "card1": {
         "title": "Education",
-        "body": "Designing curricula, workshops, and guidelines to help students, teachers, and parents better understand digital literacy, critical thinking skills, and mental health in the age of social media."
+        "body": "Designing curricula, workshops, and guidelines to help students, teachers, and parents better understand digital literacy, critical thinking skills, and mental health in the age of social media.",
+        "linkLabel": "Download full content",
+        "comingSoon": "Coming soon"
       },
       "card2": {
         "title": "Policy Recommendations",
-        "body": "Providing data and empirical evidence to agencies and organizations in developing policies related to children and young people in the digital environment."
+        "body": "Providing data and empirical evidence to agencies and organizations in developing policies related to children and young people in the digital environment.",
+        "linkLabel": "View research"
       },
       "card3": {
         "title": "Research",
-        "body": "Conducting qualitative, quantitative, and interdisciplinary research on the relationship between technology, psychology, and society, particularly focusing on the 13–18 age group."
-      },
-      "linkLabel": "View research"
+        "body": "Conducting qualitative, quantitative, and interdisciplinary research on the relationship between technology, psychology, and society, particularly focusing on the 13–18 age group.",
+        "linkLabel": "View research"
+      }
     },
     "newsletter": {
       "title": "Subscribe to our newsletter",
@@ -98,8 +101,9 @@
   "team": {
     "metaTitle": "Team — Z & Alpha Initiative",
     "title": "Our team",
+    "organizer": "Organizing members",
     "researcher": "Researchers",
-    "youngResearcher": "Young researchers"
+    "collaborator": "Collaborators"
   },
   "contact": {
     "metaTitle": "Contact — Z & Alpha Initiative",

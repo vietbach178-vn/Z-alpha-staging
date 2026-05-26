@@ -1696,3 +1696,100 @@ section { position: relative; }
 }
 .impact-col.t-blue .impact-card { background: var(--blue-50); border: 1px solid var(--blue-100, #dbeafe); }
 .impact-col.t-red  .impact-card { background: var(--red-50);  border: 1px solid var(--red-200); }
+
+/* ===========================================================
+ * Focus card disabled (Education "Coming soon")
+ * =========================================================== */
+.focus-link.focus-link--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(0, 0, 0, .2);
+}
+
+/* ===========================================================
+ * Team: "Thành viên tổ chức" — portrait + long bio rows
+ * =========================================================== */
+.org-members {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.org-member {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--gray-200, #e5e7eb);
+}
+.org-member:first-child { border-top: 0; padding-top: 16px; }
+@media (max-width: 768px) {
+  .org-member { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.org-member__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.org-member__portrait {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  background: #d4b896;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.org-member__portrait img { width: 100%; height: 100%; object-fit: cover; }
+.org-member__initials {
+  font-size: 56px;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  font-family: var(--font-sans, system-ui), sans-serif;
+}
+.org-member__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fg-1);
+  margin: 12px 0 0;
+  line-height: 1.3;
+}
+.org-member__role {
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--fg-3);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.org-member__right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.org-member__bio {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-2);
+  text-align: justify;
+}
+.org-member__bullets {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.org-member__bullets li {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  font-style: italic;
+}
