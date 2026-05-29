@@ -574,3 +574,617 @@ body.is-menu-open { overflow: hidden; }
   gap: 16px;
 }
 .research-empty p { margin: 0; font-size: 1rem; }
+
+/* ============================================================
+   MODAL — overlay + dialog (Team member bio)
+   Tokens: --bg-overlay-strong, --shadow-2xl, --ease-pop, --r-lg
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg-overlay-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  animation: modalOverlayIn var(--t-med) var(--ease-out);
+}
+@keyframes modalOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-dialog {
+  position: relative;
+  background: var(--white);
+  color: var(--fg-1);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2xl);
+  max-width: 720px;
+  width: 100%;
+  max-height: calc(100vh - var(--space-12));
+  overflow-y: auto;
+  padding: var(--space-8);
+  animation: modalDialogIn var(--t-slow) var(--ease-pop);
+}
+@keyframes modalDialogIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 640px) {
+  .modal-overlay { padding: var(--space-4); align-items: flex-end; }
+  .modal-dialog {
+    padding: var(--space-6);
+    max-height: 92vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.modal-dialog__close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border-2);
+  background: var(--white);
+  color: var(--fg-3);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease-out),
+              color var(--t-fast) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out);
+}
+.modal-dialog__close:hover,
+.modal-dialog__close:focus-visible {
+  background: var(--gray-100);
+  color: var(--fg-1);
+  border-color: var(--border-3, var(--gray-300));
+  outline: none;
+}
+
+/* Tone variants — top accent bar on dialog + tinted avatar tile + past-h pip */
+.modal-dialog.t-teal   { border-top: 4px solid var(--teal-500); }
+.modal-dialog.t-blue   { border-top: 4px solid var(--blue-500); }
+.modal-dialog.t-orange { border-top: 4px solid var(--orange-500); }
+
+/* Header row: square avatar-tile (focus-card icon-tile look) + name/role inline */
+.modal-dialog__header {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  margin: 0 0 var(--space-5);
+  padding-right: 44px;
+}
+.modal-dialog__avatar-tile {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--gray-100);
+  border: 1px solid var(--border-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--fg-3);
+}
+.modal-dialog__avatar-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-dialog.t-teal .modal-dialog__avatar-tile {
+  background: var(--teal-50); color: var(--teal-700); border-color: var(--teal-100);
+}
+.modal-dialog.t-blue .modal-dialog__avatar-tile {
+  background: var(--blue-50); color: var(--blue-700); border-color: var(--blue-200);
+}
+.modal-dialog.t-orange .modal-dialog__avatar-tile {
+  background: var(--orange-50); color: var(--orange-600); border-color: var(--orange-200);
+}
+
+.modal-dialog__name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fg-1);
+  line-height: 1.25;
+}
+.modal-dialog__role {
+  font-size: 14.5px;
+  color: var(--fg-3);
+  margin: var(--space-1) 0 0;
+}
+
+/* Bio paragraph: max 62ch, editorial line-height */
+.modal-dialog__body { max-width: 62ch; }
+.modal-dialog__body p {
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--fg-2);
+  margin: 0 0 var(--space-4);
+}
+.modal-dialog__body p:last-child { margin-bottom: 0; }
+.modal-dialog strong { font-weight: 700; color: var(--fg-1); }
+
+/* Inline links inside modal — tone-accented, underlined */
+.modal-dialog a {
+  color: var(--blue-700);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--t-fast) var(--ease-out),
+              text-decoration-thickness var(--t-fast) var(--ease-out);
+}
+.modal-dialog a:hover,
+.modal-dialog a:focus-visible {
+  text-decoration-thickness: 2px;
+  outline: none;
+}
+/* <strong> nested in <a> should adopt the link tone, overriding the generic strong rule */
+.modal-dialog a strong,
+.modal-dialog strong a { color: inherit; }
+.modal-dialog.t-teal a   { color: var(--teal-700); }
+.modal-dialog.t-blue a   { color: var(--blue-700); }
+.modal-dialog.t-orange a { color: var(--orange-600); }
+
+/* Hairline rule between bio and past-roles section */
+.modal-dialog__rule {
+  border: 0;
+  height: 1px;
+  background: var(--border-2);
+  margin: var(--space-6) 0;
+  max-width: 62ch;
+}
+
+/* "Vai trò trước đây" eyebrow with small accent pip (mirrors focus-card .icon-tile mini) */
+.modal-dialog__past-h {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.modal-dialog__past-pip {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  color: var(--fg-3);
+}
+.modal-dialog.t-teal .modal-dialog__past-pip {
+  background: var(--teal-50); color: var(--teal-700);
+}
+.modal-dialog.t-blue .modal-dialog__past-pip {
+  background: var(--blue-50); color: var(--blue-700);
+}
+.modal-dialog.t-orange .modal-dialog__past-pip {
+  background: var(--orange-50); color: var(--orange-600);
+}
+
+/* Past-roles bullet-list reuses the native .bullet-list / .bullet-item pattern
+   from global.css (white card + tinted glyph). No duplication here. */
+
+/* Person card with click affordance */
+.person-card--clickable {
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--t-med) var(--ease-out),
+              transform var(--t-med) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out);
+}
+.person-card--clickable:hover,
+.person-card--clickable:focus-visible {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--border-3, var(--gray-300));
+  outline: none;
+}
+
+/* ============================================================
+   POLICY agenda table (used on /activities/policy)
+   ============================================================ */
+.policy-agenda-wrap {
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--white);
+}
+.policy-agenda {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.policy-agenda thead {
+  background: var(--gray-50);
+}
+.policy-agenda th {
+  text-align: left;
+  padding: var(--space-4) var(--space-5);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  border-bottom: 1px solid var(--border-2);
+}
+.policy-agenda td {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-2);
+  line-height: 1.55;
+  vertical-align: top;
+}
+.policy-agenda tbody tr:last-child td { border-bottom: 0; }
+.policy-agenda tbody tr:hover td { background: var(--gray-50); }
+.policy-agenda__time {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--fg-1);
+  width: 200px;
+}
+@media (max-width: 640px) {
+  .policy-agenda { font-size: 14px; }
+  .policy-agenda th, .policy-agenda td { padding: var(--space-3) var(--space-4); }
+  .policy-agenda__time { width: auto; }
+}
+
+/* ============================================================
+   RESEARCH downloads — "Tải về" section (article detail)
+   ============================================================ */
+.research-downloads {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  background: var(--teal-50);
+  border: 1px solid var(--teal-100);
+  border-radius: var(--r-lg);
+}
+.research-downloads__head {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin: 0 0 var(--space-5);
+}
+.research-downloads__pip {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: var(--white);
+  border: 1px solid var(--teal-200);
+  color: var(--teal-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.research-downloads__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teal-700);
+  letter-spacing: -0.005em;
+}
+.research-downloads__lead {
+  margin: 4px 0 0;
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.research-downloads__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.research-downloads__item {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+}
+.research-downloads__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  background: var(--teal-50);
+  color: var(--teal-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.research-downloads__meta {
+  min-width: 0;
+}
+.research-downloads__name {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--fg-1);
+  font-size: 15px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+.research-downloads__sub {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg-3);
+}
+.research-downloads__badge {
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--gray-100);
+  color: var(--fg-2);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 640px) {
+  .research-downloads__item {
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-3);
+  }
+  .research-downloads__item .btn {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ============================================================
+   ADMIN AttachmentsManager (research detail edit page)
+   ============================================================ */
+.att-mgr {
+  margin: 24px 0 0;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+.att-mgr__title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.att-mgr__lead {
+  margin: 0 0 16px;
+  color: #64748b;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.att-mgr__list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.att-mgr__item {
+  display: grid;
+  grid-template-columns: 1fr 100px 60px 60px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.att-mgr__name {
+  margin: 0;
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 13.5px;
+  word-break: break-word;
+}
+.att-mgr__sub {
+  margin: 2px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+.att-mgr__select {
+  padding: 6px 8px;
+  font-size: 12.5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+}
+.att-mgr__view {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  text-align: center;
+}
+.att-mgr__delete {
+  appearance: none;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.att-mgr__delete:hover { background: #fee2e2; }
+.att-mgr__upload {
+  border-top: 1px dashed #e5e7eb;
+  padding-top: 16px;
+}
+.att-mgr__form-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.att-mgr__form-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: #475569;
+  font-weight: 600;
+}
+.att-mgr__form-row input,
+.att-mgr__form-row select {
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+}
+.att-mgr__file-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f0fdfa;
+  border: 1px dashed #99f6e4;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: #0f766e;
+  font-weight: 600;
+}
+.att-mgr__file-input input[type="file"] {
+  font-size: 12px;
+  flex: 1;
+}
+.att-mgr__error {
+  margin: 10px 0 0;
+  color: #b91c1c;
+  font-size: 13px;
+}
+@media (max-width: 640px) {
+  .att-mgr__item { grid-template-columns: 1fr; }
+  .att-mgr__form-row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   LIBRARY card (used on /library) — mirrors .research-card-v2
+   but with primary download CTA in footer.
+   ============================================================ */
+.library-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: box-shadow var(--t-med) var(--ease-out),
+              transform var(--t-med) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out);
+}
+.library-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--border-3, var(--gray-300));
+}
+.library-card__media {
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  background: var(--gray-50);
+}
+.library-card__media.tone-teal   { background: var(--teal-50); }
+.library-card__media.tone-blue   { background: var(--blue-50); }
+.library-card__media.tone-orange { background: var(--orange-50); }
+.library-card__media img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.library-card__icon {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.library-card__media.tone-teal   .library-card__icon { color: var(--teal-600); }
+.library-card__media.tone-blue   .library-card__icon { color: var(--blue-600); }
+.library-card__media.tone-orange .library-card__icon { color: var(--orange-600); }
+.library-card__body {
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  flex: 1;
+}
+.library-card__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--fg-1);
+  line-height: 1.35;
+}
+.library-card__excerpt {
+  margin: 0;
+  color: var(--fg-2);
+  font-size: 14.5px;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.library-card__footer {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.library-card__meta {
+  font-size: 13px;
+  color: var(--fg-3);
+  font-weight: 600;
+}
+.library-card__footer .btn {
+  flex-shrink: 0;
+}
+
+/* Contact form feedback banner */
+.contact-form__feedback {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.contact-form__feedback--ok {
+  background: var(--teal-50);
+  border: 1px solid var(--teal-200);
+  color: var(--teal-700);
+}
+.contact-form__feedback--error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}

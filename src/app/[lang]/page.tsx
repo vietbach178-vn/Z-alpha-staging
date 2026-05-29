@@ -48,7 +48,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
           <p className="hero-body">{t(dict, 'home.hero.body')}</p>
 
           <div className="hero-actions">
-            <Link href={localizedHref('research', l)} className="btn btn-primary btn-lg">
+            <Link href={localizedHref('activities/research', l)} className="btn btn-primary btn-lg">
               {t(dict, 'home.hero.ctaPrimary')}
               <i data-lucide="arrow-right" className="icon" />
             </Link>
@@ -82,7 +82,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               </span>
               <h3 className="featured-hero__title">{fTitle}</h3>
               <p className="featured-hero__desc">{fDesc}</p>
-              <Link href={localizedHref(`research/${fSlug}`, l)} className="link-inline">
+              <Link href={localizedHref(`activities/research/${fSlug}`, l)} className="link-inline">
                 {t(dict, 'common.readMoreInline')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>
@@ -90,7 +90,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
           </article>
 
           <div style={{ marginTop: 40, display: 'flex', justifyContent: 'center' }}>
-            <Link href={localizedHref('research', l)} className="btn btn-outline">
+            <Link href={localizedHref('activities/research', l)} className="btn btn-outline">
               {t(dict, 'home.featured.viewAllBtn')}
               <i data-lucide="arrow-right" className="icon" />
             </Link>
@@ -176,7 +176,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <div className="icon-tile"><i data-lucide="landmark" className="icon-lg" /></div>
               <h3>{t(dict, 'home.focus.card2.title')}</h3>
               <p>{t(dict, 'home.focus.card2.body')}</p>
-              <Link href={localizedHref('research', l)} className="focus-link">
+              <Link href={localizedHref('activities/research', l)} className="focus-link">
                 {t(dict, 'home.focus.card2.linkLabel')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>
@@ -186,7 +186,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <div className="icon-tile"><i data-lucide="lightbulb" className="icon-lg" /></div>
               <h3>{t(dict, 'home.focus.card3.title')}</h3>
               <p>{t(dict, 'home.focus.card3.body')}</p>
-              <Link href={localizedHref('research', l)} className="focus-link">
+              <Link href={localizedHref('activities/research', l)} className="focus-link">
                 {t(dict, 'home.focus.card3.linkLabel')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>

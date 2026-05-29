@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   ]);
 }
 
-export async function generateMetadata({ params }: PageProps<'/[lang]/research/[slug]'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[lang]/activities/research/[slug]'>): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isLang(lang)) return {};
   const row = await getResearchBySlug(slug);
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/research/[
   };
 }
 
-export default async function ResearchDetailPage({ params }: PageProps<'/[lang]/research/[slug]'>) {
+export default async function ResearchDetailPage({ params }: PageProps<'/[lang]/activities/research/[slug]'>) {
   const { lang: rawLang, slug } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
@@ -42,12 +42,72 @@ export default async function ResearchDetailPage({ params }: PageProps<'/[lang]/
   const title = pickL(row.titleVi, row.titleEn, lang);
   const typeLabel = pickL(row.typeVi, row.typeEn, lang);
   const blocks = pickBody(row, lang);
+  const attachments = row.attachments ?? [];
+
+  const formatSize = (bytes: number | null | undefined) => {
+    if (!bytes) return '';
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
+
+  const langBadge = (l: 'VI' | 'EN' | 'OTHER') => {
+    if (l === 'VI') return t(dict, 'research.langVi');
+    if (l === 'EN') return t(dict, 'research.langEn');
+    return t(dict, 'research.langOther');
+  };
+
+  const Downloads = () => attachments.length > 0 ? (
+    <section className="research-downloads" aria-labelledby="downloads-heading">
+      <div className="research-downloads__head">
+        <span className="research-downloads__pip" aria-hidden="true">
+          <i data-lucide="download" className="icon-sm" />
+        </span>
+        <div>
+          <h2 id="downloads-heading" className="research-downloads__title">
+            {t(dict, 'research.downloadSection')}
+          </h2>
+          <p className="research-downloads__lead">{t(dict, 'research.downloadLead')}</p>
+        </div>
+      </div>
+      <ul className="research-downloads__list">
+        {attachments.map((att) => {
+          const label = pickL(att.labelVi, att.labelEn, lang) ?? att.fileName;
+          const size = formatSize(att.fileSize);
+          return (
+            <li key={att.id} className="research-downloads__item">
+              <span className="research-downloads__icon" aria-hidden="true">
+                <i data-lucide="file-text" className="icon-md" />
+              </span>
+              <div className="research-downloads__meta">
+                <p className="research-downloads__name">{label}</p>
+                <p className="research-downloads__sub">
+                  <span className="research-downloads__badge">{langBadge(att.language)}</span>
+                  {size && <span>{size}</span>}
+                </p>
+              </div>
+              <a
+                href={att.fileUrl}
+                download={att.fileName}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                {t(dict, 'research.downloadButton')}
+                <i data-lucide="download" className="icon-sm" />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ) : null;
 
   return (
     <>
       <article className="research-article">
         <div className="container">
-          <Link href={localizedHref('research', lang)} className="research-back">
+          <Link href={localizedHref('activities/research', lang)} className="research-back">
             <i data-lucide="arrow-left" className="icon-sm" />
             {lang === 'vi' ? 'Quay lại nghiên cứu' : 'Back to research'}
           </Link>
@@ -77,10 +137,14 @@ export default async function ResearchDetailPage({ params }: PageProps<'/[lang]/
             )}
           </header>
 
+          <Downloads />
+
           <BlockRenderer blocks={blocks} />
 
+          <Downloads />
+
           <div className="research-article__cta">
-            <Link href={localizedHref('research', lang)} className="btn btn-outline">
+            <Link href={localizedHref('activities/research', lang)} className="btn btn-outline">
               <i data-lucide="arrow-left" className="icon-sm" />
               {lang === 'vi' ? 'Xem tất cả nghiên cứu' : 'View all research'}
             </Link>

@@ -17,7 +17,7 @@ export async function getDictionary(lang: Lang) {
  * have to be async. Supports {placeholder} interpolation.
  *
  *   const dict = await getDictionary(lang);
- *   <Header label={t(dict, 'nav.research')} />
+ *   <Header label={t(dict, 'nav.activities')} />
  */
 export function t(
   dict: Awaited<ReturnType<typeof getDictionary>>,

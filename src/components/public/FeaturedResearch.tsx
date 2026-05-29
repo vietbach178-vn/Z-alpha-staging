@@ -28,7 +28,7 @@ export default function FeaturedResearch({ items, lang, dict }: Props) {
   return (
     <div className={`featured-research-grid ${sides.length === 0 ? 'is-hero-only' : ''}`}>
       {/* HERO */}
-      <Link href={localizedHref(`research/${hero.slug}`, lang)} className="featured-hero-card">
+      <Link href={localizedHref(`activities/research/${hero.slug}`, lang)} className="featured-hero-card">
         <div className={`featured-hero-card__media tone-${topicOf(hero.topicId).tone}`}>
           {hero.imageUrl ? (
             <img src={hero.imageUrl} alt="" />
@@ -62,7 +62,7 @@ export default function FeaturedResearch({ items, lang, dict }: Props) {
       {sides.length > 0 && (
         <div className="featured-side-stack">
           {sides.map((item) => (
-            <Link key={item.id} href={localizedHref(`research/${item.slug}`, lang)} className="featured-side-card">
+            <Link key={item.id} href={localizedHref(`activities/research/${item.slug}`, lang)} className="featured-side-card">
               <div className={`featured-side-card__media tone-${topicOf(item.topicId).tone}`}>
                 {item.imageUrl ? (
                   <img src={item.imageUrl} alt="" loading="lazy" />

@@ -53,6 +53,7 @@ model ResearchArticle {
   tags        Tag[]
   authorId    String?
   author      Author?       @relation(fields: [authorId], references: [id])
+  attachments ResearchAttachment[]
   readingTime Int?
   typeVi      String? // "Thực nghiệm", "Báo cáo", ...
   typeEn      String?
@@ -69,6 +70,92 @@ model ResearchArticle {
 
   @@index([status, publishedAt])
   @@index([topicId])
+}
+
+enum AttachmentLanguage {
+  VI
+  EN
+  OTHER
+}
+
+enum LibraryCategory {
+  BOOK
+  REPORT
+  REFERENCE
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+enum ContactAudience {
+  STUDENT       // Học sinh, sinh viên
+  SCHOOL        // Nhà trường / cơ sở giáo dục
+  GOVERNMENT    // Chính phủ / nhà hoạch định chính sách
+  OTHER         // Khác
+}
+
+model ContactSubmission {
+  id          String          @id @default(cuid())
+  fullName    String
+  email       String
+  audience    ContactAudience @default(OTHER)
+  message     String
+  isUrgent    Boolean         @default(false)
+  status      ContactStatus   @default(NEW)
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model LibraryItem {
+  id            String          @id @default(cuid())
+  slug          String          @unique
+  titleVi       String
+  titleEn       String?
+  descriptionVi String?
+  descriptionEn String?
+  thumbnailUrl  String?         // Optional cover image (Vercel Blob)
+  fileUrl       String          // Primary downloadable file
+  fileName      String          // Original filename for download attribute
+  fileSize      Int?            // bytes
+  fileMime      String?
+  category      LibraryCategory @default(REPORT)
+  status        ContentStatus   @default(DRAFT)
+  publishedAt   DateTime?
+  order         Int             @default(0)
+  seoTitleVi    String?
+  seoTitleEn    String?
+  seoDescVi     String?
+  seoDescEn     String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([category])
+}
+
+model ResearchAttachment {
+  id        String              @id @default(cuid())
+  articleId String
+  article   ResearchArticle     @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  fileUrl   String              // Vercel Blob public URL
+  fileName  String              // original filename for download
+  fileSize  Int?                // bytes
+  fileMime  String?             // e.g. "application/pdf"
+  language  AttachmentLanguage  @default(VI)
+  labelVi   String?             // optional display label override (VI)
+  labelEn   String?             // optional display label override (EN)
+  order     Int                 @default(0)
+  createdAt DateTime            @default(now())
+
+  @@index([articleId, order])
 }
 
 model Topic {

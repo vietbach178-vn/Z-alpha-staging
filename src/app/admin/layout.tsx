@@ -8,9 +8,11 @@ const NAV = [
   { href: '/admin',            label: 'Dashboard',  icon: 'layout-dashboard' },
   { href: '/admin/research',   label: 'Nghiên cứu', icon: 'flask-conical' },
   { href: '/admin/news',       label: 'Tin tức',    icon: 'newspaper' },
+  { href: '/admin/library',    label: 'Thư viện',   icon: 'library' },
+  { href: '/admin/contacts',   label: 'Liên hệ',    icon: 'inbox' },
   { href: '/admin/topics',     label: 'Chủ đề',     icon: 'tag' },
   { href: '/admin/categories', label: 'Danh mục',   icon: 'folder' },
-  { href: '/admin/media',      label: 'Thư viện',   icon: 'image' },
+  { href: '/admin/media',      label: 'Media',      icon: 'image' },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

@@ -9,7 +9,7 @@ import Newsletter from '@/components/public/Newsletter';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: PageProps<'/[lang]/research'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[lang]/activities/research'>): Promise<Metadata> {
   const { lang } = await params;
   if (!isLang(lang)) return {};
   const dict = await getDictionary(lang);
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/research'>
 const fmtDate = (iso: Date, lang: Lang) =>
   iso.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', { year: 'numeric', month: 'long' });
 
-export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/research'>) {
+export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/activities/research'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
@@ -65,7 +65,7 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
             </div>
 
             <div className={`featured-research-grid ${sideFeatured.length === 0 ? 'is-hero-only' : ''}`}>
-              <Link href={localizedHref(`research/${hero.slug}`, lang)} className="featured-hero-card">
+              <Link href={localizedHref(`activities/research/${hero.slug}`, lang)} className="featured-hero-card">
                 <div className={`featured-hero-card__media tone-${hero.topic?.tone ?? 'blue'}`}>
                   {hero.heroImage ? (
                     <img src={hero.heroImage} alt="" />
@@ -104,7 +104,7 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
               {sideFeatured.length > 0 && (
                 <div className="featured-side-stack">
                   {sideFeatured.map((item) => (
-                    <Link key={item.id} href={localizedHref(`research/${item.slug}`, lang)} className="featured-side-card">
+                    <Link key={item.id} href={localizedHref(`activities/research/${item.slug}`, lang)} className="featured-side-card">
                       <div className={`featured-side-card__media tone-${item.topic?.tone ?? 'blue'}`}>
                         {item.heroImage ? (
                           <img src={item.heroImage} alt="" loading="lazy" />
@@ -178,7 +178,7 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/r
                 return (
                   <Link
                     key={item.id}
-                    href={localizedHref(`research/${item.slug}`, lang)}
+                    href={localizedHref(`activities/research/${item.slug}`, lang)}
                     className="research-card-v2"
                     data-card="true"
                     data-topic={item.topic?.slug ?? ''}

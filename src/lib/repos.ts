@@ -1,67 +1,132 @@
 /**
  * Thin data access helpers. Frontend pages call these to fetch published content.
  * Admin pages talk to Prisma directly (so they see drafts too).
+ *
+ * Public read paths fall back to an empty list when the database is unreachable,
+ * so the public site renders an empty state instead of a 500. Admin code paths
+ * should keep calling Prisma directly and surface the real error.
  */
 import 'server-only';
 import { prisma } from '@/lib/db';
 import type { Lang } from '@/lib/i18n';
 import type { BlockNode } from '@/components/editor/BlockRenderer';
 
+function isConnError(err: unknown): boolean {
+  const e = err as { code?: string; message?: string } | null;
+  if (!e) return false;
+  if (e.code === 'ECONNREFUSED' || e.code === 'P1001' || e.code === 'P1017') return true;
+  return typeof e.message === 'string' && /ECONNREFUSED|Can't reach database/i.test(e.message);
+}
+
+async function safeRead<T>(label: string, fn: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await fn();
+  } catch (err) {
+    if (isConnError(err)) {
+      console.warn(`[repos] ${label}: database unreachable, returning empty result`);
+      return fallback;
+    }
+    throw err;
+  }
+}
+
 // ---------- RESEARCH ----------
 export async function listPublishedResearch() {
-  return prisma.researchArticle.findMany({
+  const query = () => prisma.researchArticle.findMany({
     where: { status: 'PUBLISHED' },
     orderBy: { publishedAt: 'desc' },
     include: { topic: true },
   });
+  type Rows = Awaited<ReturnType<typeof query>>;
+  return safeRead<Rows>('listPublishedResearch', query, [] as Rows);
 }
 
 export async function getResearchBySlug(slug: string) {
-  return prisma.researchArticle.findFirst({
+  const query = () => prisma.researchArticle.findFirst({
     where: { slug, status: 'PUBLISHED' },
-    include: { topic: true, author: true },
+    include: {
+      topic: true,
+      author: true,
+      attachments: { orderBy: { order: 'asc' } },
+    },
   });
+  type Row = Awaited<ReturnType<typeof query>>;
+  return safeRead<Row>('getResearchBySlug', query, null as Row);
 }
 
 export async function listResearchSlugs() {
-  const rows = await prisma.researchArticle.findMany({
-    where: { status: 'PUBLISHED' },
-    select: { slug: true },
-  });
-  return rows.map((r) => r.slug);
+  return safeRead(
+    'listResearchSlugs',
+    async () => {
+      const rows = await prisma.researchArticle.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { slug: true },
+      });
+      return rows.map((r) => r.slug);
+    },
+    [] as string[],
+  );
 }
 
 // ---------- NEWS ----------
 export async function listPublishedNews() {
-  return prisma.newsItem.findMany({
+  const query = () => prisma.newsItem.findMany({
     where: { status: 'PUBLISHED' },
     orderBy: { publishedAt: 'desc' },
     include: { category: true },
   });
+  type Rows = Awaited<ReturnType<typeof query>>;
+  return safeRead<Rows>('listPublishedNews', query, [] as Rows);
 }
 
 export async function getNewsBySlug(slug: string) {
-  return prisma.newsItem.findFirst({
+  const query = () => prisma.newsItem.findFirst({
     where: { slug, status: 'PUBLISHED' },
     include: { category: true },
   });
+  type Row = Awaited<ReturnType<typeof query>>;
+  return safeRead<Row>('getNewsBySlug', query, null as Row);
 }
 
 export async function listNewsSlugs() {
-  const rows = await prisma.newsItem.findMany({
+  return safeRead(
+    'listNewsSlugs',
+    async () => {
+      const rows = await prisma.newsItem.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { slug: true },
+      });
+      return rows.map((r) => r.slug);
+    },
+    [] as string[],
+  );
+}
+
+// ---------- LIBRARY ----------
+export async function listPublishedLibrary() {
+  const query = () => prisma.libraryItem.findMany({
     where: { status: 'PUBLISHED' },
-    select: { slug: true },
+    orderBy: [{ order: 'asc' }, { publishedAt: 'desc' }],
   });
-  return rows.map((r) => r.slug);
+  type Rows = Awaited<ReturnType<typeof query>>;
+  return safeRead<Rows>('listPublishedLibrary', query, [] as Rows);
 }
 
 // ---------- TOPICS / CATEGORIES ----------
 export async function listTopics() {
-  return prisma.topic.findMany({ orderBy: { order: 'asc' } });
+  return safeRead(
+    'listTopics',
+    () => prisma.topic.findMany({ orderBy: { order: 'asc' } }),
+    [] as Awaited<ReturnType<typeof prisma.topic.findMany>>,
+  );
 }
 
 export async function listNewsCategories() {
-  return prisma.newsCategory.findMany({ orderBy: { order: 'asc' } });
+  return safeRead(
+    'listNewsCategories',
+    () => prisma.newsCategory.findMany({ orderBy: { order: 'asc' } }),
+    [] as Awaited<ReturnType<typeof prisma.newsCategory.findMany>>,
+  );
 }
 
 // ---------- SHAPING ----------

@@ -19,7 +19,7 @@ interface Dict {
 }
 
 interface Props {
-  paramName: 'topic' | 'cat';      // URL param key
+  paramName: 'topic' | 'cat' | 'category';      // URL param key
   chips: FilterChip[];             // excluding the "All" chip (added automatically)
   dataAttr: 'data-topic' | 'data-category';
   dict: Dict;

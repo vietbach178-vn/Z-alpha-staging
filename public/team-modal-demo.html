@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Demo v2 — Team member modal (native design system)</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  /* Token mirror — copied from src/styles/tokens.css (subset used here) */
+  :root {
+    --white: #fff;
+    --gray-50: #f9fafb;  --gray-100: #f3f4f6; --gray-150: #ececef;
+    --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-400: #9ca3af;
+    --gray-500: #6b7280; --gray-600: #4b5563; --gray-700: #374151;
+    --gray-900: #111827;
+    --fg-1: var(--gray-900); --fg-2: var(--gray-700); --fg-3: var(--gray-500);
+    --border-2: var(--gray-200);
+    --teal-50:  #f0fdfa; --teal-100: #ccfbf1; --teal-200: #99f6e4;
+    --teal-500: #14b8a6; --teal-600: #0d9488; --teal-700: #0f766e;
+    --blue-50:  #eff6ff; --blue-200: #bfdbfe;
+    --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8;
+    --orange-50:  #fff7ed; --orange-200: #fed7aa;
+    --orange-500: #f97316; --orange-600: #ea580c;
+    --r-md: 10px; --r-lg: 16px;
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.10);
+    --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,.25);
+    --t-med: 250ms;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  *,*::before,*::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 48px 24px 96px;
+    background: var(--gray-100);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--fg-1); line-height: 1.5;
+  }
+  .page-head { max-width: 880px; margin: 0 auto 32px; }
+  .page-head h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .page-head p { margin: 0; color: var(--fg-3); font-size: 14.5px; }
+  .opt-wrap { max-width: 880px; margin: 0 auto 56px; }
+  .opt-head { display: flex; align-items: baseline; gap: 12px; margin: 0 0 8px; }
+  .opt-num {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--gray-900); color: var(--white); padding: 5px 10px; border-radius: 9999px;
+  }
+  .opt-title { margin: 0; font-size: 18.5px; letter-spacing: -0.005em; }
+  .opt-note { color: var(--fg-3); font-size: 13.5px; margin: 6px 0 16px; }
+
+  /* Modal frame = real site modal */
+  .modal {
+    background: var(--white); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-2xl); max-width: 720px; width: 100%;
+    overflow: hidden; position: relative; padding: 32px;
+  }
+  .modal__close {
+    position: absolute; top: 14px; right: 14px;
+    width: 36px; height: 36px; border-radius: 9999px;
+    background: var(--white); border: 1px solid var(--border-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--fg-3); cursor: pointer; z-index: 5;
+  }
+
+  /* ---- shared "section-title / section-header" mirror (from global.css) ---- */
+  .section-header { margin: 0 0 16px; }
+  .section-title { margin: 0; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; font-weight: 700; }
+  .section-title .accent-teal { color: var(--teal-600); }
+  .section-title .accent-blue { color: var(--blue-600); }
+  .section-title .accent-orange { color: var(--orange-600); }
+  .section-lead { color: var(--fg-3); font-size: 15.5px; line-height: 1.55; margin: 8px 0 0; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 9999px;
+    background: var(--white); border: 1px solid var(--border-2);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--teal-700);
+  }
+  .icon-sm { width: 14px; height: 14px; display: inline-block; }
+  .bio { font-size: 15.5px; line-height: 1.78; color: var(--fg-2); margin: 0; max-width: 62ch; }
+
+  /* ---- NATIVE bullet-list pattern (mirror global.css .bullet-list/.bullet-item) ---- */
+  .bullet-list { display: flex; flex-direction: column; gap: 12px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .bullet-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 18px; background: var(--white);
+    border: 1px solid var(--border-2); border-radius: var(--r-lg);
+  }
+  .bullet-item .glyph {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bullet-item:nth-child(1) .glyph { background: var(--teal-50);   color: var(--teal-600); }
+  .bullet-item:nth-child(2) .glyph { background: var(--blue-50);   color: var(--blue-600); }
+  .bullet-item:nth-child(3) .glyph { background: var(--orange-50); color: var(--orange-600); }
+  .bullet-item p { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.6; }
+
+  /* avatar primitive */
+  .av {
+    width: 80px; height: 80px; border-radius: 9999px;
+    background: var(--gray-100); border: 1px solid var(--border-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 20px; color: var(--fg-3); flex-shrink: 0;
+  }
+
+  /* ============ OPTION A — Header inline + native bullet-list cards ============ */
+  .optA .head { display: flex; gap: 18px; align-items: center; margin: 0 0 24px; padding-right: 44px; }
+  .optA .h-text .name { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.005em; }
+  .optA .h-text .role { margin: 4px 0 0; color: var(--fg-3); font-size: 14.5px; }
+  .optA .past-h {
+    margin: 28px 0 4px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+
+  /* ============ OPTION B — "What we do" 2-col grid (.what-grid mirror) ============ */
+  .optB .grid {
+    display: grid; gap: 28px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) { .optB .grid { grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; } }
+  .optB .meta { padding-top: 4px; }
+  .optB .av-meta { display: flex; gap: 16px; align-items: center; margin: 0 0 18px; }
+  .optB .name { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.005em; }
+  .optB .role { margin: 4px 0 0; color: var(--fg-3); font-size: 14px; }
+  .optB .eyebrow-chip {
+    display: inline-block; margin: 0 0 12px;
+    padding: 5px 12px; border-radius: 9999px;
+    background: var(--teal-50); color: var(--teal-700);
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .optB .past-h {
+    margin: 24px 0 12px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+
+  /* ============ OPTION C — Focus-card style (large icon-tile avatar) ============ */
+  /* Wraps the whole content as one .focus-card with tone variant — like home Lĩnh vực trọng tâm */
+  .optC.modal { padding: 0; }
+  .optC .card {
+    padding: 32px; border-radius: var(--r-lg); background: var(--white);
+    border-top: 4px solid var(--teal-500); /* tone accent */
+  }
+  .optC .av-tile {
+    width: 72px; height: 72px; border-radius: var(--r-lg);
+    background: var(--teal-50); color: var(--teal-700);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 22px; margin: 0 0 16px;
+  }
+  .optC h3.name { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .optC .role { margin: 4px 0 16px; color: var(--fg-3); font-size: 14.5px; }
+  .optC hr.rule { border: 0; height: 1px; background: var(--border-2); margin: 24px 0; }
+  .optC .past-h {
+    margin: 0 0 12px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .optC .past-h .pip {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--teal-50); color: var(--teal-700);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* ============ OPTION D — Principle-banner style header ============ */
+  /* Header uses the same blue-50 / blue-700 quote-style as home `principle-banner` */
+  .optD.modal { padding: 0; }
+  .optD .header-banner {
+    background: var(--blue-50); border-bottom: 1px solid var(--blue-200);
+    padding: 28px 32px; display: flex; gap: 18px; align-items: center;
+  }
+  .optD .av-banner {
+    width: 64px; height: 64px; border-radius: 9999px;
+    background: var(--white); border: 1px solid var(--blue-200);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 18px; color: var(--blue-700);
+  }
+  .optD .header-banner .name {
+    margin: 0; font-size: 20px; font-weight: 700; color: var(--blue-700);
+    letter-spacing: -0.005em;
+  }
+  .optD .header-banner .role {
+    margin: 4px 0 0; font-size: 14px; color: var(--blue-700); opacity: .85;
+  }
+  .optD .body { padding: 28px 32px 32px; }
+  .optD .past-h {
+    margin: 24px 0 12px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+
+  /* ============ OPTION E — Eyebrow + accent-name (section-title pattern) ============ */
+  .optE .head { margin: 0 0 24px; }
+  .optE .name {
+    margin: 12px 0 0; font-size: 28px; line-height: 1.2;
+    font-weight: 700; letter-spacing: -0.012em;
+  }
+  .optE .name .accent { color: var(--teal-600); }
+  .optE .role {
+    margin: 8px 0 0; color: var(--fg-3); font-size: 15px;
+  }
+  .optE .av-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; background: var(--gray-50);
+    border: 1px solid var(--border-2); border-radius: var(--r-lg);
+    margin: 20px 0 24px;
+  }
+  .optE .av-row .av { width: 48px; height: 48px; font-size: 14px; }
+  .optE .av-row .av-meta { font-size: 13.5px; color: var(--fg-3); line-height: 1.45; }
+  .optE .av-row .av-meta strong { color: var(--fg-1); font-weight: 700; display: block; font-size: 14.5px; }
+  .optE .section-divider {
+    margin: 28px 0 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .optE .section-divider span {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+  .optE .section-divider::after {
+    content: ""; flex: 1; height: 1px; background: var(--border-2);
+  }
+
+  /* ============ OPTION F — Featured-hero-card style (media + body) ============ */
+  /* Mirrors the look of `.featured-hero-card` used on research index */
+  .optF.modal { padding: 0; }
+  .optF .hero {
+    display: grid; grid-template-columns: 1fr 1.4fr; min-height: 200px;
+  }
+  @media (max-width: 640px) { .optF .hero { grid-template-columns: 1fr; min-height: 0; } }
+  .optF .media {
+    background: var(--gray-50); position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .optF .icon-stack {
+    position: relative; width: 100%; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .optF .icon-stack .t1, .optF .icon-stack .t2, .optF .icon-stack .t3 {
+    position: absolute; width: 56px; height: 56px; border-radius: var(--r-lg);
+    background: var(--white); border: 1px solid var(--border-2); box-shadow: var(--shadow-md);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .optF .icon-stack .t1 { color: var(--teal-600);   top: 24px; left: 30%; transform: translateY(-6px); }
+  .optF .icon-stack .t2 { color: var(--blue-600);   top: 56px; left: 52%; transform: translateY(-6px); }
+  .optF .icon-stack .t3 { color: var(--orange-600); top: 88px; left: 28%; transform: translateY(2px); }
+  .optF .av-overlay {
+    position: absolute; bottom: 12px; right: 12px;
+    width: 56px; height: 56px; border-radius: 9999px;
+    background: var(--white); border: 1px solid var(--border-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: var(--fg-3); box-shadow: var(--shadow-md);
+  }
+  .optF .h-body { padding: 28px; }
+  .optF .topic-chip {
+    display: inline-block; padding: 4px 10px; border-radius: 9999px;
+    background: var(--teal-50); color: var(--teal-700);
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .optF .name { margin: 12px 0 4px; font-size: 22px; font-weight: 700; letter-spacing: -0.005em; }
+  .optF .role { margin: 0 0 16px; color: var(--fg-3); font-size: 14.5px; }
+  .optF .body { padding: 0 28px 28px; }
+  .optF .past-h {
+    margin: 22px 0 12px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--fg-3);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <h1>Demo v2 — Layout chi tiết thành viên (native design system)</h1>
+  <p>6 option mới đều phái sinh từ patterns có sẵn của site: <code>.bullet-list</code> + <code>.glyph</code>, <code>.focus-card</code> tones, <code>.principle-banner</code>, <code>.what-grid</code>, <code>.section-title</code> accent spans, <code>.featured-hero-card</code> icon-stack. Nội dung Cao Hoàng Nam giữ nguyên.</p>
+</div>
+
+<!-- ===================== OPTION A ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option A</span>
+    <h2 class="opt-title">Bullet-list pattern (Lĩnh vực trọng tâm/Chúng tôi làm gì)</h2>
+  </div>
+  <p class="opt-note">Header gọn (avatar + tên + role). Bio paragraph chuẩn. Past roles dùng <code>.bullet-list</code>/<code>.bullet-item</code> y hệt section "Chúng tôi làm gì" trên homepage — glyph 36px nhuộm teal/blue/orange theo nth-child, text fg-2 15.5px.</p>
+  <div class="modal optA">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="head">
+      <div class="av">CHN</div>
+      <div class="h-text">
+        <h3 class="name">ThS. Cao Hoàng Nam</h3>
+        <p class="role">Sáng lập viên — Giám đốc điều hành</p>
+      </div>
+    </div>
+    <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+    <p class="past-h">Vai trò trước đây</p>
+    <ul class="bullet-list">
+      <li class="bullet-item"><span class="glyph"><i data-lucide="briefcase"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+      <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== OPTION B ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option B</span>
+    <h2 class="opt-title">What-grid 2-col (mirror section "Chúng tôi làm gì")</h2>
+  </div>
+  <p class="opt-note">Bắt chước đúng <code>.what-grid</code> trên homepage: cột trái header (chip eyebrow + tên + role + avatar) — cột phải bio + bullet-list past roles. 1.1fr ưu tiên cột phải, gap 40px desktop, stack 1 cột mobile.</p>
+  <div class="modal optB">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="grid">
+      <div class="meta">
+        <span class="eyebrow-chip">Sáng lập viên</span>
+        <div class="av-meta">
+          <div class="av">CHN</div>
+          <div>
+            <h3 class="name">ThS. Cao Hoàng Nam</h3>
+            <p class="role">Giám đốc điều hành</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+        <p class="past-h">Vai trò trước đây</p>
+        <ul class="bullet-list">
+          <li class="bullet-item"><span class="glyph"><i data-lucide="briefcase"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+          <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== OPTION C ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option C</span>
+    <h2 class="opt-title">Focus-card tone variant (mirror "Lĩnh vực trọng tâm" card)</h2>
+  </div>
+  <p class="opt-note">Toàn modal là 1 <code>.focus-card</code> với top accent bar màu theo tone (teal cho người 1, blue cho 2, orange cho 3, gray cho 4). Avatar là 1 icon-tile vuông (radius-lg) như icon các focus card hiện tại. Bio + bullet-list past roles bên dưới.</p>
+  <div class="modal optC">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="card">
+      <div class="av-tile">CHN</div>
+      <h3 class="name">ThS. Cao Hoàng Nam</h3>
+      <p class="role">Sáng lập viên — Giám đốc điều hành</p>
+      <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+      <hr class="rule" />
+      <p class="past-h"><span class="pip"><i data-lucide="briefcase"></i></span>Vai trò trước đây</p>
+      <ul class="bullet-list">
+        <li class="bullet-item"><span class="glyph"><i data-lucide="microscope"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+        <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== OPTION D ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option D</span>
+    <h2 class="opt-title">Principle-banner header (mirror callout "sự độc lập học thuật")</h2>
+  </div>
+  <p class="opt-note">Header dùng đúng background blue-50, viền blue-200, text blue-700 như <code>.principle-banner</code> trên homepage. Body trắng phía dưới chứa bio + bullet-list. Gắn liền cảm giác "đây là người tin cậy" do tái sử dụng pattern đã neo trên home.</p>
+  <div class="modal optD">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="header-banner">
+      <div class="av-banner">CHN</div>
+      <div>
+        <h3 class="name">ThS. Cao Hoàng Nam</h3>
+        <p class="role">Sáng lập viên — Giám đốc điều hành</p>
+      </div>
+    </div>
+    <div class="body">
+      <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+      <p class="past-h">Vai trò trước đây</p>
+      <ul class="bullet-list">
+        <li class="bullet-item"><span class="glyph"><i data-lucide="briefcase"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+        <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== OPTION E ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option E</span>
+    <h2 class="opt-title">Section-title pattern với accent span (mirror hero / about title)</h2>
+  </div>
+  <p class="opt-note">Header dùng chính pattern <code>.section-title</code> + <code>.accent-teal</code>: eyebrow chip (icon Lucide) trên cùng, tên size 28px với phần học vị "ThS." accent teal. Avatar nhỏ trong 1 row gray-50 chứa role + đơn vị. Section divider có line + uppercase eyebrow.</p>
+  <div class="modal optE">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="head">
+      <span class="hero-eyebrow"><i data-lucide="user-circle" class="icon-sm"></i>Sáng lập viên</span>
+      <h3 class="name"><span class="accent">ThS.</span> Cao Hoàng Nam</h3>
+      <p class="role">Giám đốc điều hành — Z &amp; Alpha Initiative</p>
+    </div>
+    <div class="av-row">
+      <div class="av">CHN</div>
+      <div class="av-meta">
+        <strong>Thạc sĩ Kinh tế &amp; Quan hệ Quốc tế</strong>
+        Đại học Oregon, Hoa Kỳ
+      </div>
+    </div>
+    <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+    <div class="section-divider"><span>Vai trò trước đây</span></div>
+    <ul class="bullet-list">
+      <li class="bullet-item"><span class="glyph"><i data-lucide="briefcase"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+      <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== OPTION F ===================== -->
+<div class="opt-wrap">
+  <div class="opt-head">
+    <span class="opt-num">Option F</span>
+    <h2 class="opt-title">Featured-hero-card style (mirror Research featured card)</h2>
+  </div>
+  <p class="opt-note">Lấy nguyên DNA của <code>.featured-hero-card</code> trên trang Nghiên cứu: cột trái media area gray-50 với icon-stack teal/blue/orange (briefcase, microscope, building) + avatar circle overlap góc dưới phải. Cột phải body có topic-chip "SÁNG LẬP VIÊN", tên h3, role, bio + bullets như card chuẩn.</p>
+  <div class="modal optF">
+    <button class="modal__close" aria-label="Đóng"><i data-lucide="x" class="icon-sm"></i></button>
+    <div class="hero">
+      <div class="media">
+        <div class="icon-stack">
+          <div class="t1"><i data-lucide="briefcase"></i></div>
+          <div class="t2"><i data-lucide="microscope"></i></div>
+          <div class="t3"><i data-lucide="building-2"></i></div>
+        </div>
+        <div class="av-overlay">CHN</div>
+      </div>
+      <div class="h-body">
+        <span class="topic-chip">Sáng lập viên</span>
+        <h3 class="name">ThS. Cao Hoàng Nam</h3>
+        <p class="role">Giám đốc điều hành</p>
+      </div>
+    </div>
+    <div class="body">
+      <p class="bio">Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines &amp; Malaysia.</p>
+      <p class="past-h">Vai trò trước đây</p>
+      <ul class="bullet-list">
+        <li class="bullet-item"><span class="glyph"><i data-lucide="briefcase"></i></span><p>Cựu điều phối viên trưởng tại Vietnam Program for Internet &amp; Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.</p></li>
+        <li class="bullet-item"><span class="glyph"><i data-lucide="building-2"></i></span><p>Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo Việt Nam.</p></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const render = () => window.lucide && window.lucide.createIcons({ attrs: { 'stroke-width': 2 } });
+  if (window.lucide) render(); else window.addEventListener('load', render);
+</script>
+
+</body>
+</html>

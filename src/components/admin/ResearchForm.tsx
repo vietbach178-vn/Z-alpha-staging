@@ -4,12 +4,25 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { saveResearch, deleteResearch } from '@/app/admin/research/actions';
+import AttachmentsManager from '@/components/admin/AttachmentsManager';
 
 const BlockEditor = dynamic(() => import('@/components/editor/BlockEditor'), { ssr: false });
 
 interface Topic {
   id: string;
   labelVi: string;
+}
+
+interface AttachmentInitial {
+  id: string;
+  fileUrl: string;
+  fileName: string;
+  fileSize: number | null;
+  fileMime: string | null;
+  language: 'VI' | 'EN' | 'OTHER';
+  labelVi: string | null;
+  labelEn: string | null;
+  order: number;
 }
 
 interface Initial {
@@ -28,6 +41,7 @@ interface Initial {
   status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
   bodyVi: unknown[];
   bodyEn: unknown[] | null;
+  attachments?: AttachmentInitial[];
 }
 
 interface Props {
@@ -159,6 +173,10 @@ export default function ResearchForm({ topics, initial }: Props) {
             else set('bodyEn', blocks);
           }}
         />
+
+        {state.id && (
+          <AttachmentsManager articleId={state.id} initial={state.attachments ?? []} />
+        )}
       </div>
 
       {/* SIDEBAR */}

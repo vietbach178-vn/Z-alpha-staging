@@ -8,7 +8,10 @@ export const dynamic = 'force-dynamic';
 export default async function EditResearchPage({ params }: PageProps<'/admin/research/[id]'>) {
   const { id } = await params;
   const [row, topics] = await Promise.all([
-    prisma.researchArticle.findUnique({ where: { id } }),
+    prisma.researchArticle.findUnique({
+      where: { id },
+      include: { attachments: { orderBy: { order: 'asc' } } },
+    }),
     prisma.topic.findMany({ orderBy: { order: 'asc' } }),
   ]);
   if (!row) notFound();
@@ -36,6 +39,17 @@ export default async function EditResearchPage({ params }: PageProps<'/admin/res
           status: row.status as 'DRAFT' | 'PUBLISHED' | 'ARCHIVED',
           bodyVi: (row.bodyVi as unknown[]) ?? [],
           bodyEn: (row.bodyEn as unknown[]) ?? null,
+          attachments: row.attachments.map((a) => ({
+            id: a.id,
+            fileUrl: a.fileUrl,
+            fileName: a.fileName,
+            fileSize: a.fileSize,
+            fileMime: a.fileMime,
+            language: a.language as 'VI' | 'EN' | 'OTHER',
+            labelVi: a.labelVi,
+            labelEn: a.labelEn,
+            order: a.order,
+          })),
         }}
       />
     </div>

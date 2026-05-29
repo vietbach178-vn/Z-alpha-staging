@@ -10,11 +10,12 @@ interface Dict {
   brand: { eyebrow: string };
   nav: {
     about: string;
-    research: string;
+    activities: string;
     news: string;
-    team: string;
+    library: string;
     contact: string;
-    aboutMenu: { socialMedia: string; whatWeDo: string; team: string };
+    aboutMenu: { overview: string; team: string };
+    activitiesMenu: { education: string; policy: string; research: string };
   };
 }
 
@@ -29,22 +30,28 @@ export default function Header({ lang, dict }: Props) {
   const home = localizedHref('', lang);
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
+  const aboutHref = localizedHref('about', lang);
+  const activitiesResearchHref = localizedHref('activities/research', lang);
+
   const aboutChildren = [
-    { href: localizedHref('about/social-media-vietnam', lang), label: dict.nav.aboutMenu.socialMedia },
-    { href: `${home}#about`,                                   label: dict.nav.aboutMenu.whatWeDo },
-    { href: localizedHref('team', lang),                       label: dict.nav.aboutMenu.team },
+    { href: aboutHref,                          label: dict.nav.aboutMenu.overview },
+    { href: localizedHref('about/team', lang),  label: dict.nav.aboutMenu.team },
+  ];
+
+  const activitiesChildren = [
+    { href: localizedHref('activities/education', lang), label: dict.nav.activitiesMenu.education },
+    { href: localizedHref('activities/policy', lang),    label: dict.nav.activitiesMenu.policy },
+    { href: activitiesResearchHref,                       label: dict.nav.activitiesMenu.research },
   ];
 
   const items = [
-    { href: localizedHref('research', lang), label: dict.nav.research },
-    { href: localizedHref('news', lang),     label: dict.nav.news },
-    { href: localizedHref('contact', lang),  label: dict.nav.contact },
+    { href: localizedHref('news', lang),    label: dict.nav.news },
+    { href: localizedHref('library', lang), label: dict.nav.library },
+    { href: localizedHref('contact', lang), label: dict.nav.contact },
   ];
 
-  // Highlight "Về Z & Alpha" trigger when on home or any about/team sub-page
-  const aboutActive = pathname === home
-    || pathname.startsWith(localizedHref('about', lang))
-    || pathname.startsWith(localizedHref('team', lang));
+  const aboutActive = pathname.startsWith(aboutHref);
+  const activitiesActive = pathname.startsWith(localizedHref('activities', lang));
 
   return (
     <header className="site-header">
@@ -62,7 +69,7 @@ export default function Header({ lang, dict }: Props) {
         <nav className="nav" aria-label={lang === 'vi' ? 'Điều hướng chính' : 'Main navigation'}>
           <div className="nav-dropdown">
             <Link
-              href={home}
+              href={aboutHref}
               className={`nav-dropdown__trigger ${aboutActive ? 'is-active' : ''}`}
               aria-haspopup="true"
             >
@@ -77,6 +84,25 @@ export default function Header({ lang, dict }: Props) {
               ))}
             </div>
           </div>
+
+          <div className="nav-dropdown">
+            <Link
+              href={activitiesResearchHref}
+              className={`nav-dropdown__trigger ${activitiesActive ? 'is-active' : ''}`}
+              aria-haspopup="true"
+            >
+              {dict.nav.activities}
+              <span className="nav-dropdown__caret" aria-hidden="true">▾</span>
+            </Link>
+            <div className="nav-dropdown__menu" role="menu">
+              {activitiesChildren.map((c) => (
+                <Link key={c.href} href={c.href} className="nav-dropdown__item" role="menuitem">
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           {items.map((it) => (
             <Link
               key={it.href}
@@ -114,6 +140,12 @@ export default function Header({ lang, dict }: Props) {
           <div className="mobile-menu__group">
             <span className="mobile-menu__group-label">{dict.nav.about}</span>
             {aboutChildren.map((c) => (
+              <Link key={c.href} href={c.href} className="mobile-menu__sub">{c.label}</Link>
+            ))}
+          </div>
+          <div className="mobile-menu__group">
+            <span className="mobile-menu__group-label">{dict.nav.activities}</span>
+            {activitiesChildren.map((c) => (
               <Link key={c.href} href={c.href} className="mobile-menu__sub">{c.label}</Link>
             ))}
           </div>

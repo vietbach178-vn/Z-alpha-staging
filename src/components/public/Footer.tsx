@@ -4,7 +4,14 @@ import { localizedHref } from '@/lib/i18n';
 
 interface Dict {
   brand: { eyebrow: string };
-  nav: { about: string; research: string; news: string; team: string; contact: string };
+  nav: {
+    about: string;
+    activities: string;
+    news: string;
+    library: string;
+    contact: string;
+    activitiesMenu: { research: string };
+  };
   footer: {
     tagline: string;
     linksHeading: string;
@@ -45,10 +52,10 @@ export default function Footer({ lang, dict }: Props) {
           <div className="footer-col">
             <h4>{dict.footer.linksHeading}</h4>
             <ul>
-              <li><Link href={home}>{dict.nav.about}</Link></li>
-              <li><Link href={localizedHref('research', lang)}>{dict.nav.research}</Link></li>
+              <li><Link href={localizedHref('about', lang)}>{dict.nav.about}</Link></li>
+              <li><Link href={localizedHref('activities/research', lang)}>{dict.nav.activities}</Link></li>
               <li><Link href={localizedHref('news', lang)}>{dict.nav.news}</Link></li>
-              <li><Link href={localizedHref('team', lang)}>{dict.nav.team}</Link></li>
+              <li><Link href={localizedHref('library', lang)}>{dict.nav.library}</Link></li>
               <li><Link href={localizedHref('contact', lang)}>{dict.nav.contact}</Link></li>
             </ul>
           </div>

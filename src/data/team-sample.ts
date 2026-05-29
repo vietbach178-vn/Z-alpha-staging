@@ -14,11 +14,19 @@ export interface FallbackPerson {
   avatar?: string;
 }
 
+export interface FallbackHighlight {
+  /** Lucide icon name shown in the glyph (e.g. "graduation-cap", "landmark"). */
+  icon: string;
+  text: Record<Lang, string>;
+}
+
 export interface FallbackOrganizer extends FallbackPerson {
   /** Bio paragraphs (each item = one paragraph). */
   bio: Record<Lang, string[]>;
   /** Optional bullet list of past roles / achievements. */
   bullets?: Record<Lang, string[]>;
+  /** Optional structured highlights (education, expertise, publications). */
+  highlights?: FallbackHighlight[];
 }
 
 export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
@@ -31,20 +39,20 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại Đại học Oregon, Hoa Kỳ. Giám đốc đối ngoại tập đoàn TOMRA tại Việt Nam, Phillipines & Malaysia.',
+        'Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại <strong>Đại học Oregon, Hoa Kỳ</strong>. Giám đốc đối ngoại tập đoàn <strong>TOMRA</strong> tại Việt Nam, Phillipines & Malaysia.',
       ],
       en: [
-        'Nearly 20 years of experience in corporate communications planning, social-media crisis management and government relations for the corporate sector in Vietnam. MA in Economics and International Relations at the University of Oregon, USA. Public Affairs Director for TOMRA in Vietnam, the Philippines & Malaysia.',
+        'Nearly 20 years of experience in corporate communications planning, social-media crisis management and government relations for the corporate sector in Vietnam. MA in Economics and International Relations at the <strong>University of Oregon, USA</strong>. Public Affairs Director for <strong>TOMRA</strong> in Vietnam, the Philippines & Malaysia.',
       ],
     },
     bullets: {
       vi: [
-        'Cựu điều phối viên trưởng tại Vietnam Program for Internet & Society (VPIS), một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
-        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại PepsiCo VN.',
+        'Cựu điều phối viên trưởng tại <strong>Vietnam Program for Internet & Society (VPIS)</strong>, một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
+        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại <strong>PepsiCo Việt Nam</strong>.',
       ],
       en: [
-        'Former lead coordinator at the Vietnam Program for Internet & Society (VPIS), a pioneering interdisciplinary research program on Internet and society in Vietnam.',
-        'Former Head of Public Policy, Government Relations & Communications at PepsiCo Vietnam.',
+        'Former lead coordinator at the <strong>Vietnam Program for Internet & Society (VPIS)</strong>, a pioneering interdisciplinary research program on Internet and society in Vietnam.',
+        'Former Head of Public Policy, Government Relations & Communications at <strong>PepsiCo Vietnam</strong>.',
       ],
     },
   },
@@ -57,12 +65,42 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Tiến sỹ chuyên ngành giáo dục tại ĐH Sophia, Thạc sĩ Quan hệ Quốc tế ĐH Waseda (Nhật Bản) với các nghiên cứu lý luận chuyên sâu về hợp tác xã hội, giáo dục công dân toàn cầu, giáo dục phát triển bền vững, giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu. Quản lý sản xuất nội dung giáo dục & xuất bản khoa học tại Oddly normal podcast.',
+        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Quan tâm sâu tới giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu.',
       ],
       en: [
-        'Over 10 years of experience in project management, building global education programs, and coordinating cross-sector partnerships between multinational corporations, governments, NGOs and education institutions. PhD in Education at Sophia University and MA in International Relations at Waseda University (Japan), with research focused on social partnerships, global citizenship education, education for sustainable development, and social-emotional learning amid rapid technological change and systemic global risks. Education content & scientific publishing lead at Oddly Normal Podcast.',
+        'Over 10 years of experience in project management, building global education programs, and coordinating cross-sector partnerships between multinational corporations, governments, NGOs and education institutions. Deeply focused on social-emotional learning amid rapid technological change and systemic global risks.',
       ],
     },
+    highlights: [
+      {
+        icon: 'graduation-cap',
+        text: {
+          vi: 'Tiến sỹ Giáo dục — <strong>Đại học Sophia</strong>, Nhật Bản',
+          en: 'PhD in Education — <strong>Sophia University</strong>, Japan',
+        },
+      },
+      {
+        icon: 'award',
+        text: {
+          vi: 'Thạc sĩ Quan hệ Quốc tế — <strong>Đại học Waseda</strong>, Nhật Bản',
+          en: 'MA in International Relations — <strong>Waseda University</strong>, Japan',
+        },
+      },
+      {
+        icon: 'book-open',
+        text: {
+          vi: 'Nghiên cứu hợp tác xã hội, giáo dục công dân toàn cầu và phát triển bền vững',
+          en: 'Research on social partnerships, global citizenship education and sustainable development',
+        },
+      },
+      {
+        icon: 'mic',
+        text: {
+          vi: 'Quản lý nội dung giáo dục & xuất bản khoa học tại <a href="https://oddly-podcast.com/" target="_blank" rel="noopener noreferrer"><strong>Oddly Normal Podcast</strong></a>',
+          en: 'Education content & scientific publishing lead at <a href="https://oddly-podcast.com/" target="_blank" rel="noopener noreferrer"><strong>Oddly Normal Podcast</strong></a>',
+        },
+      },
+    ],
   },
   {
     initials: 'PHC',
@@ -73,12 +111,42 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Tiến sĩ Truyền thông tại Đại học Bournemouth (Anh Quốc), Thạc sĩ Báo chí Quốc tế tại Đại học Baptist Hồng Kông (Hồng Kông), nghiên cứu viên tại Trường Harvard Kennedy, Đại học Harvard (Mỹ). Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975. Đã và đang tham gia viết bài cho các tờ báo lớn như Financial Times, VnExpress và các tạp chí khoa học có uy tín tại Châu Âu.',
+        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975.',
       ],
       en: [
-        'Over 16 years of academic and applied experience, currently teaching at a UK university. PhD in Communications at Bournemouth University (UK), MA in International Journalism at Hong Kong Baptist University (Hong Kong), research fellow at the Harvard Kennedy School, Harvard University (USA). Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975. Contributing writer for major outlets such as Financial Times, VnExpress and reputable European academic journals.',
+        'Over 16 years of academic and applied experience, currently teaching at a UK university. Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975.',
       ],
     },
+    highlights: [
+      {
+        icon: 'graduation-cap',
+        text: {
+          vi: 'Tiến sĩ Truyền thông — <strong>Đại học Bournemouth</strong>, Anh Quốc',
+          en: 'PhD in Communications — <strong>Bournemouth University</strong>, UK',
+        },
+      },
+      {
+        icon: 'award',
+        text: {
+          vi: 'Thạc sĩ Báo chí Quốc tế — <strong>Đại học Baptist</strong>, Hồng Kông',
+          en: 'MA in International Journalism — <strong>Hong Kong Baptist University</strong>',
+        },
+      },
+      {
+        icon: 'landmark',
+        text: {
+          vi: 'Nghiên cứu viên — <strong>Trường Harvard Kennedy, Đại học Harvard</strong>',
+          en: 'Research Fellow — <strong>Harvard Kennedy School, Harvard University</strong>',
+        },
+      },
+      {
+        icon: 'newspaper',
+        text: {
+          vi: 'Cộng tác <strong>Financial Times</strong>, <strong>VnExpress</strong> và tạp chí khoa học uy tín tại Châu Âu',
+          en: 'Contributing writer at <strong>Financial Times</strong>, <strong>VnExpress</strong> and leading European academic journals',
+        },
+      },
+    ],
   },
   {
     initials: 'VTL',
@@ -97,14 +165,14 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bullets: {
       vi: [
-        'Cựu Giám đốc Nhân sự tại Satom Venture Studio',
-        'Cựu Quản lý Thu hút và Phát triển nhân tài tại Vingroup, Carlsberg Việt Nam',
-        'Cựu Trưởng phòng Phát triển tổ chức tại DVG',
+        'Cựu Giám đốc Nhân sự tại <strong>Satom Venture Studio</strong>',
+        'Cựu Quản lý Thu hút và Phát triển nhân tài tại <strong>Vingroup</strong>, <strong>Carlsberg Việt Nam</strong>',
+        'Cựu Trưởng phòng Phát triển tổ chức tại <strong>DVG</strong>',
       ],
       en: [
-        'Former HR Director at Satom Venture Studio',
-        'Former Talent Acquisition & Development Manager at Vingroup, Carlsberg Vietnam',
-        'Former Head of Organizational Development at DVG',
+        'Former HR Director at <strong>Satom Venture Studio</strong>',
+        'Former Talent Acquisition & Development Manager at <strong>Vingroup</strong>, <strong>Carlsberg Vietnam</strong>',
+        'Former Head of Organizational Development at <strong>DVG</strong>',
       ],
     },
   },

@@ -22,7 +22,7 @@ export default function ResearchCard({ item, lang, dict }: Props) {
 
   return (
     <Link
-      href={localizedHref(`research/${item.slug}`, lang)}
+      href={localizedHref(`activities/research/${item.slug}`, lang)}
       className="research-card-v2"
       data-card="true"
       data-topic={item.topicId}

@@ -6,9 +6,10 @@ import {
   FALLBACK_RESEARCHERS,
   FALLBACK_COLLABORATORS,
 } from '@/data/team-sample';
+import TeamOrganizerGrid from '@/components/public/TeamOrganizerGrid';
 import Newsletter from '@/components/public/Newsletter';
 
-export async function generateMetadata({ params }: PageProps<'/[lang]/team'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[lang]/about/team'>): Promise<Metadata> {
   const { lang } = await params;
   if (!isLang(lang)) return {};
   const dict = await getDictionary(lang);
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/team'>): P
 const placeholder = (initials: string) =>
   `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
 
-export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
+export default async function TeamPage({ params }: PageProps<'/[lang]/about/team'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
@@ -43,36 +44,23 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
         </div>
       </section>
 
-      {/* THÀNH VIÊN TỔ CHỨC */}
+      {/* THÀNH VIÊN TỔ CHỨC — grid + modal */}
       <section className="section" id="organizers" style={{ paddingTop: 32 }}>
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">{t(dict, 'team.organizer')}</h2>
+            <p className="section-lead">
+              {lang === 'vi' ? 'Nhấn vào từng thành viên để xem thông tin chi tiết.' : 'Click each member to view bio.'}
+            </p>
           </div>
 
-          <div className="team-org-list">
-            {FALLBACK_ORGANIZERS.map((p) => (
-              <article key={p.initials} className="team-org-card">
-                <div>
-                  <div className="team-org-card__photo">
-                    {p.avatar ? <img src={p.avatar} alt={p.name} /> : <span>{p.initials}</span>}
-                  </div>
-                  <p className="team-org-card__name t-h4">{p.name}</p>
-                  <p className="team-org-card__role t-meta">{p.role[lang]}</p>
-                </div>
-                <div>
-                  {p.bio[lang].map((para, i) => (
-                    <p key={i} className="team-org-card__bio">{para}</p>
-                  ))}
-                  {p.bullets && (
-                    <ul className="team-org-card__bullets">
-                      {p.bullets[lang].map((b, i) => <li key={i}>{b}</li>)}
-                    </ul>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
+          <TeamOrganizerGrid
+            organizers={FALLBACK_ORGANIZERS}
+            lang={lang}
+            closeLabel={lang === 'vi' ? 'Đóng' : 'Close'}
+            pastRolesLabel={t(dict, 'team.pastRoles')}
+            highlightsLabel={t(dict, 'team.highlights')}
+          />
         </div>
       </section>
 
@@ -102,38 +90,29 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/team'>) {
       )}
 
       {/* CỘNG TÁC VIÊN */}
-      <section className="section" id="collaborators">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">{t(dict, 'team.collaborator')}</h2>
-          </div>
+      {FALLBACK_COLLABORATORS.length > 0 && (
+        <section className="section" id="collaborators">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">{t(dict, 'team.collaborator')}</h2>
+            </div>
 
-          <div className="people-grid">
-            {FALLBACK_COLLABORATORS.map((p) => (
-              <div key={p.initials} className="person-card">
-                <div className="person-photo">
-                  <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
+            <div className="people-grid">
+              {FALLBACK_COLLABORATORS.map((p) => (
+                <div key={p.initials} className="person-card">
+                  <div className="person-photo">
+                    <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
+                  </div>
+                  <div className="person-body">
+                    <p className="person-name">{p.name}</p>
+                    <p className="person-role">{p.role[lang]}</p>
+                  </div>
                 </div>
-                <div className="person-body">
-                  <p className="person-name">{p.name}</p>
-                  <p className="person-role">{p.role[lang]}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
-          <div className="principle-banner principle-banner--feature">
-            <h2 className="principle-banner__heading">
-              {lang === 'vi' ? 'Tinh thần chung của đội ngũ' : 'Our shared spirit'}
-            </h2>
-            <p className="principle-banner__text">
-              {lang === 'vi'
-                ? 'Mỗi thành viên Z & Alpha đều tận tâm, hợp tác và hướng tới cộng đồng, tin rằng nghiên cứu chỉ thật sự có giá trị khi tạo ra tác động tích cực trong đời sống con người.'
-                : 'Every Z & Alpha member is dedicated, collaborative, and community-oriented, believing that research only matters when it creates positive impact in people\'s lives.'}
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Newsletter dict={dict} />
     </>
