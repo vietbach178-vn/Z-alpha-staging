@@ -147,7 +147,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
       </section>
 
       {/* MEDIA — VTV2 feature */}
-      <section className="section" id="media">
+      <section className="section section--muted" id="media">
         <div className="container">
           <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
             <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
@@ -172,6 +172,8 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
                 allowFullScreen
                 loading="lazy"
               />
+              {/* Masks Google Drive's native pop-out (↗) control in the top-right */}
+              <span className="media-feature__mask" aria-hidden="true" />
             </div>
             <p
               className="media-feature__caption"
