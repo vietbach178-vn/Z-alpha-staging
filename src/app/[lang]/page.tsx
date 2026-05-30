@@ -142,10 +142,41 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               className="principle-banner__text"
               dangerouslySetInnerHTML={{ __html: t(dict, 'home.what.principleText') }}
             />
-            <a href="#" className="btn btn-primary principle-banner__cta">
-              {t(dict, 'home.what.principleCta')}
-              <i data-lucide="arrow-right" className="icon-sm" />
-            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* MEDIA — VTV2 feature */}
+      <section className="section" id="media">
+        <div className="container">
+          <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
+            <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
+              <i data-lucide="tv" className="icon-sm" />
+              {t(dict, 'home.media.eyebrow')}
+            </span>
+            <h2 className="section-title" style={{ margin: '0 auto' }}>
+              {t(dict, 'home.media.titlePrefix')}{' '}
+              <span className="accent-blue">{t(dict, 'home.media.titleAccent')}</span>
+            </h2>
+            <p className="section-lead" style={{ margin: '12px auto 0', maxWidth: 640 }}>
+              {t(dict, 'home.media.lead')}
+            </p>
+          </div>
+
+          <div className="media-feature">
+            <div className="media-feature__video">
+              <iframe
+                src="https://drive.google.com/file/d/1J4Bsqdq8nMU5D3_XwMzsyetqCe5G9_NC/preview"
+                title="Z & Alpha trên VTV2 — Hiểu Sâu Sống Chất"
+                allow="autoplay"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+            <p
+              className="media-feature__caption"
+              dangerouslySetInnerHTML={{ __html: t(dict, 'home.media.caption') }}
+            />
           </div>
         </div>
       </section>
@@ -162,21 +193,17 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               <div className="icon-tile"><i data-lucide="graduation-cap" className="icon-lg" /></div>
               <h3>{t(dict, 'home.focus.card1.title')}</h3>
               <p>{t(dict, 'home.focus.card1.body')}</p>
-              <span
-                className="focus-link focus-link--disabled"
-                aria-disabled="true"
-                title={t(dict, 'home.focus.card1.comingSoon')}
-              >
+              <Link href={localizedHref('activities/education', l)} className="focus-link">
                 {t(dict, 'home.focus.card1.linkLabel')}
-                <i data-lucide="download" className="icon-sm" />
-              </span>
+                <i data-lucide="arrow-right" className="icon-sm" />
+              </Link>
             </article>
 
             <article className="focus-card t-blue">
               <div className="icon-tile"><i data-lucide="landmark" className="icon-lg" /></div>
               <h3>{t(dict, 'home.focus.card2.title')}</h3>
               <p>{t(dict, 'home.focus.card2.body')}</p>
-              <Link href={localizedHref('activities/research', l)} className="focus-link">
+              <Link href={localizedHref('activities/policy', l)} className="focus-link">
                 {t(dict, 'home.focus.card2.linkLabel')}
                 <i data-lucide="arrow-right" className="icon-sm" />
               </Link>

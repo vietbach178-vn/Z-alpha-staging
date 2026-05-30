@@ -1188,3 +1188,38 @@ body.is-menu-open { overflow: hidden; }
   border: 1px solid #fecaca;
   color: #b91c1c;
 }
+
+/* ============================================================
+   MEDIA feature — VTV2 video embed on homepage
+   ============================================================ */
+.media-feature {
+  max-width: 920px;
+  margin: 32px auto 0;
+}
+.media-feature__video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--gray-900);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--border-2);
+}
+.media-feature__video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.media-feature__caption {
+  margin: 16px 0 0;
+  text-align: center;
+  color: var(--fg-3);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.media-feature__caption strong {
+  color: var(--fg-1);
+  font-weight: 700;
+}

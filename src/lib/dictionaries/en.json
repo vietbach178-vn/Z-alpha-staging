@@ -62,21 +62,26 @@
       "bullet1": "Conducting in-depth studies on the social, psychological, and behavioral impacts of the digital environment on adolescents.",
       "bullet2": "Providing policy recommendations and evidence-based insights for schools, parents, and regulatory bodies.",
       "bullet3": "Organizing training programs, workshops, and communication campaigns to raise community awareness about safe and healthy social media use.",
-      "principleText": "Across all our work, <strong>intellectual independence</strong> is a core value.",
-      "principleCta": "Read about our funding & independence policy"
+      "principleText": "Across all our work, <strong>intellectual independence</strong> is a core value."
+    },
+    "media": {
+      "eyebrow": "In the media",
+      "titlePrefix": "Z & Alpha",
+      "titleAccent": "on the air",
+      "lead": "Z & Alpha's co-founder on VTV discussing the impact of social media on the mental health of Vietnamese youth.",
+      "caption": "Co-founder of Z & Alpha on <strong>Hiểu Sâu Sống Chất</strong> — VTV2"
     },
     "focus": {
       "title": "Our focus areas",
       "card1": {
         "title": "Education",
         "body": "Designing curricula, workshops, and guidelines to help students, teachers, and parents better understand digital literacy, critical thinking skills, and mental health in the age of social media.",
-        "linkLabel": "Download full content",
-        "comingSoon": "Coming soon"
+        "linkLabel": "View education programs"
       },
       "card2": {
         "title": "Policy Recommendations",
         "body": "Providing data and empirical evidence to agencies and organizations in developing policies related to children and young people in the digital environment.",
-        "linkLabel": "View research"
+        "linkLabel": "View recommendations"
       },
       "card3": {
         "title": "Research",
