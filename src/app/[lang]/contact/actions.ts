@@ -35,36 +35,51 @@ export async function submitContact(input: unknown): Promise<ContactResult> {
   const ip = h.get('x-forwarded-for')?.split(',')[0]?.trim() || h.get('x-real-ip') || null;
   const ua = h.get('user-agent');
 
-  const row = await prisma.contactSubmission.create({
-    data: {
-      fullName: data.fullName,
-      email: data.email,
-      audience: data.audience,
-      message: data.message,
-      isUrgent: data.isUrgent,
-      ipAddress: ip,
-      userAgent: ua,
-    },
-  });
-
-  // Notify admin (best-effort, don't fail submission if email service unavailable)
-  const notify = process.env.CONTACT_NOTIFY_EMAIL;
-  if (notify) {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    await sendEmail({
-      to: notify,
-      subject: `[Z&Alpha] ${data.isUrgent ? '🚨 KHẨN — ' : ''}Tin nhắn mới từ ${data.fullName}`,
-      html: contactNotifyHtml({
+  let row;
+  try {
+    row = await prisma.contactSubmission.create({
+      data: {
         fullName: data.fullName,
         email: data.email,
         audience: data.audience,
         message: data.message,
         isUrgent: data.isUrgent,
-        createdAt: row.createdAt,
-        adminUrl: `${base}/admin/contacts/${row.id}`,
-      }),
-      replyTo: data.email,
+        ipAddress: ip,
+        userAgent: ua,
+      },
     });
+  } catch (err) {
+    // Don't let a DB failure crash the whole page — surface a friendly inline error.
+    console.error('[contact] Failed to persist submission:', err);
+    return {
+      ok: false,
+      error: 'Không thể gửi tin nhắn lúc này, vui lòng thử lại sau ít phút.',
+    };
+  }
+
+  // Notify admin (best-effort, don't fail submission if email service unavailable)
+  const notify = process.env.CONTACT_NOTIFY_EMAIL;
+  if (notify) {
+    const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    try {
+      await sendEmail({
+        to: notify,
+        subject: `[Z&Alpha] ${data.isUrgent ? '🚨 KHẨN — ' : ''}Tin nhắn mới từ ${data.fullName}`,
+        html: contactNotifyHtml({
+          fullName: data.fullName,
+          email: data.email,
+          audience: data.audience,
+          message: data.message,
+          isUrgent: data.isUrgent,
+          createdAt: row.createdAt,
+          adminUrl: `${base}/admin/contacts/${row.id}`,
+        }),
+        replyTo: data.email,
+      });
+    } catch (err) {
+      // Submission already saved — never fail it just because the notification didn't send.
+      console.error('[contact] Admin notification failed:', err);
+    }
   }
 
   return { ok: true };
