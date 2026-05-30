@@ -184,7 +184,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
       </section>
 
       {/* FOCUS AREAS */}
-      <section className="section section--muted">
+      <section className="section">
         <div className="container">
           <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
             <h2 className="section-title" style={{ margin: '0 auto' }}>{t(dict, 'home.focus.title')}</h2>
@@ -224,7 +224,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         </div>
       </section>
 
-      <Newsletter dict={dict} />
+      <Newsletter dict={dict} muted />
     </>
   );
 }

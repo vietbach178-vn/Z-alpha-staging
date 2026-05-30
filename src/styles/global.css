@@ -461,6 +461,7 @@ section { position: relative; }
   border: 1px solid var(--border-2);
   border-radius: var(--r-lg);
   padding: 28px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: 16px;

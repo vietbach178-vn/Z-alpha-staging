@@ -1192,9 +1192,6 @@ body.is-menu-open { overflow: hidden; }
 /* ============================================================
    MEDIA feature — VTV2 video embed on homepage
    ============================================================ */
-/* Hairline divider so the muted media band separates from the muted section below */
-#media { border-bottom: 1px solid var(--border-1); }
-
 .media-feature {
   max-width: 920px;
   margin: 32px auto 0;
