@@ -52,9 +52,9 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
               {t(dict, 'home.hero.ctaPrimary')}
               <i data-lucide="arrow-right" className="icon" />
             </Link>
-            <a href="#about" className="btn btn-outline btn-lg">
+            <Link href={localizedHref('about', l)} className="btn btn-outline btn-lg">
               {t(dict, 'home.hero.ctaSecondary')}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
