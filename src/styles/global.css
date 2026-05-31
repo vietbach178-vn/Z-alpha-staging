@@ -1016,6 +1016,69 @@ section { position: relative; }
   background: var(--blue-500);
 }
 
+/* Block-rendered article body — BlockRenderer emits classless p/h/ul/ol,
+   so scope spacing + restore list markers here. */
+.research-body { margin: 40px 0; }
+.research-body > *:first-child { margin-top: 0; }
+.research-body > *:last-child { margin-bottom: 0; }
+.research-body p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--fg-2);
+  margin: 0 0 20px;
+}
+.research-body strong { font-weight: 700; color: var(--fg-1); }
+.research-body h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--fg-1);
+  margin: 44px 0 18px;
+}
+.research-body h3 {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--fg-1);
+  margin: 36px 0 14px;
+}
+.research-body h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg-1);
+  margin: 28px 0 12px;
+}
+.research-body ul,
+.research-body ol {
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.research-body ul { list-style: none; padding-left: 4px; }
+.research-body ol { list-style: decimal; padding-left: 24px; }
+.research-body li {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--fg-2);
+}
+.research-body ul li {
+  position: relative;
+  padding-left: 24px;
+}
+.research-body ul li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+.research-body ol li { padding-left: 4px; }
+
 .research-article__cta {
   margin-top: 48px;
   display: flex;

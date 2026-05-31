@@ -139,7 +139,9 @@ export default async function ResearchDetailPage({ params }: PageProps<'/[lang]/
 
           <Downloads />
 
-          <BlockRenderer blocks={blocks} />
+          <div className="research-body">
+            <BlockRenderer blocks={blocks} />
+          </div>
 
           <Downloads />
 
