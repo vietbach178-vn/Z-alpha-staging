@@ -12,7 +12,27 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/activities
 
 type SkillItem = { icon: string; text: string };
 type SkillGroup = { roman: string; title: string; items: SkillItem[] };
-const SKILL_TONES = ['t-teal', 't-blue', 't-orange', 't-purple', 't-cyan'];
+
+// Tô màu một keyword đặc trưng trong title theo tone của trụ cột (chỉ phần keyword đổi màu).
+// Tìm không phân biệt hoa/thường; không khớp (vd bản EN) thì trả về title nguyên vẹn.
+function highlightKeyword(title: string, keyword: string, color: string) {
+  const i = title.toLowerCase().indexOf(keyword.toLowerCase());
+  if (i === -1) return title;
+  return (
+    <>
+      {title.slice(0, i)}
+      <span style={{ color }}>{title.slice(i, i + keyword.length)}</span>
+      {title.slice(i + keyword.length)}
+    </>
+  );
+}
+
+// Keyword + màu tone cho từng trụ cột (TC1 teal, TC2 blue, TC3 orange)
+const PILLAR_HL = [
+  { kw: 'sức khỏe tinh thần', color: 'var(--teal-600)' },
+  { kw: 'kỹ năng số', color: 'var(--blue-600)' },
+  { kw: 'thay thế', color: 'var(--orange-600)' },
+];
 
 export default async function ActivitiesEducationPage({ params }: PageProps<'/[lang]/activities/education'>) {
   const { lang: rawLang } = await params;
@@ -24,9 +44,9 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
   const skillGroups = edu.skillGroups as SkillGroup[];
 
   const alternatives = [
-    { icon: 'palette',       title: 'altArtTitle',     body: 'altArtBody',     tone: 't-purple' },
+    { icon: 'palette',       title: 'altArtTitle',     body: 'altArtBody',     tone: 't-orange' },
     { icon: 'book-open',     title: 'altReadingTitle', body: 'altReadingBody', tone: 't-orange' },
-    { icon: 'flask-conical', title: 'altScienceTitle', body: 'altScienceBody', tone: 't-teal' },
+    { icon: 'flask-conical', title: 'altScienceTitle', body: 'altScienceBody', tone: 't-orange' },
   ];
 
   return (
@@ -60,7 +80,7 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
                 <div className="icon-tile"><i data-lucide="brain-circuit" className="icon-lg" /></div>
                 <span className="focus-eyebrow">{t(dict, 'activitiesEducation.chtEyebrow')}</span>
               </div>
-              <h3>{t(dict, 'activitiesEducation.pillar1Title')}</h3>
+              <h3>{highlightKeyword(t(dict, 'activitiesEducation.pillar1Title'), PILLAR_HL[0].kw, PILLAR_HL[0].color)}</h3>
               <p className="focus-label">{t(dict, 'activitiesEducation.pillar1Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar1Body')}</p>
             </article>
@@ -69,7 +89,7 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
                 <div className="icon-tile"><i data-lucide="shield-check" className="icon-lg" /></div>
                 <span className="focus-eyebrow">{t(dict, 'activitiesEducation.skillsEyebrow')}</span>
               </div>
-              <h3>{t(dict, 'activitiesEducation.pillar2Title')}</h3>
+              <h3>{highlightKeyword(t(dict, 'activitiesEducation.pillar2Title'), PILLAR_HL[1].kw, PILLAR_HL[1].color)}</h3>
               <p className="focus-label">{t(dict, 'activitiesEducation.pillar2Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar2Body')}</p>
             </article>
@@ -78,7 +98,7 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
                 <div className="icon-tile"><i data-lucide="palette" className="icon-lg" /></div>
                 <span className="focus-eyebrow">{t(dict, 'activitiesEducation.altEyebrow')}</span>
               </div>
-              <h3>{t(dict, 'activitiesEducation.pillar3Title')}</h3>
+              <h3>{highlightKeyword(t(dict, 'activitiesEducation.pillar3Title'), PILLAR_HL[2].kw, PILLAR_HL[2].color)}</h3>
               <p className="focus-label">{t(dict, 'activitiesEducation.pillar3Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar3Body')}</p>
             </article>
@@ -94,7 +114,7 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
             <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.chtEyebrow')}</span>
           </span>
           <div className="section-header">
-            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar1Title')}</h2>
+            <h2 className="section-title">{highlightKeyword(t(dict, 'activitiesEducation.pillar1Title'), PILLAR_HL[0].kw, PILLAR_HL[0].color)}</h2>
           </div>
 
           <div className="focus-grid focus-grid--2col">
@@ -105,21 +125,21 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
               </div>
               <p>{t(dict, 'activitiesEducation.chtMod1Body')}</p>
             </article>
-            <article className="focus-card t-blue">
+            <article className="focus-card t-teal">
               <div className="focus-card__top">
                 <div className="icon-tile"><i data-lucide="cpu" className="icon-lg" /></div>
                 <h3>{t(dict, 'activitiesEducation.chtMod2Title')}</h3>
               </div>
               <p>{t(dict, 'activitiesEducation.chtMod2Body')}</p>
             </article>
-            <article className="focus-card t-orange">
+            <article className="focus-card t-teal">
               <div className="focus-card__top">
                 <div className="icon-tile"><i data-lucide="brain" className="icon-lg" /></div>
                 <h3>{t(dict, 'activitiesEducation.chtMod3Title')}</h3>
               </div>
               <p>{t(dict, 'activitiesEducation.chtMod3Body')}</p>
             </article>
-            <article className="focus-card t-purple">
+            <article className="focus-card t-teal">
               <div className="focus-card__top">
                 <div className="icon-tile"><i data-lucide="network" className="icon-lg" /></div>
                 <h3>{t(dict, 'activitiesEducation.chtMod4Title')}</h3>
@@ -138,13 +158,13 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
             <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.skillsEyebrow')}</span>
           </span>
           <div className="section-header">
-            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar2Title')}</h2>
+            <h2 className="section-title">{highlightKeyword(t(dict, 'activitiesEducation.pillar2Title'), PILLAR_HL[1].kw, PILLAR_HL[1].color)}</h2>
             <p className="section-lead">{t(dict, 'activitiesEducation.skillsLead')}</p>
           </div>
 
           <div className="skill-rows">
-            {skillGroups.map((g, gi) => (
-              <div key={g.roman} className={`skill-row ${SKILL_TONES[gi % SKILL_TONES.length]}`}>
+            {skillGroups.map((g) => (
+              <div key={g.roman} className="skill-row t-blue">
                 <span className="skill-row__roman">{g.roman}</span>
                 <div className="skill-row__body">
                   <h3 className="skill-row__title">{g.title}</h3>
@@ -171,7 +191,7 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
             <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.altEyebrow')}</span>
           </span>
           <div className="section-header">
-            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar3Title')}</h2>
+            <h2 className="section-title">{highlightKeyword(t(dict, 'activitiesEducation.pillar3Title'), PILLAR_HL[2].kw, PILLAR_HL[2].color)}</h2>
             <p className="section-lead">{t(dict, 'activitiesEducation.altTitle')}</p>
           </div>
 

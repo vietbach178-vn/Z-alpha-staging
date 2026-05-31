@@ -1363,6 +1363,13 @@ body.is-menu-open { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+.media-row__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .media-row.t-teal   .media-row__media { background: var(--teal-50); color: var(--teal-600); }
 .media-row.t-blue   .media-row__media { background: var(--blue-50); color: var(--blue-600); }

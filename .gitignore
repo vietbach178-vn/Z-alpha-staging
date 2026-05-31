@@ -52,3 +52,6 @@ src/generated/
 
 # vercel
 .vercel/
+
+# Source deck images (not served; keep out of repo)
+Z-alpha-images/

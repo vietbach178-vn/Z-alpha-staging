@@ -5,6 +5,7 @@ import { BlockNoteView } from '@blocknote/mantine';
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
 import { useEffect, useState } from 'react';
+import { editorSchema, toEditorBlocks, fromEditorBlocks } from './editorSchema';
 
 interface Props {
   initialContent?: unknown[];
@@ -21,8 +22,9 @@ interface Props {
  */
 export default function BlockEditor({ initialContent, onChange, className }: Props) {
   const editor = useCreateBlockNote({
+    schema: editorSchema,
     initialContent: Array.isArray(initialContent) && initialContent.length > 0
-      ? (initialContent as never)
+      ? (toEditorBlocks(initialContent) as never)
       : undefined,
   });
 
@@ -36,7 +38,7 @@ export default function BlockEditor({ initialContent, onChange, className }: Pro
       <BlockNoteView
         editor={editor}
         onChange={() => {
-          onChange?.(editor.document as unknown as unknown[]);
+          onChange?.(fromEditorBlocks(editor.document as unknown as unknown[]));
         }}
         theme="light"
       />

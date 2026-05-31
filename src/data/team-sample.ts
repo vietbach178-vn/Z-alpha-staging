@@ -31,7 +31,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại <strong>Đại học Oregon, Hoa Kỳ</strong>. Giám đốc đối ngoại tập đoàn <strong>TOMRA</strong> tại Việt Nam, Phillipines & Malaysia.',
+        'Gần 20 năm kinh nghiệm làm việc trong lĩnh vực lập kế hoạch truyền thông doanh nghiệp, quản lý khủng hoảng truyền thông xã hội và quan hệ chính phủ cho khu vực doanh nghiệp tại Việt Nam. Thạc sĩ Kinh tế và Quan hệ Quốc tế tại <em>Đại học Oregon, Hoa Kỳ</em>. Giám đốc đối ngoại tập đoàn <em>TOMRA</em> tại Việt Nam, Phillipines & Malaysia.',
       ],
       en: [
         'Nearly 20 years of experience in corporate communications planning, social-media crisis management and government relations for the corporate sector in Vietnam. MA in Economics and International Relations at the <strong>University of Oregon, USA</strong>. Public Affairs Director for <strong>TOMRA</strong> in Vietnam, the Philippines & Malaysia.',
@@ -39,8 +39,8 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bullets: {
       vi: [
-        'Cựu điều phối viên trưởng tại <strong>Vietnam Program for Internet & Society (VPIS)</strong>, một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
-        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại <strong>PepsiCo VN</strong>.',
+        'Cựu điều phối viên trưởng tại <em>Vietnam Program for Internet & Society (VPIS)</em>, một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
+        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại <em>PepsiCo VN</em>.',
       ],
       en: [
         'Former lead coordinator at the <strong>Vietnam Program for Internet & Society (VPIS)</strong>, a pioneering interdisciplinary research program on Internet and society in Vietnam.',
@@ -57,7 +57,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Tiến sỹ chuyên ngành giáo dục tại <strong>ĐH Sophia</strong>, Thạc sĩ Quan hệ Quốc tế <strong>ĐH Waseda (Nhật Bản)</strong> với các nghiên cứu lý luận chuyên sâu về hợp tác xã hội, giáo dục công dân toàn cầu, giáo dục phát triển bền vững, giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu. Quản lý sản xuất nội dung giáo dục & xuất bản khoa học tại <strong>Oddly normal podcast</strong>.',
+        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Tiến sỹ chuyên ngành giáo dục tại <em>ĐH Sophia</em>, Thạc sĩ Quan hệ Quốc tế <em>ĐH Waseda (Nhật Bản)</em> với các nghiên cứu lý luận chuyên sâu về hợp tác xã hội, giáo dục công dân toàn cầu, giáo dục phát triển bền vững, giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu. Quản lý sản xuất nội dung giáo dục & xuất bản khoa học tại <em>Oddly normal podcast</em>.',
       ],
       en: [
         'Over 10 years of experience in project management, building global education programs, and coordinating partnerships between multinational corporations, governments, NGOs and education institutions. PhD in Education at <strong>Sophia University</strong> and MA in International Relations at <strong>Waseda University (Japan)</strong>, with in-depth research on social partnerships, global citizenship education, education for sustainable development, and social-emotional learning amid rapid technological change and systemic global risks. Education content & scientific-publishing lead at <strong>Oddly Normal Podcast</strong>.',
@@ -73,7 +73,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Tiến sĩ Truyền thông tại <strong>Đại học Bournemouth (Anh Quốc)</strong>, Thạc sĩ Báo chí Quốc tế tại <strong>Đại học Baptist Hồng Kông (Hồng Kông)</strong>, nghiên cứu viên tại <strong>Trường Harvard Kennedy, Đại học Harvard (Mỹ)</strong>. Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975. Đã và đang tham gia viết bài cho các tờ báo lớn như <strong>Financial Times</strong>, <strong>VnExpress</strong> và các tạp chí khoa học có uy tín tại Châu Âu.',
+        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Tiến sĩ Truyền thông tại <em>Đại học Bournemouth (Anh Quốc)</em>, Thạc sĩ Báo chí Quốc tế tại <em>Đại học Baptist Hồng Kông (Hồng Kông)</em>, nghiên cứu viên tại <em>Trường Harvard Kennedy, Đại học Harvard (Mỹ)</em>. Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975. Đã và đang tham gia viết bài cho các tờ báo lớn như <em>Financial Times</em>, <em>VnExpress</em> và các tạp chí khoa học có uy tín tại Châu Âu.',
       ],
       en: [
         'Over 16 years of academic and applied experience, currently teaching at a UK university. PhD in Communications at <strong>Bournemouth University (UK)</strong>, MA in International Journalism at <strong>Hong Kong Baptist University (Hong Kong)</strong>, and Research Fellow at <strong>Harvard Kennedy School, Harvard University (USA)</strong>. Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975. Has contributed to major outlets such as <strong>Financial Times</strong>, <strong>VnExpress</strong> and reputable European academic journals.',
@@ -97,9 +97,9 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bullets: {
       vi: [
-        'Cựu Giám đốc Nhân sự tại <strong>Satom Venture Studio</strong>',
-        'Cựu Quản lý Thu hút và Phát triển nhân tài tại <strong>Vingroup</strong>, <strong>Carlsberg Việt Nam</strong>',
-        'Cựu Trưởng phòng Phát triển tổ chức tại <strong>DVG</strong>',
+        'Cựu Giám đốc Nhân sự tại <em>Satom Venture Studio</em>',
+        'Cựu Quản lý Thu hút và Phát triển nhân tài tại <em>Vingroup</em>, <em>Carlsberg Việt Nam</em>',
+        'Cựu Trưởng phòng Phát triển tổ chức tại <em>DVG</em>',
       ],
       en: [
         'Former HR Director at <strong>Satom Venture Studio</strong>',

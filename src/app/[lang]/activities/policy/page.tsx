@@ -19,10 +19,6 @@ export default async function ActivitiesPolicyPage({ params }: PageProps<'/[lang
   // agenda is an array of [time, content] tuples — read directly from dict
   const agenda = (dict as unknown as { activitiesPolicy: { agenda: string[][] } }).activitiesPolicy.agenda;
 
-  const attendees = [
-    'attendee1', 'attendee2', 'attendee3', 'attendee4', 'attendee5', 'attendee6', 'attendee7',
-  ];
-
   return (
     <>
       {/* HERO */}
@@ -184,17 +180,6 @@ export default async function ActivitiesPolicyPage({ params }: PageProps<'/[lang
               <strong className="policy-timebar__value">{t(dict, 'activitiesPolicy.infoTimeValue')}</strong>
             </div>
           </div>
-
-          {/* Thành phần tham dự — lưới thẻ 4 cột */}
-          <h3 className="policy-attendees__eyebrow">{t(dict, 'activitiesPolicy.infoAttendees')}</h3>
-          <ul className="policy-attendees">
-            {attendees.map((key) => (
-              <li key={key} className="policy-attendee">
-                <span className="policy-attendee__icon"><i data-lucide="users" className="icon" /></span>
-                <p>{t(dict, `activitiesPolicy.${key}`)}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Demo CTA "Liên hệ" — cuối trang</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --white:#fff;
+    --teal-50:#f0fdfa; --teal-400:#2dd4bf; --teal-500:#14b8a6; --teal-600:#0d9488;
+    --blue-50:#eff6ff; --blue-400:#60a5fa; --blue-500:#3b82f6; --blue-600:#2563eb;
+    --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db;
+    --gray-400:#9ca3af; --gray-500:#6b7280; --gray-700:#374151; --gray-800:#1f2937; --gray-900:#111827;
+    --r-md:12px; --r-lg:16px; --r-xl:24px;
+    --font-sans:'Geist',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:var(--font-sans); color:var(--gray-900); background:var(--gray-50); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .page-head{padding:48px 0 8px;}
+  .page-head h1{font-size:26px; margin:0 0 6px;}
+  .page-head p{color:var(--gray-500); margin:0; max-width:720px;}
+
+  .opt{padding:40px 0;}
+  .opt-tag{display:inline-flex; align-items:center; gap:10px; margin-bottom:18px; font-size:13px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.06em;}
+  .opt-tag b{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:6px; background:var(--gray-900); color:#fff; font-size:12px;}
+  .opt-note{font-size:13.5px; color:var(--gray-500); font-weight:500; text-transform:none; letter-spacing:0;}
+
+  /* buttons */
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; height:52px; padding:0 24px; border-radius:var(--r-md); font-size:16px; font-weight:600; text-decoration:none; cursor:pointer; border:1px solid transparent; transition:.18s; white-space:nowrap;}
+  .btn svg{width:18px; height:18px;}
+  .btn-white{background:#fff; color:var(--gray-900);}
+  .btn-white:hover{background:var(--gray-100); transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:#fff; border-color:var(--gray-700);}
+  .btn-ghost:hover{background:rgba(255,255,255,.08); border-color:var(--gray-500);}
+  .btn-dark{background:var(--gray-900); color:#fff;}
+  .btn-dark:hover{background:#000; transform:translateY(-1px);}
+
+  /* shared dark banner */
+  .cta{background:var(--gray-900); color:#fff; border-radius:var(--r-xl); padding:56px 48px;}
+  .cta h2{color:#fff; font-size:30px; font-weight:700; letter-spacing:-.02em; margin:0 0 10px;}
+  .cta p{color:var(--gray-300); font-size:17px; line-height:1.55; margin:0; max-width:460px;}
+
+  /* ===== A — banner tối, 1 nút (sát hiện tại nhất) ===== */
+  .ctaA .inner{display:grid; grid-template-columns:1.1fr auto; gap:48px; align-items:center;}
+  @media(max-width:760px){.ctaA .inner{grid-template-columns:1fr; gap:28px;}}
+
+  /* ===== B — banner tối, nút + phương thức liên hệ ===== */
+  .ctaB .inner{display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center;}
+  .ctaB .right{display:flex; flex-direction:column; gap:16px; align-items:flex-start;}
+  .ctaB .methods{display:flex; flex-direction:column; gap:10px;}
+  .ctaB .m{display:inline-flex; align-items:center; gap:10px; color:var(--gray-300); text-decoration:none; font-size:15px;}
+  .ctaB .m:hover{color:#fff;}
+  .ctaB .m svg{width:17px; height:17px; color:var(--blue-400);}
+  @media(max-width:760px){.ctaB .inner{grid-template-columns:1fr; gap:28px;}}
+
+  /* ===== C — banner tối, 3 phương thức dạng thẻ (không nút lớn) ===== */
+  .ctaC .inner{display:grid; grid-template-columns:1fr; gap:32px;}
+  .ctaC .methods{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:760px){.ctaC .methods{grid-template-columns:1fr;}}
+  .ctaC .m{display:flex; gap:14px; align-items:flex-start; padding:20px; border:1px solid var(--gray-700); border-radius:var(--r-md); text-decoration:none; transition:.18s;}
+  .ctaC .m:hover{background:var(--gray-800); border-color:var(--gray-500);}
+  .ctaC .m .ic{flex-shrink:0; width:40px; height:40px; border-radius:11px; background:rgba(59,130,246,.15); color:var(--blue-400); display:flex; align-items:center; justify-content:center;}
+  .ctaC .m .ic svg{width:19px; height:19px;}
+  .ctaC .m .lbl{font-size:13px; color:var(--gray-400); margin:0 0 3px;}
+  .ctaC .m .val{font-size:15.5px; color:#fff; font-weight:500; margin:0; line-height:1.4;}
+
+  /* ===== D — gradient thương hiệu, canh giữa, 2 nút ===== */
+  .ctaD{background:linear-gradient(135deg,var(--teal-600),var(--blue-600)); color:#fff; border-radius:var(--r-xl); padding:64px 48px; text-align:center;}
+  .ctaD .badge{display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,.15); margin-bottom:20px;}
+  .ctaD .badge svg{width:26px; height:26px; color:#fff;}
+  .ctaD h2{color:#fff; font-size:32px; font-weight:800; letter-spacing:-.02em; margin:0 0 12px;}
+  .ctaD p{color:rgba(255,255,255,.85); font-size:17px; line-height:1.6; margin:0 auto 28px; max-width:560px;}
+  .ctaD .actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .ctaD .btn-white:hover{background:#fff; opacity:.92;}
+
+  .demo-foot{height:80px;}
+  .pagebg{background:#fff; padding:1px 0;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>CTA “Liên hệ” cuối trang — chọn 1 phương án</h1>
+    <p>Thay cho banner “Đăng ký nhận bản tin”. 4 phương án dưới đây dùng đúng style + thông tin liên hệ thật (email, điện thoại, địa chỉ). Cuộn xem từng kiểu rồi cho mình biết bạn chọn cái nào.</p>
+  </div>
+</div>
+
+<!-- ============ A ============ -->
+<div class="wrap opt">
+  <div class="opt-tag"><b>A</b> Banner tối — 1 nút <span class="opt-note">— gọn nhất, đổi tối thiểu so với hiện tại</span></div>
+  <div class="cta ctaA">
+    <div class="inner">
+      <div>
+        <h2>Liên hệ với chúng tôi</h2>
+        <p>Bạn có câu hỏi, ý tưởng hợp tác hoặc muốn đồng hành cùng sáng kiến? Hãy kết nối với Z &amp; Alpha.</p>
+      </div>
+      <a class="btn btn-white" href="#">Liên hệ <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ B ============ -->
+<div class="wrap opt">
+  <div class="opt-tag"><b>B</b> Banner tối — nút + phương thức <span class="opt-note">— vừa có CTA, vừa cho liên hệ trực tiếp ngay</span></div>
+  <div class="cta ctaB">
+    <div class="inner">
+      <div>
+        <h2>Cùng kết nối</h2>
+        <p>Liên hệ với Z &amp; Alpha để hợp tác, đặt câu hỏi hoặc tham gia các hoạt động vì thế hệ trẻ.</p>
+      </div>
+      <div class="right">
+        <a class="btn btn-white" href="#">Gửi lời nhắn <i data-lucide="arrow-right"></i></a>
+        <div class="methods">
+          <a class="m" href="mailto:contact@z-alpha.org"><i data-lucide="mail"></i> contact@z-alpha.org</a>
+          <a class="m" href="tel:+84918061515"><i data-lucide="phone"></i> +84 918 061 515</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ C ============ -->
+<div class="wrap opt">
+  <div class="opt-tag"><b>C</b> Banner tối — 3 phương thức dạng thẻ <span class="opt-note">— đầy đủ thông tin, không cần trang Liên hệ riêng</span></div>
+  <div class="cta ctaC">
+    <div class="inner">
+      <div>
+        <h2>Liên hệ với chúng tôi</h2>
+        <p>Chúng tôi luôn sẵn sàng lắng nghe — chọn cách kết nối phù hợp với bạn.</p>
+      </div>
+      <div class="methods">
+        <a class="m" href="mailto:contact@z-alpha.org">
+          <span class="ic"><i data-lucide="mail"></i></span>
+          <span><p class="lbl">Email</p><p class="val">contact@z-alpha.org</p></span>
+        </a>
+        <a class="m" href="tel:+84918061515">
+          <span class="ic"><i data-lucide="phone"></i></span>
+          <span><p class="lbl">Điện thoại</p><p class="val">+84 918 061 515</p></span>
+        </a>
+        <a class="m" href="#">
+          <span class="ic"><i data-lucide="map-pin"></i></span>
+          <span><p class="lbl">Địa chỉ</p><p class="val">HeiTower, Thanh Xuân, Hà Nội</p></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ D ============ -->
+<div class="wrap opt">
+  <div class="opt-tag"><b>D</b> Gradient thương hiệu — canh giữa, 2 nút <span class="opt-note">— nổi bật, “mời gọi” nhất, khác hẳn banner tối</span></div>
+  <div class="ctaD">
+    <span class="badge"><i data-lucide="handshake"></i></span>
+    <h2>Cùng chung tay</h2>
+    <p>Bạn là trường học, tổ chức, doanh nghiệp hay cá nhân muốn đồng hành? Hãy liên hệ để cùng xây dựng một môi trường số lành mạnh cho thế hệ trẻ.</p>
+    <div class="actions">
+      <a class="btn btn-white" href="#">Liên hệ ngay <i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-ghost" href="mailto:contact@z-alpha.org"><i data-lucide="mail"></i> Gửi email</a>
+    </div>
+  </div>
+</div>
+
+<div class="demo-foot"></div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

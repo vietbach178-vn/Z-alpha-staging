@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Demo layout — 4 item (Trụ cột 1)</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --teal-50:#f0fdfa; --teal-500:#14b8a6; --teal-600:#0d9488;
+    --blue-50:#eff6ff; --blue-500:#3b82f6; --blue-600:#2563eb;
+    --orange-50:#fff7ed; --orange-500:#f97316; --orange-600:#ea580c;
+    --purple-50:#faf5ff; --purple-500:#a855f7; --purple-600:#9333ea;
+    --white:#fff;
+    --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db;
+    --gray-400:#9ca3af; --gray-500:#6b7280; --gray-700:#374151; --gray-900:#111827;
+    --fg-1:var(--gray-900); --fg-2:var(--gray-700);
+    --border-2:var(--gray-200);
+    --r-sm:8px; --r-lg:16px;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+    --shadow-md:0 4px 6px -1px rgba(0,0,0,.10),0 2px 4px -2px rgba(0,0,0,.10);
+    --shadow-lg:0 10px 25px -5px rgba(0,0,0,.08),0 8px 10px -6px rgba(0,0,0,.05);
+    --font-sans:'Geist',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:var(--font-sans); color:var(--fg-1);
+    background:var(--gray-50); line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* page chrome */
+  .page-head{padding:48px 0 8px;}
+  .page-head h1{font-size:26px; margin:0 0 6px;}
+  .page-head p{color:var(--fg-2); margin:0; max-width:680px;}
+
+  .opt{padding:40px 0 16px; border-top:1px dashed var(--gray-300); margin-top:40px;}
+  .opt:first-of-type{border-top:0;}
+  .opt-tag{
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:22px;
+    font-size:13px; font-weight:700; color:var(--gray-500);
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .opt-tag b{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:6px;
+    background:var(--gray-900); color:#fff; font-size:12px;
+  }
+  .opt-note{font-size:13.5px; color:var(--gray-500); font-weight:500; text-transform:none; letter-spacing:0;}
+
+  /* section header reused */
+  .s-eyebrow{display:inline-flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .s-eyebrow__num{font-family:var(--font-sans); font-weight:700; color:var(--teal-600); font-size:14px;}
+  .s-eyebrow__label{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-500);}
+  .section-title{font-size:30px; font-weight:800; letter-spacing:-.01em; margin:0 0 28px; line-height:1.2;}
+
+  /* tone vars per card */
+  .t-teal{--c-50:var(--teal-50); --c-500:var(--teal-500); --c-600:var(--teal-600);}
+  .t-blue{--c-50:var(--blue-50); --c-500:var(--blue-500); --c-600:var(--blue-600);}
+  .t-orange{--c-50:var(--orange-50); --c-500:var(--orange-500); --c-600:var(--orange-600);}
+  .t-purple{--c-50:var(--purple-50); --c-500:var(--purple-500); --c-600:var(--purple-600);}
+
+  .ico{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:48px; height:48px; border-radius:14px;
+    background:var(--c-50); color:var(--c-600); flex-shrink:0;
+  }
+  .ico svg{width:24px; height:24px;}
+  .card-title{font-size:18px; font-weight:700; margin:0; color:var(--fg-1);}
+  .card-body{font-size:14.5px; color:var(--fg-2); margin:0; line-height:1.6;}
+
+  /* ============ OPTION A — 2×2 grid cân đối ============ */
+  .gridA{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  .gridA .card{
+    background:#fff; border:1px solid var(--border-2); border-radius:var(--r-lg);
+    padding:28px; display:flex; flex-direction:column; gap:14px;
+    transition:.2s;
+  }
+  .gridA .card:hover{box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--c-500);}
+  .gridA .card-head{display:flex; align-items:center; gap:14px;}
+
+  /* ============ OPTION B — stepper dọc (hành trình) ============ */
+  .stepB{position:relative; padding-left:8px;}
+  .stepB .row{
+    position:relative; display:grid; grid-template-columns:56px 1fr; gap:24px;
+    padding-bottom:34px;
+  }
+  .stepB .row:last-child{padding-bottom:0;}
+  .stepB .row::before{ /* connector line */
+    content:""; position:absolute; left:27px; top:56px; bottom:-6px; width:2px;
+    background:linear-gradient(var(--gray-200),var(--gray-100));
+  }
+  .stepB .row:last-child::before{display:none;}
+  .stepB .num{
+    width:56px; height:56px; border-radius:50%; flex-shrink:0; z-index:1;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--c-50); color:var(--c-600); font-weight:800; font-size:20px;
+    border:2px solid #fff; box-shadow:0 0 0 1px var(--c-500);
+  }
+  .stepB .body{
+    background:#fff; border:1px solid var(--border-2); border-radius:var(--r-lg);
+    padding:22px 24px; margin-top:2px;
+  }
+  .stepB .body .top{display:flex; align-items:center; gap:12px; margin-bottom:8px;}
+  .stepB .body .ico{width:36px; height:36px; border-radius:10px;}
+  .stepB .body .ico svg{width:18px; height:18px;}
+
+  /* ============ OPTION C — 4 cột số lớn (flow) ============ */
+  .gridC{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  .gridC .card{
+    background:#fff; border:1px solid var(--border-2); border-radius:var(--r-lg);
+    padding:24px 22px; position:relative; overflow:hidden; transition:.2s;
+  }
+  .gridC .card::before{
+    content:""; position:absolute; left:0; top:0; height:4px; width:100%;
+    background:var(--c-500);
+  }
+  .gridC .card:hover{box-shadow:var(--shadow-lg); transform:translateY(-3px);}
+  .gridC .idx{font-size:34px; font-weight:800; color:var(--c-600); line-height:1; opacity:.25; margin-bottom:14px;}
+  .gridC .ico{width:40px; height:40px; border-radius:11px; margin-bottom:16px;}
+  .gridC .ico svg{width:20px; height:20px;}
+  .gridC .card-title{font-size:16px; margin-bottom:10px;}
+  .gridC .card-body{font-size:13.5px;}
+
+  /* ============ OPTION D — list editorial số to bên trái ============ */
+  .listD{background:#fff; border:1px solid var(--border-2); border-radius:var(--r-lg); overflow:hidden;}
+  .listD .row{
+    display:grid; grid-template-columns:90px 52px 1fr; gap:22px; align-items:start;
+    padding:26px 30px; border-top:1px solid var(--gray-100); transition:.18s;
+  }
+  .listD .row:first-child{border-top:0;}
+  .listD .row:hover{background:var(--c-50);}
+  .listD .idx{font-size:40px; font-weight:800; color:var(--c-600); line-height:1; letter-spacing:-.02em;}
+  .listD .ico{margin-top:2px;}
+  .listD .card-title{margin-bottom:6px;}
+  .listD .card-body{max-width:680px;}
+
+  @media (max-width:880px){
+    .gridA,.gridC{grid-template-columns:1fr;}
+    .listD .row{grid-template-columns:60px 1fr; }
+    .listD .ico{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>Demo layout cho 4 item — “Trụ cột 1”</h1>
+    <p>4 phương án trình bày khi nhóm có đúng 4 mục. Mục tiêu: hết lệch (so với grid 3 cột bỏ trống 2 ô) và nhìn gọn gàng hơn. Cuộn xuống xem từng kiểu.</p>
+  </div>
+
+  <!-- ================= OPTION A ================= -->
+  <section class="opt">
+    <div class="opt-tag"><b>A</b> Lưới 2×2 cân đối <span class="opt-note">— an toàn, đối xứng, dễ đọc khi nội dung dài ngắn lệch nhau</span></div>
+
+    <span class="s-eyebrow"><span class="s-eyebrow__num">01</span><span class="s-eyebrow__label">Trụ cột 1</span></span>
+    <h2 class="section-title">Giáo dục nhận thức về công nghệ số và sức khỏe tinh thần</h2>
+
+    <div class="gridA">
+      <div class="card t-teal">
+        <div class="card-head"><span class="ico"><i data-lucide="eye"></i></span><h3 class="card-title">Nền kinh tế mua bán sự chú ý</h3></div>
+        <p class="card-body">Tại sao các công ty công nghệ tranh giành sự chú ý của chúng ta? Giá trị đó định hình thiết kế sản phẩm ta dùng hàng ngày ra sao? Khi hiểu những điểm mấu chốt này, học sinh nhận ra mình có thể làm gì để thúc đẩy một nền công nghệ phục vụ lợi ích con người.</p>
+      </div>
+      <div class="card t-blue">
+        <div class="card-head"><span class="ico"><i data-lucide="cpu"></i></span><h3 class="card-title">Công nghệ thuyết phục</h3></div>
+        <p class="card-body">Tìm hiểu cách mà các thiết kế tinh vi trong mỗi sản phẩm mạng xã hội thao túng bạn để chiếm đoạt sự chú ý và thay đổi hành vi của con người.</p>
+      </div>
+      <div class="card t-orange">
+        <div class="card-head"><span class="ico"><i data-lucide="brain"></i></span><h3 class="card-title">Mạng xã hội &amp; Não bộ</h3></div>
+        <p class="card-body">Tâm trí và cơ thể chúng ta tồn tại những điểm dễ tổn thương có thể bị khai thác. Công nghệ thuyết phục nhắm vào chính những điểm yếu đó để ta tiếp tục nhấp chuột, cuộn màn hình mãi không thôi — trong khi các công ty thờ ơ với sức khỏe người dùng.</p>
+      </div>
+      <div class="card t-purple">
+        <div class="card-head"><span class="ico"><i data-lucide="network"></i></span><h3 class="card-title">Hậu quả &amp; Vấn đề hệ thống</h3></div>
+        <p class="card-body">Khi hiểu tác hại của công nghệ thuyết phục và các lực lượng hệ thống chi phối nó, ta có thể hình dung cách xây dựng một thế giới dựa trên nền công nghệ nhân văn — vận hành vì lợi ích chung của tất cả mọi người.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPTION B ================= -->
+  <section class="opt">
+    <div class="opt-tag"><b>B</b> Stepper dọc — hành trình học <span class="opt-note">— nhấn mạnh tính tuần tự: vấn đề → cơ chế → tác động → giải pháp</span></div>
+
+    <span class="s-eyebrow"><span class="s-eyebrow__num">01</span><span class="s-eyebrow__label">Trụ cột 1</span></span>
+    <h2 class="section-title">Giáo dục nhận thức về công nghệ số và sức khỏe tinh thần</h2>
+
+    <div class="stepB">
+      <div class="row t-teal">
+        <div class="num">1</div>
+        <div class="body">
+          <div class="top"><span class="ico"><i data-lucide="eye"></i></span><h3 class="card-title">Nền kinh tế mua bán sự chú ý</h3></div>
+          <p class="card-body">Tại sao các công ty công nghệ tranh giành sự chú ý của chúng ta? Khi hiểu những điểm mấu chốt này, học sinh nhận ra mình có thể làm gì để thúc đẩy một nền công nghệ phục vụ lợi ích tốt nhất của con người.</p>
+        </div>
+      </div>
+      <div class="row t-blue">
+        <div class="num">2</div>
+        <div class="body">
+          <div class="top"><span class="ico"><i data-lucide="cpu"></i></span><h3 class="card-title">Công nghệ thuyết phục</h3></div>
+          <p class="card-body">Tìm hiểu cách mà các thiết kế tinh vi trong mỗi sản phẩm mạng xã hội thao túng bạn để chiếm đoạt sự chú ý và thay đổi hành vi của con người.</p>
+        </div>
+      </div>
+      <div class="row t-orange">
+        <div class="num">3</div>
+        <div class="body">
+          <div class="top"><span class="ico"><i data-lucide="brain"></i></span><h3 class="card-title">Mạng xã hội &amp; Não bộ</h3></div>
+          <p class="card-body">Công nghệ thuyết phục nhắm vào những điểm dễ tổn thương của tâm trí để ta tiếp tục nhấp chuột, cuộn màn hình mãi không thôi — trong khi các công ty thờ ơ với sức khỏe người dùng.</p>
+        </div>
+      </div>
+      <div class="row t-purple">
+        <div class="num">4</div>
+        <div class="body">
+          <div class="top"><span class="ico"><i data-lucide="network"></i></span><h3 class="card-title">Hậu quả &amp; Vấn đề hệ thống</h3></div>
+          <p class="card-body">Khi hiểu tác hại của công nghệ thuyết phục và các lực lượng hệ thống chi phối nó, ta có thể hình dung cách xây dựng một thế giới dựa trên nền công nghệ nhân văn vì lợi ích chung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPTION C ================= -->
+  <section class="opt">
+    <div class="opt-tag"><b>C</b> 4 cột — số lớn mờ <span class="opt-note">— gọn, hiện đại, hợp khi muốn 1 hàng ngang đều tăm tắp (cần rút gọn body)</span></div>
+
+    <span class="s-eyebrow"><span class="s-eyebrow__num">01</span><span class="s-eyebrow__label">Trụ cột 1</span></span>
+    <h2 class="section-title">Giáo dục nhận thức về công nghệ số và sức khỏe tinh thần</h2>
+
+    <div class="gridC">
+      <div class="card t-teal">
+        <div class="idx">01</div>
+        <span class="ico"><i data-lucide="eye"></i></span>
+        <h3 class="card-title">Nền kinh tế mua bán sự chú ý</h3>
+        <p class="card-body">Vì sao công nghệ tranh giành sự chú ý của ta, và điều đó định hình sản phẩm ta dùng hằng ngày ra sao.</p>
+      </div>
+      <div class="card t-blue">
+        <div class="idx">02</div>
+        <span class="ico"><i data-lucide="cpu"></i></span>
+        <h3 class="card-title">Công nghệ thuyết phục</h3>
+        <p class="card-body">Cách các thiết kế tinh vi trong sản phẩm mạng xã hội thao túng để chiếm đoạt sự chú ý và đổi hành vi.</p>
+      </div>
+      <div class="card t-orange">
+        <div class="idx">03</div>
+        <span class="ico"><i data-lucide="brain"></i></span>
+        <h3 class="card-title">Mạng xã hội &amp; Não bộ</h3>
+        <p class="card-body">Công nghệ nhắm vào điểm yếu của tâm trí để ta nhấp chuột, cuộn màn hình mãi không thôi.</p>
+      </div>
+      <div class="card t-purple">
+        <div class="idx">04</div>
+        <span class="ico"><i data-lucide="network"></i></span>
+        <h3 class="card-title">Hậu quả &amp; Vấn đề hệ thống</h3>
+        <p class="card-body">Hình dung cách xây dựng nền công nghệ nhân văn, vận hành vì lợi ích chung của tất cả mọi người.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPTION D ================= -->
+  <section class="opt">
+    <div class="opt-tag"><b>D</b> Danh sách editorial — số to bên trái <span class="opt-note">— đọc dễ nhất cho đoạn dài, không bao giờ lệch dù 3/4/5 mục</span></div>
+
+    <span class="s-eyebrow"><span class="s-eyebrow__num">01</span><span class="s-eyebrow__label">Trụ cột 1</span></span>
+    <h2 class="section-title">Giáo dục nhận thức về công nghệ số và sức khỏe tinh thần</h2>
+
+    <div class="listD">
+      <div class="row t-teal">
+        <div class="idx">01</div>
+        <span class="ico"><i data-lucide="eye"></i></span>
+        <div>
+          <h3 class="card-title">Nền kinh tế mua bán sự chú ý</h3>
+          <p class="card-body">Tại sao các công ty công nghệ tranh giành sự chú ý của chúng ta? Giá trị đó định hình thiết kế của những sản phẩm chúng ta dùng hàng ngày như thế nào? Khi hiểu được những điểm mấu chốt này, học sinh sẽ nhận ra mình có thể làm gì để thúc đẩy một nền công nghệ thực sự phục vụ lợi ích tốt nhất của con người.</p>
+        </div>
+      </div>
+      <div class="row t-blue">
+        <div class="idx">02</div>
+        <span class="ico"><i data-lucide="cpu"></i></span>
+        <div>
+          <h3 class="card-title">Công nghệ thuyết phục</h3>
+          <p class="card-body">Tìm hiểu cách mà các thiết kế tinh vi trong mỗi sản phẩm mạng xã hội thao túng bạn để chiếm đoạt sự chú ý và thay đổi hành vi của con người.</p>
+        </div>
+      </div>
+      <div class="row t-orange">
+        <div class="idx">03</div>
+        <span class="ico"><i data-lucide="brain"></i></span>
+        <div>
+          <h3 class="card-title">Mạng xã hội &amp; Não bộ</h3>
+          <p class="card-body">Tâm trí và cơ thể chúng ta tồn tại những điểm dễ bị tổn thương có thể bị khai thác. Công nghệ thuyết phục nhắm vào chính những điểm yếu đó, thúc đẩy chúng ta tiếp tục nhấp chuột, cuộn màn hình và tương tác mãi không thôi — trong khi các công ty mạng xã hội thờ ơ với trách nhiệm chăm sóc sức khỏe người dùng.</p>
+        </div>
+      </div>
+      <div class="row t-purple">
+        <div class="idx">04</div>
+        <span class="ico"><i data-lucide="network"></i></span>
+        <div>
+          <h3 class="card-title">Hậu quả &amp; Vấn đề hệ thống</h3>
+          <p class="card-body">Khi hiểu được những tác hại của công nghệ thuyết phục cũng như các lực lượng hệ thống đang chi phối nó, chúng ta có thể bắt đầu hình dung cách xây dựng một thế giới dựa trên nền công nghệ nhân văn — một nền công nghệ vận hành vì lợi ích chung của tất cả mọi người.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:60px"></div>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

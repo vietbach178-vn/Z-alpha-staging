@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
+import ContactCta from '@/components/public/ContactCta';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/about'>): Promise<Metadata> {
   const { lang } = await params;
@@ -26,6 +27,10 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
   const challenges = about.challenges as Block[];
   const solutions = about.solutions as Block[];
   const author = t(dict, 'about.quoteAuthor');
+
+  // Ảnh minh hoạ theo thứ tự khối (trích từ bộ slide Z & Alpha)
+  const challengeImgs = ['/assets/about/van-de-1.png', '/assets/about/van-de-2.png', '/assets/about/van-de-3.png'];
+  const solutionImgs = ['/assets/about/giai-phap-1.png', '/assets/about/giai-phap-2.png', '/assets/about/giai-phap-3.png'];
 
   return (
     <>
@@ -67,9 +72,8 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
           </div>
 
           <div className="intro-grid">
-            {/* Thay placeholder bằng ảnh thật: <img src="/assets/about-context.jpg" alt="..." /> */}
             <figure className="intro-figure">
-              <i data-lucide="smartphone" className="icon-2xl" />
+              <img src="/assets/about/boi-canh.png" alt={t(dict, 'about.s1Title')} />
             </figure>
 
             <div>
@@ -150,7 +154,7 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
 
           {challenges.map((c, i) => (
             <div key={c.title} className={`media-row t-blue ${i % 2 === 1 ? 'media-row--rev' : ''}`}>
-              <div className="media-row__media"><i data-lucide={c.icon} className="icon-2xl" /></div>
+              <div className="media-row__media"><img src={challengeImgs[i]} alt={c.title} /></div>
               <div className="media-row__body">
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
@@ -180,7 +184,7 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
 
           {solutions.map((s, i) => (
             <div key={s.title} className={`media-row t-orange ${i % 2 === 1 ? 'media-row--rev' : ''}`}>
-              <div className="media-row__media"><i data-lucide={s.icon} className="icon-2xl" /></div>
+              <div className="media-row__media"><img src={solutionImgs[i]} alt={s.title} /></div>
               <div className="media-row__body">
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
@@ -194,6 +198,9 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
           </figure>
         </div>
       </section>
+
+      {/* CTA — Liên hệ (đồng bộ với các trang khác) */}
+      <ContactCta dict={dict} lang={lang} muted />
     </>
   );
 }
