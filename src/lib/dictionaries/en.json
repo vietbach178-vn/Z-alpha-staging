@@ -1,5 +1,8 @@
 {
-  "brand": { "eyebrow": "Initiative", "name": "Z & Alpha" },
+  "brand": {
+    "eyebrow": "Initiative",
+    "name": "Z & Alpha"
+  },
   "nav": {
     "about": "About Z & Alpha",
     "activities": "Activities",
@@ -107,29 +110,129 @@
     "iconsBy": "Icons by Lucide",
     "privacy": "Privacy policy"
   },
+  "contactCta": {
+    "title": "Get in touch",
+    "lead": "Have a question, a partnership idea, or want to join the initiative? Connect with Z & Alpha.",
+    "button": "Contact us"
+  },
   "about": {
-    "metaTitle": "About Z & Alpha — Research, Connection, Taking Action",
-    "heroEyebrow": "Z & Alpha Initiative",
-    "heroTitle": "Z & Alpha Initiative",
-    "heroSlogan1": "Research",
-    "heroSlogan2": "Connection",
-    "heroSlogan3": "Taking Action",
-    "heroSubline": "for Generation Z & Alpha — knowledgeable and safe in the digital environment",
-    "introTitle": "Who we are",
-    "introBody": "Z & Alpha Initiative is a pioneering project in Vietnam, dedicated to enhancing digital awareness, digital skills, and mental well-being for young people in the technology era. We believe that a healthy digital world can only be built when the younger generations are equipped with deep knowledge, empathy, and enduring human values.",
-    "missionTitle": "Mission",
-    "missionBody": "Z & Alpha Initiative operates at the intersection of research, education, and policy, aiming to build a healthy digital environment for the next generations.",
-    "pillarsTitle": "Three pillars",
-    "pillarsLead": "Our work spans three reinforcing pillars:",
-    "pillar1Title": "Research",
-    "pillar1Body": "In-depth research on the social, psychological and behavioural impacts of the digital environment on adolescents, filling the gap in Vietnamese empirical data and international comparison.",
-    "pillar1Cta": "View research",
-    "pillar2Title": "Policy recommendations",
-    "pillar2Body": "Evidence-based policy proposals and recommendations for schools, parents and regulators on protecting children and adolescents in the digital environment.",
-    "pillar2Cta": "View recommendations",
-    "pillar3Title": "Education",
-    "pillar3Body": "Training programmes, workshops and communication campaigns that raise community awareness of safe, healthy social media use; equipping young people with digital literacy and alternative activities to reduce reliance on social media.",
-    "pillar3Cta": "View education programs"
+    "metaTitle": "About Z & Alpha — The Great Rewiring of Childhood",
+    "heroEyebrow": "The Z & Alpha Initiative",
+    "heroTitle": "The complete rewiring of childhood",
+    "heroTitle2": "in the digital age",
+    "heroTitleEn": "The Great Rewiring of Childhood",
+    "heroBody": "As children move from an experience-based childhood to a screen-based one, their entire developmental environment has been rewired. This is the context, the problem, and the solution direction that the Z & Alpha Initiative pursues.",
+    "quoteAuthor": "Jonathan Haidt",
+    "s1Num": "01",
+    "s1Kicker": "Context & Reality",
+    "s1Title": "A childhood, rewired",
+    "s1Body": "In a 2024 study analysing the impact of social media and smartphones on the psycho-social development of children and adolescents in the US and other developed countries, Jonathan Haidt — Professor of social psychology at NYU's Stern School of Business and PhD in social psychology from the University of Pennsylvania — introduced the concept of “The Great Rewiring of Childhood”: a complete restructuring of childhood as children shift from a development environment grounded in real-world experience to one mediated through screens.",
+    "s1VnContext": "Vietnam is among the countries where this “rewiring of childhood” is unfolding extremely fast: social-media use among young people is near-universal, with heavy dependence on mobile devices. Three defining traits of the digital environment Vietnam's young generation is growing up in:",
+    "traitsTitle": "",
+    "traits": [
+      {
+        "num": "1",
+        "title": "Always-on connectivity",
+        "en": "Kết nối liên tục"
+      },
+      {
+        "num": "2",
+        "title": "Digital-first social interaction",
+        "en": "Tương tác qua nền tảng số"
+      },
+      {
+        "num": "3",
+        "title": "Blurred digital–physical boundaries",
+        "en": "Ranh giới thực – ảo ngày càng mờ"
+      }
+    ],
+    "s1Bridge": "Vietnam sits squarely on the trajectory Haidt describes, but with greater intensity due to its “mobile-first society”. The impact does not stop at content — it is an entire ecosystem shaping children's behaviour, psychology and social development.",
+    "directTitle": "Direct effects of social media",
+    "directImpacts": [
+      {
+        "icon": "scan-eye",
+        "term": "Attention fragmentation",
+        "en": "phân mảnh sự chú ý"
+      },
+      {
+        "icon": "gamepad-2",
+        "term": "Decline in in-person interaction",
+        "en": "play-based to phone-based childhood"
+      },
+      {
+        "icon": "heart-crack",
+        "term": "Anxiety and social comparison",
+        "en": "social comparison, anxiety"
+      },
+      {
+        "icon": "shield-off",
+        "term": "Lack of protection in the digital world",
+        "en": "overprotected offline – underprotected online"
+      }
+    ],
+    "indirectTitle": "Indirect effects of social media",
+    "indirectImpacts": [
+      {
+        "icon": "siren",
+        "term": "Provides ideal infrastructure for fraudulent behaviour",
+        "en": "social media as risk infrastructure"
+      },
+      {
+        "icon": "brain",
+        "term": "Enables psychological manipulation of users",
+        "en": "psychological manipulation in scams"
+      },
+      {
+        "icon": "book-open",
+        "term": "A digital-literacy gap between knowing how to use and knowing how to protect oneself",
+        "en": "digital literacy gap"
+      }
+    ],
+    "s1Quote": "A childhood lived on a screen cannot nurture a healthy, fully developed human being.",
+    "s2Num": "02",
+    "s2Kicker": "The Problem",
+    "s2Title": "Challenges to mental health",
+    "s2TitleEn": "Challenges to mental health",
+    "challenges": [
+      {
+        "icon": "crosshair",
+        "title": "The challenge of social media's business model",
+        "body": "Social media does not compete on content — users' “attention” is the resource being exploited. Children, whose brains have not yet developed full attentional self-control, become the “optimisation target”, easily steered by this business model. This produces many long-term consequences for the brain development and mental health of the young generation."
+      },
+      {
+        "icon": "users-round",
+        "title": "The challenge of social cooperation",
+        "body": "Many people see the problem and feel something is wrong and needs to change, yet no one dares to change alone for fear of disadvantage if others don't follow, or of criticism. The clearest example is parents: they clearly see social media's harm to their children, yet for many reasons still allow them to use it. In Vietnam, where parents have a strong sense of social competition, this challenge is even more pronounced."
+      },
+      {
+        "icon": "layers",
+        "title": "The challenge of governance & digital-skill provisioning",
+        "body": "Given the nature of social media, teaching young people merely to “know how to use it” is not enough. Even those who “know how to use it” can still become addicted, and can still fall into traps of psychological and behavioural manipulation. We therefore need to broaden the concept of “digital skills” beyond knowledge or technique, coordinated with synchronised governance mechanisms and policy regulation."
+      }
+    ],
+    "s2Quote": "We are overprotecting children in the real world while underprotecting them online.",
+    "s3Num": "03",
+    "s3Kicker": "The Solution",
+    "s3Title": "Solution architecture",
+    "s3TitleEn": "Solution Architecture",
+    "solutions": [
+      {
+        "icon": "scale",
+        "title": "Establish regulation and policy",
+        "body": "Solving the problems caused by social media cannot rest solely on each child learning to limit their own use, or on parents spending more time managing their children's time online — still less on expecting platform companies to throttle their own money-making machines. It must originate from regulation and policy set by state authorities, coordinated enforcement and oversight through educational institutions, combined with guidance and mentoring from parents."
+      },
+      {
+        "icon": "brain-circuit",
+        "title": "Make “digital skills” a core competency",
+        "body": "“Digital skills” — including how to use, and how one should use, social media — should be classified as essential competencies, provided to adolescents through family, school and society. Even parents, who belong to a generation that grew up without social media, should be encouraged to learn and absorb this knowledge so they can accompany their children toward healthy growth in today's digital world."
+      },
+      {
+        "icon": "sprout",
+        "title": "Redesign the development environment",
+        "body": "The problem social media brings does not come from any single platform — we are facing the fact that the entire “ecosystem of childhood” has changed. To resolve the mental-health crisis while keeping the benefits social media offers, we must redesign the educational, play and family environments. Children develop healthily through free play, social interaction within safe bounds, face-to-face communication and encouraged independent exploration."
+      }
+    ],
+    "s3Quote": "Children grow up through experiences in the real world."
   },
   "team": {
     "metaTitle": "Our people — Z & Alpha Initiative",
@@ -141,51 +244,139 @@
     "highlights": "Education & expertise"
   },
   "activitiesEducation": {
-    "metaTitle": "Education — Z & Alpha Initiative",
+    "metaTitle": "Education programmes — Z & Alpha Initiative",
     "heroEyebrow": "Activities",
-    "title": "Education",
-    "lead": "Z & Alpha partners with educational institutions to deliver awareness programmes, digital-skills training, and hands-on activities that help reduce the impact of social media on young people.",
-    "pillarsTitle": "Education model",
-    "pillarsLead": "Three reinforcing pillars that build comprehensive digital capability for adolescents.",
-    "pillar1Title": "Understanding digital technology & mental health",
-    "pillar1Body": "Equip young people with awareness of how persuasive technology shapes behaviour and mental health — so they can choose actively instead of being led.",
-    "pillar2Title": "Digital literacy",
-    "pillar2Body": "A digital-literacy framework based on UNESCO's Digital Kids Asia–Pacific: safety, agency, emotional intelligence and creativity in the digital environment.",
+    "title": "Education programmes",
+    "lead": "The Z & Alpha Initiative works with educational institutions to run knowledge-sharing programmes, digital-skills training and real-world experiential activities that help reduce the influence of social media.",
+    "pillarsTitle": "Our education model rests on three core pillars",
+    "pillar1Title": "Awareness of digital technology and mental health",
+    "pillar1Label": "Digital well-being",
+    "pillar1Body": "Helps young people understand how persuasive technology shapes behaviour and mental health — so they choose actively instead of being steered.",
+    "pillar2Title": "Digital-skills education",
+    "pillar2Label": "Digital skills",
+    "pillar2Body": "Building a comprehensive digital skill set within the UNESCO Asia-Pacific “digital literacy” competency framework.",
     "pillar3Title": "Alternative activities",
-    "pillar3Body": "Design interactive offline experiences — art, science, reading — to make up for and reduce dependence on social media.",
-    "chtTitle": "Understanding digital technology",
+    "pillar3Label": "Real interaction",
+    "pillar3Body": "Designing visual, hands-on activities — such as science education, art education and extended reading — to reduce dependence on social media.",
     "chtEyebrow": "Pillar 1",
-    "chtLead": "Four modules adapted from the Center for Humane Technology programme, helping students understand why technology operates the way it does today.",
+    "chtTitle": "Awareness of digital technology & mental health",
     "chtMod1Title": "The attention economy",
-    "chtMod1Body": "Why do tech companies compete for our attention? How do those financial incentives shape the design of products we use every day, and how do they harm individuals and society?",
+    "chtMod1Body": "Why do tech companies fight for our attention? How does that value shape the design of the products we use every day? How do the financial incentives behind these products harm us and society? Once students grasp these key points, they realise what they can do to push for a technology that genuinely serves the best interests of people.",
     "chtMod2Title": "Persuasive technology",
-    "chtMod2Body": "Explore the subtle design choices in social media products — how they capture attention and change user behaviour by design.",
+    "chtMod2Body": "Explore how the sophisticated designs inside every social-media product manipulate you to capture attention and change human behaviour.",
     "chtMod3Title": "Social media & the brain",
-    "chtMod3Body": "Our minds and bodies have vulnerabilities that can be exploited. Persuasive technology targets exactly those weak points — while social media companies remain indifferent to user well-being.",
-    "chtMod4Title": "Consequences & systemic issues",
-    "chtMod4Body": "Understanding the harms of persuasive technology and the systemic forces driving it, we can begin to imagine how to build humane technology — one that serves the common good.",
-    "unescoTitle": "UNESCO digital literacy framework",
-    "unescoEyebrow": "Pillar 2",
-    "unescoLead": "Output of the Digital Kids Asia–Pacific project led by UNESCO in partnership with UNICEF and other stakeholders.",
-    "unesco1Title": "Digital safety and resilience",
-    "unesco1Body": "The capacity to protect oneself, personal data and mental health against digital risks.",
-    "unesco2Title": "Digital participation and agency",
-    "unesco2Body": "The capacity to use technology to learn, communicate and contribute positively to community.",
-    "unesco3Title": "Digital emotional intelligence",
-    "unesco3Body": "The capacity to understand one's own and others' emotions, and to sustain healthy relationships in digital spaces.",
-    "unesco4Title": "Digital creativity and innovation",
-    "unesco4Body": "The capacity to use technology as a tool for creating content, ideas and new solutions.",
-    "altTitle": "Hands-on interactive activities",
+    "chtMod3Body": "Our minds and bodies have vulnerabilities that can be exploited. Persuasive technology targets exactly those weaknesses, pushing us to keep clicking, scrolling and interacting endlessly. Once students understand how persuasive technology exploits our weaknesses, they realise that social-media companies are neglecting their duty of care for users' health and well-being.",
+    "chtMod4Title": "Consequences & systemic problems",
+    "chtMod4Body": "Once we understand the harms of persuasive technology and the systemic forces driving it, we can begin to imagine how to build a world based on humane technology — a technology that operates for the common good of everyone.",
+    "skillsEyebrow": "Pillar 2",
+    "skillsTitle": "Digital-skills education",
+    "skillsLead": "The Z & Alpha Initiative builds, or co-builds, training programmes, courses and activities to help adolescents develop the digital skill set within the “digital literacy” competency framework developed by the UNESCO Asia-Pacific office in cooperation with relevant stakeholders.",
+    "skillGroups": [
+      {
+        "roman": "I",
+        "title": "Digital competence",
+        "items": [
+          {
+            "icon": "monitor-smartphone",
+            "text": "Information and Communications Technology literacy"
+          },
+          {
+            "icon": "file-search",
+            "text": "Digital information literacy"
+          }
+        ]
+      },
+      {
+        "roman": "II",
+        "title": "Digital safety and resilience",
+        "items": [
+          {
+            "icon": "scale",
+            "text": "Understanding children's rights"
+          },
+          {
+            "icon": "lock-keyhole",
+            "text": "Personal data, privacy and reputation"
+          },
+          {
+            "icon": "heart-pulse",
+            "text": "Promoting and protecting mental health"
+          },
+          {
+            "icon": "refresh-cw",
+            "text": "Adaptability and resilience in the digital environment"
+          }
+        ]
+      },
+      {
+        "roman": "III",
+        "title": "Digital participation and agency",
+        "items": [
+          {
+            "icon": "share-2",
+            "text": "Interacting, sharing and collaborating"
+          },
+          {
+            "icon": "users-round",
+            "text": "Community engagement"
+          },
+          {
+            "icon": "scroll-text",
+            "text": "Codes of conduct in the online environment"
+          }
+        ]
+      },
+      {
+        "roman": "IV",
+        "title": "Digital emotional intelligence",
+        "items": [
+          {
+            "icon": "eye",
+            "text": "Self-awareness"
+          },
+          {
+            "icon": "sliders-horizontal",
+            "text": "Self-regulation"
+          },
+          {
+            "icon": "rocket",
+            "text": "Self-motivation"
+          },
+          {
+            "icon": "message-circle",
+            "text": "Interpersonal skills"
+          },
+          {
+            "icon": "heart-handshake",
+            "text": "Empathy"
+          }
+        ]
+      },
+      {
+        "roman": "V",
+        "title": "Digital creativity and innovation",
+        "items": [
+          {
+            "icon": "lightbulb",
+            "text": "Creative competence"
+          },
+          {
+            "icon": "mic",
+            "text": "Self-expression"
+          }
+        ]
+      }
+    ],
     "altEyebrow": "Pillar 3",
-    "altLead": "Children grow through real-world experience. Z & Alpha designs and runs activities that restore the experiences social media takes away.",
+    "altTitle": "Designing educational activities focused on visual, hands-on interaction as an alternative to social-media use",
     "altArtTitle": "Art education",
-    "altArtBody": "More than creative skill — art is a space where children express emotions that ordinary language cannot capture. Drawing, writing, performing or making with their own hands gives young people room to process feeling, lower stress and build a sense of agency.",
+    "altArtBody": "Art education does not only teach creative skills — it is also a space where children and adolescents can express emotions that ordinary language sometimes cannot capture. When they draw, write, perform or make something with their own hands, young people get a chance to process emotions, relieve stress and build a sense of self-mastery — foundational elements of healthy mental well-being. In a context where screens and social media increasingly crowd out real experiences, art offers a deep, intentional form of presence — a necessary counterweight to the digital world that dominates young people's lives.",
     "altReadingTitle": "Extended reading",
-    "altReadingBody": "Reading is one of the lowest-cost activities with the deepest brain benefits — vocabulary, attention, critical thinking. For a generation raised on screens, reading is also intentional 'digital detox' for the mind.",
+    "altReadingBody": "Reading is one of the least expensive activities yet brings some of the most far-reaching benefits for the brain — from expanding vocabulary and strengthening focus, to developing critical thinking and imagination. Especially for a generation growing up in a digital environment, the reading habit is also an intentional form of \"screen detox\" — letting the brain rest from the constant stimulation of social media and recover the deep focus that is gradually being eroded.",
     "altScienceTitle": "Science education",
-    "altScienceBody": "Science awakens curiosity — when a child asks 'why?' and is guided to find the answer themselves, they experience the joy of discovery. It is a deeper, more lasting feeling than the instant gratification of social media, and teaches them to face uncertainty calmly.",
-    "quoteText": "Children grow up through real-world experience.",
-    "quoteAuthor": "Jonathan Haidt"
+    "altScienceBody": "Science education awakens something immensely precious in young people: curiosity. When a child asks \"why?\" and is guided to find the answer themselves, they not only learn about the natural world but also experience the pure joy of discovery — a feeling far deeper and more lasting than the instant stimulation social media provides. Science also teaches children to face an uncertain future with composure: that failure is part of the process, that the question matters more than the answer — thinking lessons that build strength of will.",
+    "inviteTitle": "Join hands with us",
+    "inviteBody": "We believe that to create real change for the young generation, no single organisation can act alone. We therefore sincerely invite schools, civil-society organisations, businesses and media agencies to join hands in this initiative. Whether by co-running activities, sharing expertise, connecting communities or supporting communications — every form of collaboration helps build an education ecosystem strong enough to protect the mental health and healthy development of Vietnam's children and adolescents in the digital age."
   },
   "activitiesPolicy": {
     "metaTitle": "Policy recommendations — Z & Alpha Initiative",
@@ -232,15 +423,42 @@
     "agendaTimeCol": "Time",
     "agendaContentCol": "Content",
     "agenda": [
-      ["09:00 – 09:20", "Opening remarks & conference introduction"],
-      ["09:20 – 09:40", "Theme 1: Mental health of children and adolescents — situation overview & UNICEF projects to protect their mental health"],
-      ["09:40 – 10:00", "Theme 2: How and why social media impacts adolescent mental health — field-experiment report on 16–20 group (5 days without social media)"],
-      ["10:00 – 10:20", "Theme 3: International research and policy responses; data and projects already implemented in Vietnam"],
-      ["10:20 – 10:30", "Break"],
-      ["10:30 – 10:50", "Theme 4: Integrating mental-health training related to social media & smartphones into undergraduate psychology curricula"],
-      ["10:50 – 11:10", "Theme 5: Treatment of mental-health problems related to social media & smartphones in Vietnam"],
-      ["11:10 – 11:50", "Open discussion: Solutions and next actions for Vietnam"],
-      ["11:50 – 12:00", "Closing summary"]
+      [
+        "09:00 – 09:20",
+        "Opening remarks & conference introduction"
+      ],
+      [
+        "09:20 – 09:40",
+        "Theme 1: Mental health of children and adolescents — situation overview & UNICEF projects to protect their mental health"
+      ],
+      [
+        "09:40 – 10:00",
+        "Theme 2: How and why social media impacts adolescent mental health — field-experiment report on 16–20 group (5 days without social media)"
+      ],
+      [
+        "10:00 – 10:20",
+        "Theme 3: International research and policy responses; data and projects already implemented in Vietnam"
+      ],
+      [
+        "10:20 – 10:30",
+        "Break"
+      ],
+      [
+        "10:30 – 10:50",
+        "Theme 4: Integrating mental-health training related to social media & smartphones into undergraduate psychology curricula"
+      ],
+      [
+        "10:50 – 11:10",
+        "Theme 5: Treatment of mental-health problems related to social media & smartphones in Vietnam"
+      ],
+      [
+        "11:10 – 11:50",
+        "Open discussion: Solutions and next actions for Vietnam"
+      ],
+      [
+        "11:50 – 12:00",
+        "Closing summary"
+      ]
     ]
   },
   "library": {
@@ -293,7 +511,11 @@
     "noResults": "No matching news",
     "clearFilters": "Clear filters"
   },
-  "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Switch to {lang}" },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "switchTo": "Switch to {lang}"
+  },
   "error": {
     "404title": "404 — Page not found",
     "404body": "The page you're looking for doesn't exist or has been moved.",

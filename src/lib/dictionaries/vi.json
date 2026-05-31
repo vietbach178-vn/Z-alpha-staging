@@ -1,5 +1,8 @@
 {
-  "brand": { "eyebrow": "Sáng Kiến", "name": "Z & Alpha" },
+  "brand": {
+    "eyebrow": "Sáng Kiến",
+    "name": "Z & Alpha"
+  },
   "nav": {
     "about": "Về Z & Alpha",
     "activities": "Hoạt động",
@@ -107,29 +110,129 @@
     "iconsBy": "Icons by Lucide",
     "privacy": "Chính sách bảo mật"
   },
+  "contactCta": {
+    "title": "Liên hệ với chúng tôi",
+    "lead": "Bạn có câu hỏi, ý tưởng hợp tác hoặc muốn đồng hành cùng sáng kiến? Hãy kết nối với Z & Alpha.",
+    "button": "Liên hệ"
+  },
   "about": {
-    "metaTitle": "Về Z & Alpha — Sáng kiến Nghiên cứu, Kết nối, Hành động",
+    "metaTitle": "Về Z & Alpha — Sự tái cấu trúc tuổi thơ trong kỷ nguyên số",
     "heroEyebrow": "Sáng kiến Z & Alpha",
-    "heroTitle": "Z & Alpha Initiative",
-    "heroSlogan1": "Nghiên cứu",
-    "heroSlogan2": "Kết nối",
-    "heroSlogan3": "Hành động",
-    "heroSubline": "vì thế hệ Z & Alpha hiểu biết và an toàn trên môi trường số",
-    "introTitle": "Chúng tôi là ai",
-    "introBody": "Sáng kiến Z & Alpha là dự án tiên phong tại Việt Nam, tập trung vào việc nâng cao nhận thức, kỹ năng số và sức khỏe tinh thần cho thanh thiếu niên trong kỷ nguyên công nghệ. Chúng tôi tin rằng một thế giới số lành mạnh chỉ hình thành khi thế hệ trẻ được trang bị tri thức sâu rộng, sự thấu hiểu và tinh thần nhân văn bền vững.",
-    "missionTitle": "Sứ mệnh",
-    "missionBody": "Sáng kiến Z & Alpha hoạt động tại giao điểm giữa nghiên cứu, giáo dục và chính sách, hướng đến việc xây dựng một môi trường số lành mạnh cho thế hệ trẻ.",
-    "pillarsTitle": "Ba trụ cột",
-    "pillarsLead": "Công việc của chúng tôi gồm ba mảng song hành, gia cố lẫn nhau:",
-    "pillar1Title": "Nghiên cứu",
-    "pillar1Body": "Nghiên cứu chuyên sâu về tác động xã hội, tâm lý và hành vi của thanh thiếu niên trong môi trường số. Bổ sung dữ liệu thực nghiệm và so sánh quốc tế còn thiếu tại Việt Nam.",
-    "pillar1Cta": "Xem các nghiên cứu",
-    "pillar2Title": "Khuyến nghị chính sách",
-    "pillar2Body": "Đề xuất chính sách và khuyến nghị dựa trên bằng chứng khoa học, phục vụ nhà trường, phụ huynh và cơ quan quản lý nhà nước trong việc bảo vệ trẻ em và thanh thiếu niên trên môi trường số.",
-    "pillar2Cta": "Xem khuyến nghị",
-    "pillar3Title": "Giáo dục",
-    "pillar3Body": "Tổ chức chương trình đào tạo, hội thảo và chiến dịch truyền thông nhằm nâng cao nhận thức cộng đồng về sử dụng mạng xã hội an toàn, lành mạnh; trang bị kỹ năng số và các hoạt động thay thế giúp giảm phụ thuộc vào mạng xã hội.",
-    "pillar3Cta": "Xem chương trình giáo dục"
+    "heroTitle": "Sự tái cấu trúc toàn diện tuổi thơ",
+    "heroTitle2": "trong kỷ nguyên số",
+    "heroTitleEn": "The Great Rewiring of Childhood",
+    "heroBody": "Khi trẻ em chuyển từ một tuổi thơ dựa trên trải nghiệm thực tế sang một tuổi thơ qua màn hình, toàn bộ môi trường phát triển của các em đã bị tái cấu trúc. Đây là bối cảnh, vấn đề và định hướng giải pháp mà Sáng kiến Z & Alpha theo đuổi.",
+    "quoteAuthor": "Jonathan Haidt",
+    "s1Num": "01",
+    "s1Kicker": "Bối cảnh & Thực trạng",
+    "s1Title": "Một tuổi thơ được tái cấu trúc",
+    "s1Body": "Trong nghiên cứu công bố năm 2024 phân tích tác động của mạng xã hội và điện thoại thông minh đến sự phát triển tâm lý – xã hội của trẻ em và thanh thiếu niên tại Mỹ và một số quốc gia phát triển, Jonathan Haidt – Giáo sư tâm lý học xã hội tại Trường Kinh doanh Stern, Đại học New York (NYU), Tiến sĩ (PhD) tâm lý học xã hội từ Đại học Pennsylvania – đưa ra khái niệm “The Great Rewiring of Childhood”: sự tái cấu trúc toàn diện tuổi thơ khi trẻ em chuyển từ môi trường phát triển dựa trên trải nghiệm thực tế sang môi trường tương tác qua màn hình.",
+    "s1VnContext": "Việt Nam là một trong những quốc gia mà quá trình “tái cấu trúc tuổi thơ” đang diễn ra với tốc độ rất nhanh: tỷ lệ người trẻ dùng mạng xã hội gần như phổ cập và mức độ phụ thuộc cao vào thiết bị di động. Ba đặc điểm nổi bật của môi trường số mà thế hệ trẻ Việt Nam đang lớn lên:",
+    "traitsTitle": "",
+    "traits": [
+      {
+        "num": "1",
+        "title": "Kết nối liên tục",
+        "en": "Always-on connectivity"
+      },
+      {
+        "num": "2",
+        "title": "Tương tác qua nền tảng số",
+        "en": "Digital-first social interaction"
+      },
+      {
+        "num": "3",
+        "title": "Ranh giới thực – ảo ngày càng mờ",
+        "en": "Blurred digital–physical boundaries"
+      }
+    ],
+    "s1Bridge": "Việt Nam đang nằm đúng quỹ đạo mà Haidt mô tả, nhưng với cường độ cao hơn do đặc tính “mobile-first society”. Tác động không chỉ dừng ở nội dung mà là cả một hệ sinh thái ảnh hưởng tới hành vi, tâm lý và phát triển xã hội của trẻ.",
+    "directTitle": "Tác động trực tiếp gây ra bởi mạng xã hội",
+    "directImpacts": [
+      {
+        "icon": "scan-eye",
+        "term": "Phân mảnh sự chú ý",
+        "en": "attention fragmentation"
+      },
+      {
+        "icon": "gamepad-2",
+        "term": "Suy giảm tương tác trực tiếp",
+        "en": "play-based childhood to phone-based childhood"
+      },
+      {
+        "icon": "heart-crack",
+        "term": "Lo âu và so sánh xã hội",
+        "en": "social comparison, anxiety"
+      },
+      {
+        "icon": "shield-off",
+        "term": "Thiếu sự bảo vệ trong thế giới số",
+        "en": "overprotected offline – underprotected online"
+      }
+    ],
+    "indirectTitle": "Tác động gián tiếp gây ra bởi mạng xã hội",
+    "indirectImpacts": [
+      {
+        "icon": "siren",
+        "term": "Cung cấp hạ tầng lý tưởng cho hành vi lừa đảo",
+        "en": "social media as risk infrastructure"
+      },
+      {
+        "icon": "brain",
+        "term": "Tạo điều kiện cho kẻ xấu thao túng tâm lý người dùng",
+        "en": "psychological manipulation in scams"
+      },
+      {
+        "icon": "book-open",
+        "term": "Khoảng trống năng lực số, giữa việc biết sử dụng và việc biết phòng vệ",
+        "en": "digital literacy gap"
+      }
+    ],
+    "s1Quote": "Một tuổi thơ trên màn hình không thể nuôi dưỡng một con người phát triển lành mạnh.",
+    "s2Num": "02",
+    "s2Kicker": "Vấn đề",
+    "s2Title": "Những thách thức đối với sức khỏe tinh thần",
+    "s2TitleEn": "Challenges to mental health",
+    "challenges": [
+      {
+        "icon": "crosshair",
+        "title": "Thách thức từ mô hình kinh doanh của mạng xã hội",
+        "body": "Mạng xã hội không cạnh tranh bằng nội dung — mà “sự chú ý” của người dùng mới là tài nguyên được tập trung khai thác. Trẻ em, với não bộ chưa phát triển đầy đủ khả năng tự kiểm soát sự chú ý, đã trở thành “đối tượng tối ưu hóa”, dễ bị dẫn dắt của mô hình kinh doanh này. Điều này dẫn đến rất nhiều hệ quả lâu dài về sự phát triển trí não, sức khỏe tinh thần cho thế hệ trẻ."
+      },
+      {
+        "icon": "users-round",
+        "title": "Thách thức trong hợp tác xã hội",
+        "body": "Thách thức trong hợp tác xã hội đến từ tình trạng nhiều người nhận thấy vấn đề, nhận thấy có điều gì đó không ổn, họ thấy cần làm gì đó để thay đổi, nhưng không ai dám thay đổi một mình vì sợ bất lợi nếu người khác không làm theo, hoặc bị chỉ trích. Ví dụ dễ thấy nhất cho thách thức này chính là các bậc phụ huynh, một mặt thấy rõ tác hại của mạng xã hội đối với con trẻ, nhưng vì nhiều lý do mà vẫn chấp nhận để con trẻ sử dụng. Tại Việt Nam, phụ huynh có ý thức về cạnh tranh xã hội mạnh mẽ, thì thách thức này lại càng rõ nét hơn."
+      },
+      {
+        "icon": "layers",
+        "title": "Thách thức từ thượng tầng quản lý & trang bị kỹ năng số",
+        "body": "Do đặc thù của mạng xã hội, việc đào tạo cho thế hệ trẻ “biết cách dùng” như hiện tại là không đủ. Kể cả khi người dùng “biết cách dùng” vẫn có thể bị nghiện mạng xã hội, vẫn có thể sa vào bẫy thao túng tâm lý và hành vi. Vì vậy, chúng ta cần mở rộng khái niệm “kỹ năng số” ra ngoài phạm vi kiến thức hoặc kỹ thuật, và phối hợp cùng với cơ chế quản lý, chính sách quy định đồng bộ."
+      }
+    ],
+    "s2Quote": "Chúng ta đang bảo vệ trẻ em quá mức ngoài đời thực, nhưng lại thiếu bảo vệ trong môi trường online.",
+    "s3Num": "03",
+    "s3Kicker": "Giải pháp",
+    "s3Title": "Định hướng giải pháp",
+    "s3TitleEn": "Solution Architecture",
+    "solutions": [
+      {
+        "icon": "scale",
+        "title": "Thiết lập quy định, chính sách",
+        "body": "Việc giải quyết những vấn đề do mạng xã hội gây ra không thể chỉ dừng ở việc từng đứa trẻ phải biết tự hạn chế sử dụng, hay từ phụ huynh phải dành thêm thời gian để quản lý việc online của con cái, càng không thể đặt ở việc yêu cầu các công ty kinh doanh nền tảng số tự hạn chế cỗ máy kiếm tiền của họ. Việc này cần được xuất phát từ việc thiết lập quy định, chính sách từ cơ quan quản lý Nhà nước, phối hợp giám sát thực thi từ cơ sở giáo dục, kết hợp với sự kèm cặp, hướng dẫn từ phụ huynh."
+      },
+      {
+        "icon": "brain-circuit",
+        "title": "Đưa “kỹ năng số” thành năng lực lõi",
+        "body": "“Kỹ năng số” bao gồm cách dùng mạng xã hội, và nên dùng mạng xã hội như thế nào cần được xếp vào nhóm năng lực cần phải có, và được trang bị cho thanh thiếu niên thông qua gia đình, nhà trường, và xã hội. Ngay cả các bậc phụ huynh, những người thuộc thế hệ trưởng thành không mạng xã hội, cũng cần được khuyến khích để tìm hiểu, tiếp nhận những kiến thức này, để cùng đồng hành với con cái của mình trưởng khỏe mạnh trong thế giới số hiện tại."
+      },
+      {
+        "icon": "sprout",
+        "title": "Tái thiết kế môi trường phát triển",
+        "body": "Vấn đề mà mạng xã hội đang mang đến cho chúng ta không tới từ từng nền tảng đơn lẻ, mà chúng ta đang đối mặt với việc toàn bộ “hệ sinh thái tuổi thơ” đã thay đổi. Muốn giải quyết những khủng hoảng về sức khỏe tinh thần, mà vẫn giữ được những ưu điểm mà mạng xã hội đem lại, chúng ta cần tái thiết kế lại môi trường giáo dục, môi trường vui chơi, môi trường gia đình. Trẻ em sẽ có thể phát triển lành mạnh thông qua: vui chơi tự do, tương tác xã hội trong phạm vi an toàn… để rút ra bài học, giao tiếp trực tiếp, và khuyến khích khám phá độc lập."
+      }
+    ],
+    "s3Quote": "Trẻ em lớn lên từ những trải nghiệm trong thế giới thực."
   },
   "team": {
     "metaTitle": "Con người — Z & Alpha Initiative",
@@ -141,51 +244,139 @@
     "highlights": "Học vấn & Chuyên môn"
   },
   "activitiesEducation": {
-    "metaTitle": "Giáo dục — Z & Alpha Initiative",
+    "metaTitle": "Các chương trình giáo dục — Z & Alpha Initiative",
     "heroEyebrow": "Hoạt động",
-    "title": "Giáo dục",
-    "lead": "Sáng kiến Z & Alpha hợp tác cùng các cơ sở giáo dục để tổ chức chương trình phổ biến kiến thức, đào tạo kỹ năng số và thiết kế các hoạt động trải nghiệm thực tế giúp giảm sự ảnh hưởng từ mạng xã hội.",
-    "pillarsTitle": "Mô hình giáo dục",
-    "pillarsLead": "Ba trụ cột song hành, gia cố lẫn nhau, hướng tới việc xây dựng năng lực số toàn diện cho thanh thiếu niên.",
-    "pillar1Title": "Hiểu biết về công nghệ số & sức khỏe tinh thần",
-    "pillar1Body": "Trang bị cho người trẻ nhận thức về cách công nghệ thuyết phục đang định hình hành vi và sức khỏe tinh thần — để chủ động lựa chọn, không bị dẫn dắt.",
-    "pillar2Title": "Kỹ năng số",
-    "pillar2Body": "Khung năng lực số dựa trên Digital Kids Asia–Pacific của UNESCO: an toàn, chủ động, trí tuệ cảm xúc và sáng tạo trong môi trường số.",
-    "pillar3Title": "Hoạt động thay thế",
-    "pillar3Body": "Thiết kế các trải nghiệm tương tác trực quan ngoài đời thực — nghệ thuật, khoa học, đọc — để bù đắp và làm giảm phụ thuộc vào mạng xã hội.",
-    "chtTitle": "Hiểu biết về công nghệ số",
+    "title": "Các chương trình giáo dục",
+    "lead": "Sáng kiến Z & Alpha hướng tới việc hợp tác cùng các cơ sở giáo dục để tổ chức các chương trình phổ biến kiến thức, đào tạo kỹ năng số, thiết kế các hoạt động trải nghiệm thực tế giúp giảm sự ảnh hưởng từ mạng xã hội.",
+    "pillarsTitle": "Mô hình giáo dục của chúng tôi bao gồm 3 trụ cột chính",
+    "pillar1Title": "Giáo dục nhận thức về công nghệ số và sức khỏe tinh thần",
+    "pillar1Label": "Digital well-being",
+    "pillar1Body": "Giúp người trẻ hiểu cách công nghệ thuyết phục đang định hình hành vi và sức khỏe tinh thần — để chủ động lựa chọn thay vì bị dẫn dắt.",
+    "pillar2Title": "Giáo dục kỹ năng số",
+    "pillar2Label": "Digital skills",
+    "pillar2Body": "Phát triển bộ kỹ năng số toàn diện theo khung năng lực “digital literacy” của UNESCO Châu Á – Thái Bình Dương.",
+    "pillar3Title": "Các hoạt động thay thế",
+    "pillar3Label": "Real interaction",
+    "pillar3Body": "Thiết kế các hoạt động tương tác trực quan giúp giảm thiểu phụ thuộc vào mạng xã hội như giáo dục khoa học, giáo dục nghệ thuật, và hoạt động đọc mở rộng.",
     "chtEyebrow": "Trụ cột 1",
-    "chtLead": "Bốn module phỏng theo chương trình của Center for Humane Technology, giúp học sinh hiểu vì sao công nghệ đang vận hành theo cách như hiện nay.",
+    "chtTitle": "Giáo dục nhận thức về công nghệ số & sức khỏe tinh thần",
     "chtMod1Title": "Nền kinh tế mua bán sự chú ý",
-    "chtMod1Body": "Vì sao các công ty công nghệ tranh giành sự chú ý của chúng ta? Động cơ tài chính đó định hình thiết kế sản phẩm hàng ngày như thế nào, và gây hại cho con người, xã hội ra sao?",
+    "chtMod1Body": "Tại sao các công ty công nghệ tranh giành sự chú ý của chúng ta? Giá trị đó định hình thiết kế của những sản phẩm chúng ta dùng hàng ngày như thế nào? Các động cơ tài chính của những sản phẩm này gây hại cho chúng ta và xã hội ra sao? Khi hiểu được những điểm mấu chốt này, học sinh sẽ nhận ra mình có thể làm gì để thúc đẩy một nền công nghệ thực sự phục vụ lợi ích tốt nhất của con người.",
     "chtMod2Title": "Công nghệ thuyết phục",
-    "chtMod2Body": "Khám phá những thiết kế tinh vi trong các sản phẩm mạng xã hội — cách chúng chiếm đoạt sự chú ý và thay đổi hành vi của người dùng một cách có chủ đích.",
+    "chtMod2Body": "Tìm hiểu cách mà các thiết kế tinh vi trong mỗi sản phẩm mạng xã hội thao túng bạn để chiếm đoạt sự chú ý và thay đổi hành vi của con người.",
     "chtMod3Title": "Mạng xã hội & Não bộ",
-    "chtMod3Body": "Tâm trí và cơ thể chúng ta có những điểm dễ bị tổn thương có thể bị khai thác. Công nghệ thuyết phục nhắm vào chính những điểm yếu đó — và các công ty mạng xã hội phớt lờ trách nhiệm chăm sóc người dùng.",
+    "chtMod3Body": "Tâm trí và cơ thể chúng ta tồn tại những điểm dễ bị tổn thương có thể bị khai thác. Công nghệ thuyết phục nhắm vào chính những điểm yếu đó, thúc đẩy chúng ta tiếp tục nhấp chuột, cuộn màn hình và tương tác mãi không thôi. Khi hiểu được cách công nghệ thuyết phục khai thác điểm yếu của chúng ta, học sinh sẽ nhận ra rằng các công ty mạng xã hội đang thờ ơ với trách nhiệm chăm sóc sức khỏe và hạnh phúc của người dùng.",
     "chtMod4Title": "Hậu quả & Vấn đề hệ thống",
-    "chtMod4Body": "Khi hiểu được tác hại của công nghệ thuyết phục và các lực hệ thống đang chi phối nó, chúng ta bắt đầu hình dung cách xây dựng một nền công nghệ nhân văn — vận hành vì lợi ích chung.",
-    "unescoTitle": "Khung năng lực số UNESCO",
-    "unescoEyebrow": "Trụ cột 2",
-    "unescoLead": "Kết quả Dự án Digital Kids Asia–Pacific do UNESCO triển khai với sự hợp tác của UNICEF và nhiều bên liên quan.",
-    "unesco1Title": "An toàn và khả năng thích ứng số",
-    "unesco1Body": "Năng lực bảo vệ bản thân, dữ liệu cá nhân và sức khỏe tinh thần trước các rủi ro số.",
-    "unesco2Title": "Tham gia và chủ động số",
-    "unesco2Body": "Năng lực sử dụng công nghệ để học tập, giao tiếp và đóng góp tích cực cho cộng đồng.",
-    "unesco3Title": "Trí tuệ cảm xúc số",
-    "unesco3Body": "Năng lực thấu hiểu cảm xúc bản thân và người khác, duy trì quan hệ lành mạnh trong không gian số.",
-    "unesco4Title": "Sáng tạo và đổi mới số",
-    "unesco4Body": "Năng lực dùng công nghệ làm công cụ sáng tạo nội dung, ý tưởng và giải pháp mới.",
-    "altTitle": "Hoạt động tương tác trực quan",
+    "chtMod4Body": "Khi hiểu được những tác hại của công nghệ thuyết phục cũng như các lực lượng hệ thống đang chi phối nó, chúng ta có thể bắt đầu hình dung cách xây dựng một thế giới dựa trên nền công nghệ nhân văn — một nền công nghệ vận hành vì lợi ích chung của tất cả mọi người.",
+    "skillsEyebrow": "Trụ cột 2",
+    "skillsTitle": "Giáo dục kỹ năng số",
+    "skillsLead": "Sáng kiến Z & Alpha xây dựng, hoặc hợp tác xây dựng các chương trình đào tạo, các khóa học và các hoạt động nhằm hỗ trợ thanh thiếu niên phát triển bộ kỹ năng số nằm trong Khung năng lực “digital literacy” do văn phòng UNESCO Châu Á Thái Bình Dương triển khai xây dựng với sự hợp tác của các bên liên quan.",
+    "skillGroups": [
+      {
+        "roman": "I",
+        "title": "Năng lực số",
+        "items": [
+          {
+            "icon": "monitor-smartphone",
+            "text": "Hiểu biết về Công nghệ thông tin - Truyền thông"
+          },
+          {
+            "icon": "file-search",
+            "text": "Năng lực thông tin số"
+          }
+        ]
+      },
+      {
+        "roman": "II",
+        "title": "An toàn và khả năng thích ứng số",
+        "items": [
+          {
+            "icon": "scale",
+            "text": "Hiểu biết về quyền trẻ em"
+          },
+          {
+            "icon": "lock-keyhole",
+            "text": "Dữ liệu cá nhân, quyền riêng tư và danh tiếng"
+          },
+          {
+            "icon": "heart-pulse",
+            "text": "Thúc đẩy và bảo vệ sức khỏe tinh thần"
+          },
+          {
+            "icon": "refresh-cw",
+            "text": "Khả năng thích ứng và phục hồi trong môi trường số"
+          }
+        ]
+      },
+      {
+        "roman": "III",
+        "title": "Tham gia và chủ động số",
+        "items": [
+          {
+            "icon": "share-2",
+            "text": "Tương tác, chia sẻ và hợp tác"
+          },
+          {
+            "icon": "users-round",
+            "text": "Gắn kết cộng đồng"
+          },
+          {
+            "icon": "scroll-text",
+            "text": "Quy tắc ứng xử trên môi trường mạng"
+          }
+        ]
+      },
+      {
+        "roman": "IV",
+        "title": "Trí tuệ cảm xúc số",
+        "items": [
+          {
+            "icon": "eye",
+            "text": "Tự nhận thức"
+          },
+          {
+            "icon": "sliders-horizontal",
+            "text": "Tự điều chỉnh"
+          },
+          {
+            "icon": "rocket",
+            "text": "Tự tạo động lực"
+          },
+          {
+            "icon": "message-circle",
+            "text": "Năng lực tương tác cá nhân"
+          },
+          {
+            "icon": "heart-handshake",
+            "text": "Sự đồng cảm"
+          }
+        ]
+      },
+      {
+        "roman": "V",
+        "title": "Sáng tạo và đổi mới số",
+        "items": [
+          {
+            "icon": "lightbulb",
+            "text": "Năng lực sáng tạo"
+          },
+          {
+            "icon": "mic",
+            "text": "Biểu đạt bản thân"
+          }
+        ]
+      }
+    ],
     "altEyebrow": "Trụ cột 3",
-    "altLead": "Trẻ em phát triển khỏe mạnh thông qua trải nghiệm thực tế với thế giới. Z & Alpha thiết kế và phối hợp tổ chức các hoạt động bù đắp những trải nghiệm mà mạng xã hội đang lấy đi.",
+    "altTitle": "Thiết kế các hoạt động giáo dục tập trung vào tương tác trực quan thay thế cho việc sử dụng mạng xã hội",
     "altArtTitle": "Giáo dục nghệ thuật",
-    "altArtBody": "Không chỉ dạy kỹ năng sáng tạo — nghệ thuật là không gian để trẻ bày tỏ những cảm xúc mà ngôn ngữ thông thường không đủ. Khi được vẽ, viết, biểu diễn hay tạo ra điều gì đó bằng đôi tay mình, người trẻ có cơ hội xử lý cảm xúc, giảm căng thẳng và xây dựng cảm giác làm chủ bản thân.",
+    "altArtBody": "Giáo dục nghệ thuật không chỉ dạy kỹ năng sáng tạo — đó còn là một không gian để trẻ em và thanh thiếu niên được bày tỏ những cảm xúc mà đôi khi ngôn ngữ thông thường không đủ để diễn đạt. Khi được vẽ, viết, biểu diễn hay tạo ra điều gì đó bằng chính đôi tay mình, người trẻ có cơ hội xử lý cảm xúc, giảm căng thẳng và xây dựng cảm giác làm chủ bản thân — những yếu tố nền tảng của sức khỏe tinh thần lành mạnh. Trong bối cảnh mà màn hình và mạng xã hội ngày càng lấn át những trải nghiệm thực, nghệ thuật mang lại một hình thức hiện diện sâu sắc và có chủ đích — một sự đối trọng cần thiết với thế giới số đang chi phối cuộc sống của thế hệ trẻ.",
     "altReadingTitle": "Hoạt động đọc mở rộng",
-    "altReadingBody": "Đọc là một trong những hoạt động ít tốn kém nhất nhưng mang lại lợi ích sâu rộng nhất cho não bộ — mở rộng vốn từ, tăng tập trung, phát triển tư duy phản biện. Đặc biệt với thế hệ lớn lên trong môi trường số, đọc còn là một hình thức 'giải độc màn hình' có chủ đích.",
+    "altReadingBody": "Đọc sách là một trong những hoạt động ít tốn kém nhất nhưng mang lại lợi ích sâu rộng nhất cho não bộ — từ việc mở rộng vốn từ, tăng cường khả năng tập trung, đến phát triển tư duy phản biện và trí tưởng tượng. Đặc biệt với thế hệ lớn lên trong môi trường số, thói quen đọc sách còn là một hình thức \"giải độc màn hình\" có chủ đích — giúp não bộ được nghỉ ngơi khỏi những kích thích liên tục của mạng xã hội và lấy lại khả năng tập trung sâu vốn đang dần bị bào mòn.",
     "altScienceTitle": "Giáo dục khoa học",
-    "altScienceBody": "Khoa học khơi dậy sự tò mò — khi một đứa trẻ đặt câu hỏi 'tại sao?' và được dẫn dắt để tự tìm câu trả lời, chúng trải nghiệm niềm vui khám phá. Đây là cảm giác bền vững hơn nhiều so với những kích thích tức thời từ mạng xã hội, đồng thời dạy trẻ cách đối mặt với bất định một cách bình tĩnh.",
-    "quoteText": "Trẻ em lớn lên từ những trải nghiệm trong thế giới thực.",
-    "quoteAuthor": "Jonathan Haidt"
+    "altScienceBody": "Giáo dục khoa học khơi dậy trong người trẻ một thứ vô cùng quý giá: sự tò mò. Khi một đứa trẻ đặt câu hỏi \"tại sao?\" và được dẫn dắt để tự tìm ra câu trả lời, chúng không chỉ học về thế giới tự nhiên mà còn trải nghiệm niềm vui thuần túy của khám phá — một cảm giác thỏa mãn sâu sắc và bền vững hơn nhiều so với những kích thích tức thời mà mạng xã hội mang lại. Khoa học còn dạy trẻ cách đối mặt với tương lai bất định một cách bình tĩnh: rằng thất bại là một phần của quá trình, rằng câu hỏi quan trọng hơn câu trả lời — những bài học tư duy giúp xây dựng sức mạnh ý chí.",
+    "inviteTitle": "Cùng chung tay",
+    "inviteBody": "Chúng tôi tin rằng để tạo ra sự thay đổi thực sự cho thế hệ trẻ, không một tổ chức nào có thể hành động đơn độc. Do đó, chúng tôi chân thành gửi lời mời tới các trường học, tổ chức xã hội dân sự, doanh nghiệp và các cơ quan truyền thông cùng chung tay trong sáng kiến này.\n\nDù là đồng hành qua việc tổ chức hoạt động, chia sẻ chuyên môn, kết nối cộng đồng hay hỗ trợ truyền thông — mỗi hình thức hợp tác đều góp phần tạo nên một hệ sinh thái giáo dục đủ mạnh để bảo vệ sức khỏe tinh thần và sự phát triển lành mạnh của trẻ em và thanh thiếu niên Việt Nam trong kỷ nguyên số."
   },
   "activitiesPolicy": {
     "metaTitle": "Khuyến nghị chính sách — Z & Alpha Initiative",
@@ -232,15 +423,42 @@
     "agendaTimeCol": "Thời gian",
     "agendaContentCol": "Nội dung",
     "agenda": [
-      ["09:00 – 09:20", "Phát biểu khai mạc & giới thiệu hội thảo"],
-      ["09:20 – 09:40", "Chuyên đề 1: Sức khỏe tâm thần trẻ em và thanh thiếu niên — tổng quan thực trạng & các dự án UNICEF đã triển khai"],
-      ["09:40 – 10:00", "Chuyên đề 2: Tác động của mạng xã hội đến sức khỏe tâm thần — báo cáo thực nghiệm nhóm 16–20 tuổi (5 ngày không mạng xã hội)"],
-      ["10:00 – 10:20", "Chuyên đề 3: Tổng quan nghiên cứu & hành động ứng phó của các nước; dữ liệu và dự án đã triển khai tại Việt Nam"],
-      ["10:20 – 10:30", "Giải lao"],
-      ["10:30 – 10:50", "Chuyên đề 4: Tích hợp đào tạo sức khỏe tâm thần liên quan tới MXH & smartphone vào chương trình bậc đại học về tâm lý"],
-      ["10:50 – 11:10", "Chuyên đề 5: Thực trạng điều trị các vấn đề sức khỏe tâm thần liên quan đến mạng xã hội & smartphone tại Việt Nam"],
-      ["11:10 – 11:50", "Thảo luận mở: Giải pháp và hành động tiếp theo cho Việt Nam"],
-      ["11:50 – 12:00", "Tổng kết & bế mạc hội thảo"]
+      [
+        "09:00 – 09:20",
+        "Phát biểu khai mạc & giới thiệu hội thảo"
+      ],
+      [
+        "09:20 – 09:40",
+        "Chuyên đề 1: Sức khỏe tâm thần trẻ em và thanh thiếu niên — tổng quan thực trạng & các dự án UNICEF đã triển khai"
+      ],
+      [
+        "09:40 – 10:00",
+        "Chuyên đề 2: Tác động của mạng xã hội đến sức khỏe tâm thần — báo cáo thực nghiệm nhóm 16–20 tuổi (5 ngày không mạng xã hội)"
+      ],
+      [
+        "10:00 – 10:20",
+        "Chuyên đề 3: Tổng quan nghiên cứu & hành động ứng phó của các nước; dữ liệu và dự án đã triển khai tại Việt Nam"
+      ],
+      [
+        "10:20 – 10:30",
+        "Giải lao"
+      ],
+      [
+        "10:30 – 10:50",
+        "Chuyên đề 4: Tích hợp đào tạo sức khỏe tâm thần liên quan tới MXH & smartphone vào chương trình bậc đại học về tâm lý"
+      ],
+      [
+        "10:50 – 11:10",
+        "Chuyên đề 5: Thực trạng điều trị các vấn đề sức khỏe tâm thần liên quan đến mạng xã hội & smartphone tại Việt Nam"
+      ],
+      [
+        "11:10 – 11:50",
+        "Thảo luận mở: Giải pháp và hành động tiếp theo cho Việt Nam"
+      ],
+      [
+        "11:50 – 12:00",
+        "Tổng kết & bế mạc hội thảo"
+      ]
     ]
   },
   "library": {
@@ -293,7 +511,11 @@
     "noResults": "Không tìm thấy tin nào khớp",
     "clearFilters": "Xoá bộ lọc"
   },
-  "lang": { "vi": "Tiếng Việt", "en": "English", "switchTo": "Chuyển sang {lang}" },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "switchTo": "Chuyển sang {lang}"
+  },
   "error": {
     "404title": "404 — Không tìm thấy trang",
     "404body": "Trang bạn đang tìm không tồn tại hoặc đã bị di chuyển.",

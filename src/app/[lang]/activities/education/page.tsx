@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/activities/education'>): Promise<Metadata> {
   const { lang } = await params;
@@ -10,11 +10,24 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/activities
   return { title: t(dict, 'activitiesEducation.metaTitle') };
 }
 
+type SkillItem = { icon: string; text: string };
+type SkillGroup = { roman: string; title: string; items: SkillItem[] };
+const SKILL_TONES = ['t-teal', 't-blue', 't-orange', 't-purple', 't-cyan'];
+
 export default async function ActivitiesEducationPage({ params }: PageProps<'/[lang]/activities/education'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
   const dict = await getDictionary(lang);
+
+  const edu = (dict as { activitiesEducation: Record<string, unknown> }).activitiesEducation;
+  const skillGroups = edu.skillGroups as SkillGroup[];
+
+  const alternatives = [
+    { icon: 'palette',       title: 'altArtTitle',     body: 'altArtBody',     tone: 't-purple' },
+    { icon: 'book-open',     title: 'altReadingTitle', body: 'altReadingBody', tone: 't-orange' },
+    { icon: 'flask-conical', title: 'altScienceTitle', body: 'altScienceBody', tone: 't-teal' },
+  ];
 
   return (
     <>
@@ -32,172 +45,166 @@ export default async function ActivitiesEducationPage({ params }: PageProps<'/[l
         </div>
       </section>
 
-      {/* PILLARS overview */}
-      <section className="section">
+      {/* OVERVIEW — 3 trụ cột */}
+      <section className="section section--muted">
         <div className="container">
           <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
-            <h2 className="section-title" style={{ margin: '0 auto' }}>
+            <h2 className="section-title" style={{ margin: '0 auto', maxWidth: 760 }}>
               {t(dict, 'activitiesEducation.pillarsTitle')}
             </h2>
-            <p className="section-lead" style={{ margin: '12px auto 0', maxWidth: 640 }}>
-              {t(dict, 'activitiesEducation.pillarsLead')}
-            </p>
           </div>
 
           <div className="focus-grid">
-            <article className="focus-card t-teal">
-              <div className="icon-tile"><i data-lucide="brain-circuit" className="icon-lg" /></div>
+            <article className="focus-card focus-card--overview t-teal">
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="brain-circuit" className="icon-lg" /></div>
+                <span className="focus-eyebrow">{t(dict, 'activitiesEducation.chtEyebrow')}</span>
+              </div>
               <h3>{t(dict, 'activitiesEducation.pillar1Title')}</h3>
+              <p className="focus-label">{t(dict, 'activitiesEducation.pillar1Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar1Body')}</p>
             </article>
-
-            <article className="focus-card t-blue">
-              <div className="icon-tile"><i data-lucide="shield-check" className="icon-lg" /></div>
+            <article className="focus-card focus-card--overview t-blue">
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="shield-check" className="icon-lg" /></div>
+                <span className="focus-eyebrow">{t(dict, 'activitiesEducation.skillsEyebrow')}</span>
+              </div>
               <h3>{t(dict, 'activitiesEducation.pillar2Title')}</h3>
+              <p className="focus-label">{t(dict, 'activitiesEducation.pillar2Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar2Body')}</p>
             </article>
-
-            <article className="focus-card t-orange">
-              <div className="icon-tile"><i data-lucide="palette" className="icon-lg" /></div>
+            <article className="focus-card focus-card--overview t-orange">
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="palette" className="icon-lg" /></div>
+                <span className="focus-eyebrow">{t(dict, 'activitiesEducation.altEyebrow')}</span>
+              </div>
               <h3>{t(dict, 'activitiesEducation.pillar3Title')}</h3>
+              <p className="focus-label">{t(dict, 'activitiesEducation.pillar3Label')}</p>
               <p>{t(dict, 'activitiesEducation.pillar3Body')}</p>
             </article>
           </div>
         </div>
       </section>
 
-      {/* PILLAR 1 — Understanding digital tech (4 modules CHT) */}
-      <section className="section section--muted" id="pillar-understanding">
+      {/* TRỤ CỘT 1 — Nhận thức công nghệ số & sức khỏe tinh thần */}
+      <section className="section" id="pillar-wellbeing">
         <div className="container">
+          <span className="s-eyebrow t-teal">
+            <span className="s-eyebrow__num">01</span>
+            <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.chtEyebrow')}</span>
+          </span>
           <div className="section-header">
-            <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
-              <i data-lucide="layers" className="icon-sm" />
-              {t(dict, 'activitiesEducation.chtEyebrow')}
-            </span>
-            <h2 className="section-title">{t(dict, 'activitiesEducation.chtTitle')}</h2>
-            <p className="section-lead">{t(dict, 'activitiesEducation.chtLead')}</p>
+            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar1Title')}</h2>
           </div>
 
-          <div className="research-grid-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+          <div className="focus-grid focus-grid--2col">
             <article className="focus-card t-teal">
-              <div className="icon-tile"><i data-lucide="eye" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.chtMod1Title')}</h3>
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="eye" className="icon-lg" /></div>
+                <h3>{t(dict, 'activitiesEducation.chtMod1Title')}</h3>
+              </div>
               <p>{t(dict, 'activitiesEducation.chtMod1Body')}</p>
             </article>
             <article className="focus-card t-blue">
-              <div className="icon-tile"><i data-lucide="cpu" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.chtMod2Title')}</h3>
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="cpu" className="icon-lg" /></div>
+                <h3>{t(dict, 'activitiesEducation.chtMod2Title')}</h3>
+              </div>
               <p>{t(dict, 'activitiesEducation.chtMod2Body')}</p>
             </article>
             <article className="focus-card t-orange">
-              <div className="icon-tile"><i data-lucide="brain" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.chtMod3Title')}</h3>
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="brain" className="icon-lg" /></div>
+                <h3>{t(dict, 'activitiesEducation.chtMod3Title')}</h3>
+              </div>
               <p>{t(dict, 'activitiesEducation.chtMod3Body')}</p>
             </article>
-            <article className="focus-card t-teal">
-              <div className="icon-tile"><i data-lucide="network" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.chtMod4Title')}</h3>
+            <article className="focus-card t-purple">
+              <div className="focus-card__top">
+                <div className="icon-tile"><i data-lucide="network" className="icon-lg" /></div>
+                <h3>{t(dict, 'activitiesEducation.chtMod4Title')}</h3>
+              </div>
               <p>{t(dict, 'activitiesEducation.chtMod4Body')}</p>
             </article>
           </div>
         </div>
       </section>
 
-      {/* PILLAR 2 — UNESCO digital literacy (4 competencies) */}
-      <section className="section" id="pillar-literacy">
+      {/* TRỤ CỘT 2 — Kỹ năng số (khung năng lực I–V) */}
+      <section className="section section--muted" id="pillar-skills">
         <div className="container">
+          <span className="s-eyebrow t-blue">
+            <span className="s-eyebrow__num">02</span>
+            <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.skillsEyebrow')}</span>
+          </span>
           <div className="section-header">
-            <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
-              <i data-lucide="award" className="icon-sm" />
-              {t(dict, 'activitiesEducation.unescoEyebrow')}
-            </span>
-            <h2 className="section-title">{t(dict, 'activitiesEducation.unescoTitle')}</h2>
-            <p className="section-lead">{t(dict, 'activitiesEducation.unescoLead')}</p>
+            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar2Title')}</h2>
+            <p className="section-lead">{t(dict, 'activitiesEducation.skillsLead')}</p>
           </div>
 
-          <ul className="bullet-list">
-            <li className="bullet-item">
-              <span className="glyph"><i data-lucide="shield-check" className="icon" /></span>
-              <div>
-                <p style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{t(dict, 'activitiesEducation.unesco1Title')}</p>
-                <p>{t(dict, 'activitiesEducation.unesco1Body')}</p>
+          <div className="skill-rows">
+            {skillGroups.map((g, gi) => (
+              <div key={g.roman} className={`skill-row ${SKILL_TONES[gi % SKILL_TONES.length]}`}>
+                <span className="skill-row__roman">{g.roman}</span>
+                <div className="skill-row__body">
+                  <h3 className="skill-row__title">{g.title}</h3>
+                  <ul className="skill-list">
+                    {g.items.map((it) => (
+                      <li key={it.text} className="skill-item">
+                        <span className="skill-item__ico"><i data-lucide={it.icon} className="icon-sm" /></span>
+                        <span>{it.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </li>
-            <li className="bullet-item">
-              <span className="glyph"><i data-lucide="hand" className="icon" /></span>
-              <div>
-                <p style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{t(dict, 'activitiesEducation.unesco2Title')}</p>
-                <p>{t(dict, 'activitiesEducation.unesco2Body')}</p>
-              </div>
-            </li>
-            <li className="bullet-item">
-              <span className="glyph"><i data-lucide="heart-handshake" className="icon" /></span>
-              <div>
-                <p style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{t(dict, 'activitiesEducation.unesco3Title')}</p>
-                <p>{t(dict, 'activitiesEducation.unesco3Body')}</p>
-              </div>
-            </li>
-            <li className="bullet-item">
-              <span className="glyph"><i data-lucide="lightbulb" className="icon" /></span>
-              <div>
-                <p style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{t(dict, 'activitiesEducation.unesco4Title')}</p>
-                <p>{t(dict, 'activitiesEducation.unesco4Body')}</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* PILLAR 3 — Alternative activities (Art / Reading / Science) */}
-      <section className="section section--muted" id="pillar-alternatives">
-        <div className="container">
-          <div className="section-header">
-            <span className="hero-eyebrow" style={{ marginBottom: 12 }}>
-              <i data-lucide="sparkles" className="icon-sm" />
-              {t(dict, 'activitiesEducation.altEyebrow')}
-            </span>
-            <h2 className="section-title">{t(dict, 'activitiesEducation.altTitle')}</h2>
-            <p className="section-lead">{t(dict, 'activitiesEducation.altLead')}</p>
-          </div>
-
-          <div className="focus-grid">
-            <article className="focus-card t-teal">
-              <div className="icon-tile"><i data-lucide="palette" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.altArtTitle')}</h3>
-              <p>{t(dict, 'activitiesEducation.altArtBody')}</p>
-            </article>
-            <article className="focus-card t-blue">
-              <div className="icon-tile"><i data-lucide="book-open" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.altReadingTitle')}</h3>
-              <p>{t(dict, 'activitiesEducation.altReadingBody')}</p>
-            </article>
-            <article className="focus-card t-orange">
-              <div className="icon-tile"><i data-lucide="microscope" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesEducation.altScienceTitle')}</h3>
-              <p>{t(dict, 'activitiesEducation.altScienceBody')}</p>
-            </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* HAIDT QUOTE — principle-banner style */}
-      <section className="section">
+      {/* TRỤ CỘT 3 — Hoạt động thay thế (nghệ thuật / đọc / khoa học) */}
+      <section className="section" id="pillar-alternatives">
+        <div className="container">
+          <span className="s-eyebrow t-orange">
+            <span className="s-eyebrow__num">03</span>
+            <span className="s-eyebrow__label">{t(dict, 'activitiesEducation.altEyebrow')}</span>
+          </span>
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'activitiesEducation.pillar3Title')}</h2>
+            <p className="section-lead">{t(dict, 'activitiesEducation.altTitle')}</p>
+          </div>
+
+          {alternatives.map((a, i) => (
+            <div key={a.title} className={`media-row ${a.tone} ${i % 2 === 1 ? 'media-row--rev' : ''}`}>
+              <div className="media-row__media"><i data-lucide={a.icon} className="icon-2xl" /></div>
+              <div className="media-row__body">
+                <h3>{t(dict, `activitiesEducation.${a.title}`)}</h3>
+                <p>{t(dict, `activitiesEducation.${a.body}`)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* LỜI MỜI HỢP TÁC */}
+      <section className="section section--muted">
         <div className="container">
           <div className="principle-banner">
             <div className="principle-banner__icon">
-              <i data-lucide="quote" className="icon-md" />
+              <i data-lucide="handshake" className="icon-md" />
             </div>
-            <p className="principle-banner__text">
-              <em>“{t(dict, 'activitiesEducation.quoteText')}”</em>
-            </p>
-            <p style={{ margin: 0, color: 'var(--blue-700)', fontWeight: 600, fontSize: 14 }}>
-              — {t(dict, 'activitiesEducation.quoteAuthor')}
-            </p>
+            <h2 className="section-title" style={{ fontSize: 24 }}>{t(dict, 'activitiesEducation.inviteTitle')}</h2>
+            {t(dict, 'activitiesEducation.inviteBody').split('\n\n').map((para, i) => (
+              <p key={i} className="principle-banner__text" style={{ fontStyle: 'normal' }}>
+                {para}
+              </p>
+            ))}
           </div>
         </div>
       </section>
 
-      <Newsletter dict={dict} />
+      <ContactCta dict={dict} lang={lang} />
     </>
   );
 }

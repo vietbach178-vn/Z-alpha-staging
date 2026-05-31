@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { isLang, getDictionary, localizedHref, t, type Lang } from '@/lib/i18n';
 import { listPublishedResearch, listTopics, pickL } from '@/lib/repos';
 import FilterToolbar from '@/components/public/FilterToolbar';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export const dynamic = 'force-dynamic';
 
@@ -223,7 +223,7 @@ export default async function ResearchIndexPage({ params }: PageProps<'/[lang]/a
         </div>
       </section>
 
-      <Newsletter dict={dict} muted />
+      <ContactCta dict={dict} lang={lang} muted />
     </>
   );
 }

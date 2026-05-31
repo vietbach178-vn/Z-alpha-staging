@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
 import { listPublishedLibrary, pickL } from '@/lib/repos';
 import FilterToolbar from '@/components/public/FilterToolbar';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export const dynamic = 'force-dynamic';
 
@@ -144,7 +144,7 @@ export default async function LibraryPage({ params }: PageProps<'/[lang]/library
         </div>
       </section>
 
-      <Newsletter dict={dict} muted />
+      <ContactCta dict={dict} lang={lang} muted />
     </>
   );
 }

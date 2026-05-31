@@ -456,6 +456,10 @@ section { position: relative; }
 }
 @media (min-width: 768px) { .focus-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
 
+/* 2×2 variant — nhóm có đúng 4 mục (Trụ cột 1) */
+.focus-grid--2col { grid-template-columns: 1fr; }
+@media (min-width: 768px) { .focus-grid--2col { grid-template-columns: repeat(2, 1fr); } }
+
 .focus-card {
   background: var(--white);
   border: 1px solid var(--border-2);
@@ -485,9 +489,11 @@ section { position: relative; }
 .focus-card.t-teal   .icon-tile { background: var(--teal-50);   color: var(--teal-600); }
 .focus-card.t-blue   .icon-tile { background: var(--blue-50);   color: var(--blue-600); }
 .focus-card.t-orange .icon-tile { background: var(--orange-50); color: var(--orange-600); }
+.focus-card.t-purple .icon-tile { background: var(--purple-50); color: var(--purple-600); }
 .focus-card.t-teal:hover   { border-color: var(--teal-200); }
 .focus-card.t-blue:hover   { border-color: var(--blue-200); }
 .focus-card.t-orange:hover { border-color: var(--orange-200); }
+.focus-card.t-purple:hover { border-color: var(--purple-200); }
 
 .focus-card h3 {
   font-size: 22px;
@@ -565,6 +571,36 @@ section { position: relative; }
 .newsletter-form input::placeholder { color: var(--gray-500); }
 .newsletter-form input:focus { border-color: var(--blue-500); }
 .newsletter-form .btn { height: 52px; }
+
+/* ---------- Contact CTA (cuối trang) — banner tối, 1 nút ---------- */
+.contact-cta {
+  background: var(--gray-900);
+  color: var(--fg-inverse);
+  border-radius: var(--r-xl);
+  padding: 56px 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .contact-cta { grid-template-columns: 1fr auto; gap: 48px; padding: 56px 48px; }
+}
+.contact-cta__title {
+  color: var(--fg-inverse);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+.contact-cta__lead {
+  color: var(--gray-300);
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 480px;
+}
+.contact-cta .btn { height: 52px; }
 
 /* ---------- Footer ---------- */
 .site-footer {

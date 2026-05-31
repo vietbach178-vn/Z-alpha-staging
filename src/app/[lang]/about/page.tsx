@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { isLang, getDictionary, localizedHref, t, type Lang } from '@/lib/i18n';
-import Newsletter from '@/components/public/Newsletter';
+import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/about'>): Promise<Metadata> {
   const { lang } = await params;
@@ -11,17 +9,30 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/about'>): 
   return { title: t(dict, 'about.metaTitle') };
 }
 
+type Trait = { num: string; title: string; en: string };
+type Impact = { icon: string; term: string; en: string };
+type Block = { icon: string; title: string; body: string };
+
 export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
   const lang = rawLang as Lang;
   const dict = await getDictionary(lang);
 
+  const about = (dict as { about: Record<string, unknown> }).about;
+  const traits = about.traits as Trait[];
+  const directImpacts = about.directImpacts as Impact[];
+  const indirectImpacts = about.indirectImpacts as Impact[];
+  const challenges = about.challenges as Block[];
+  const solutions = about.solutions as Block[];
+  const author = t(dict, 'about.quoteAuthor');
+
   return (
     <>
-      {/* HERO — slide 5 layout */}
+      {/* HERO — Z & Alpha + chủ đề Great Rewiring */}
       <section className="hero">
         <span className="glow glow-teal" />
+        <span className="glow glow-blue" />
         <span className="glow glow-orange" />
 
         <div className="container">
@@ -30,83 +41,159 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about'>) 
             {t(dict, 'about.heroEyebrow')}
           </span>
 
-          <h1 className="slogan">
-            <span className="line l-teal">{t(dict, 'about.heroSlogan1')}</span>
-            <span className="line l-blue">{t(dict, 'about.heroSlogan2')}</span>
-            <span className="line l-orange">{t(dict, 'about.heroSlogan3')}</span>
+          <h1
+            className="slogan"
+            style={{ flexDirection: 'column', alignItems: 'center', fontSize: 'clamp(30px, 4.4vw, 52px)' }}
+          >
+            <span className="line l-blue">{t(dict, 'about.heroTitle')}</span>
+            <span className="line l-blue">{t(dict, 'about.heroTitle2')}</span>
           </h1>
 
-          <p className="hero-subline">{t(dict, 'about.heroSubline')}</p>
+          <p className="hero-subline">{t(dict, 'about.heroTitleEn')}</p>
+          <p className="hero-body">{t(dict, 'about.heroBody')}</p>
         </div>
       </section>
 
-      {/* INTRO + MISSION — slide 3-4 narrative */}
-      <section className="section" id="about-intro">
+      {/* 01 — BỐI CẢNH / THỰC TRẠNG (phần A: khái niệm + 3 đặc điểm) */}
+      <section className="section section--muted" id="about-context">
         <div className="container">
-          <div className="what-grid">
+          <span className="s-eyebrow t-teal">
+            <span className="s-eyebrow__num">{t(dict, 'about.s1Num')}</span>
+            <span className="s-eyebrow__label">{t(dict, 'about.s1Kicker')}</span>
+          </span>
+
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'about.s1Title')}</h2>
+          </div>
+
+          <div className="intro-grid">
+            {/* Thay placeholder bằng ảnh thật: <img src="/assets/about-context.jpg" alt="..." /> */}
+            <figure className="intro-figure">
+              <i data-lucide="smartphone" className="icon-2xl" />
+            </figure>
+
             <div>
-              <div className="section-header" style={{ marginBottom: 0 }}>
-                <h2 className="section-title">{t(dict, 'about.introTitle')}</h2>
-                <p className="section-lead">{t(dict, 'about.introBody')}</p>
+              <p className="about-prose">{t(dict, 'about.s1Body')}</p>
+              <p className="about-prose">{t(dict, 'about.s1VnContext')}</p>
+            </div>
+          </div>
+
+          {/* Ba đặc điểm môi trường số */}
+          <div className="trait-grid" style={{ marginTop: 40 }}>
+            {traits.map((tr, i) => (
+              <div key={tr.num} className={`trait-card ${['t-teal', 't-blue', 't-orange'][i]}`}>
+                <div className="trait-card__num">{tr.num}</div>
+                <h3>{tr.title}</h3>
+                <p>{tr.en}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 01 — BỐI CẢNH / THỰC TRẠNG (phần B: tác động trực tiếp / gián tiếp) */}
+      <section className="section" id="about-impacts">
+        <div className="container">
+          <p className="about-prose">{t(dict, 'about.s1Bridge')}</p>
+
+          {/* Tác động trực tiếp vs gián tiếp */}
+          <div className="what-grid" style={{ marginTop: 40 }}>
+            <div>
+              <h3 className="impact-head impact-head--red">
+                <i data-lucide="zap" className="icon-md" />
+                {t(dict, 'about.directTitle')}
+              </h3>
+              <div className="bullet-list bullet-list--red">
+                {directImpacts.map((im) => (
+                  <div key={im.term} className="bullet-item">
+                    <span className="glyph"><i data-lucide={im.icon} className="icon-sm" /></span>
+                    <p><span className="term">{im.term}</span> <span className="en">({im.en})</span></p>
+                  </div>
+                ))}
               </div>
             </div>
             <div>
-              <div className="section-header" style={{ marginBottom: 0 }}>
-                <h2 className="section-title">{t(dict, 'about.missionTitle')}</h2>
-                <p className="section-lead">{t(dict, 'about.missionBody')}</p>
+              <h3 className="impact-head impact-head--orange">
+                <i data-lucide="git-branch" className="icon-md" />
+                {t(dict, 'about.indirectTitle')}
+              </h3>
+              <div className="bullet-list bullet-list--orange">
+                {indirectImpacts.map((im) => (
+                  <div key={im.term} className="bullet-item">
+                    <span className="glyph"><i data-lucide={im.icon} className="icon-sm" /></span>
+                    <p><span className="term">{im.term}</span> <span className="en">({im.en})</span></p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+
+          <figure className="about-quote t-teal">
+            <blockquote>“{t(dict, 'about.s1Quote')}”</blockquote>
+            <cite>— {author}</cite>
+          </figure>
         </div>
       </section>
 
-      {/* THREE PILLARS — slide 5 */}
-      <section className="section section--muted" id="about-pillars">
+      {/* 02 — VẤN ĐỀ */}
+      <section className="section section--muted" id="about-problem">
         <div className="container">
-          <div className="section-header" style={{ alignItems: 'center', textAlign: 'center' }}>
-            <h2 className="section-title" style={{ margin: '0 auto' }}>
-              {t(dict, 'about.pillarsTitle')}
-            </h2>
-            <p className="section-lead" style={{ margin: '12px auto 0', maxWidth: 640 }}>
-              {t(dict, 'about.pillarsLead')}
-            </p>
+          <span className="s-eyebrow t-blue">
+            <span className="s-eyebrow__num">{t(dict, 'about.s2Num')}</span>
+            <span className="s-eyebrow__label">{t(dict, 'about.s2Kicker')}</span>
+          </span>
+
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'about.s2Title')}</h2>
+            <p className="section-lead about-en">{t(dict, 'about.s2TitleEn')}</p>
           </div>
 
-          <div className="focus-grid">
-            <article className="focus-card t-teal">
-              <div className="icon-tile"><i data-lucide="microscope" className="icon-lg" /></div>
-              <h3>{t(dict, 'about.pillar1Title')}</h3>
-              <p>{t(dict, 'about.pillar1Body')}</p>
-              <Link href={localizedHref('activities/research', lang)} className="focus-link">
-                {t(dict, 'about.pillar1Cta')}
-                <i data-lucide="arrow-right" className="icon-sm" />
-              </Link>
-            </article>
+          {challenges.map((c, i) => (
+            <div key={c.title} className={`media-row t-blue ${i % 2 === 1 ? 'media-row--rev' : ''}`}>
+              <div className="media-row__media"><i data-lucide={c.icon} className="icon-2xl" /></div>
+              <div className="media-row__body">
+                <h3>{c.title}</h3>
+                <p>{c.body}</p>
+              </div>
+            </div>
+          ))}
 
-            <article className="focus-card t-blue">
-              <div className="icon-tile"><i data-lucide="landmark" className="icon-lg" /></div>
-              <h3>{t(dict, 'about.pillar2Title')}</h3>
-              <p>{t(dict, 'about.pillar2Body')}</p>
-              <Link href={localizedHref('activities/policy', lang)} className="focus-link">
-                {t(dict, 'about.pillar2Cta')}
-                <i data-lucide="arrow-right" className="icon-sm" />
-              </Link>
-            </article>
-
-            <article className="focus-card t-orange">
-              <div className="icon-tile"><i data-lucide="graduation-cap" className="icon-lg" /></div>
-              <h3>{t(dict, 'about.pillar3Title')}</h3>
-              <p>{t(dict, 'about.pillar3Body')}</p>
-              <Link href={localizedHref('activities/education', lang)} className="focus-link">
-                {t(dict, 'about.pillar3Cta')}
-                <i data-lucide="arrow-right" className="icon-sm" />
-              </Link>
-            </article>
-          </div>
+          <figure className="about-quote t-blue">
+            <blockquote>“{t(dict, 'about.s2Quote')}”</blockquote>
+            <cite>— {author}</cite>
+          </figure>
         </div>
       </section>
 
-      <Newsletter dict={dict} />
+      {/* 03 — GIẢI PHÁP */}
+      <section className="section" id="about-solution">
+        <div className="container">
+          <span className="s-eyebrow t-orange">
+            <span className="s-eyebrow__num">{t(dict, 'about.s3Num')}</span>
+            <span className="s-eyebrow__label">{t(dict, 'about.s3Kicker')}</span>
+          </span>
+
+          <div className="section-header">
+            <h2 className="section-title">{t(dict, 'about.s3Title')}</h2>
+            <p className="section-lead about-en">{t(dict, 'about.s3TitleEn')}</p>
+          </div>
+
+          {solutions.map((s, i) => (
+            <div key={s.title} className={`media-row t-orange ${i % 2 === 1 ? 'media-row--rev' : ''}`}>
+              <div className="media-row__media"><i data-lucide={s.icon} className="icon-2xl" /></div>
+              <div className="media-row__body">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            </div>
+          ))}
+
+          <figure className="about-quote t-orange">
+            <blockquote>“{t(dict, 'about.s3Quote')}”</blockquote>
+            <cite>— {author}</cite>
+          </figure>
+        </div>
+      </section>
     </>
   );
 }

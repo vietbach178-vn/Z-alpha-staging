@@ -14,19 +14,11 @@ export interface FallbackPerson {
   avatar?: string;
 }
 
-export interface FallbackHighlight {
-  /** Lucide icon name shown in the glyph (e.g. "graduation-cap", "landmark"). */
-  icon: string;
-  text: Record<Lang, string>;
-}
-
 export interface FallbackOrganizer extends FallbackPerson {
   /** Bio paragraphs (each item = one paragraph). */
   bio: Record<Lang, string[]>;
   /** Optional bullet list of past roles / achievements. */
   bullets?: Record<Lang, string[]>;
-  /** Optional structured highlights (education, expertise, publications). */
-  highlights?: FallbackHighlight[];
 }
 
 export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
@@ -48,7 +40,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     bullets: {
       vi: [
         'Cựu điều phối viên trưởng tại <strong>Vietnam Program for Internet & Society (VPIS)</strong>, một chương trình tiên phong tại Việt Nam trong lĩnh vực nghiên cứu liên ngành về Internet và xã hội.',
-        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại <strong>PepsiCo Việt Nam</strong>.',
+        'Cựu Trưởng phòng Chính sách Công, Quan hệ Chính phủ và Truyền thông tại <strong>PepsiCo VN</strong>.',
       ],
       en: [
         'Former lead coordinator at the <strong>Vietnam Program for Internet & Society (VPIS)</strong>, a pioneering interdisciplinary research program on Internet and society in Vietnam.',
@@ -65,42 +57,12 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Quan tâm sâu tới giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu.',
+        'Hơn 10 năm kinh nghiệm quản lý dự án, phát triển các chương trình giáo dục toàn cầu, cũng như điều phối hợp tác giữa các tập đoàn đa quốc gia, cơ quan chính phủ, tổ chức phi chính phủ và các cơ sở giáo dục. Tiến sỹ chuyên ngành giáo dục tại <strong>ĐH Sophia</strong>, Thạc sĩ Quan hệ Quốc tế <strong>ĐH Waseda (Nhật Bản)</strong> với các nghiên cứu lý luận chuyên sâu về hợp tác xã hội, giáo dục công dân toàn cầu, giáo dục phát triển bền vững, giáo dục cảm xúc xã hội trong bối cảnh phát triển công nghệ vũ bão cùng những rủi ro mang tính hệ thống toàn cầu. Quản lý sản xuất nội dung giáo dục & xuất bản khoa học tại <strong>Oddly normal podcast</strong>.',
       ],
       en: [
-        'Over 10 years of experience in project management, building global education programs, and coordinating cross-sector partnerships between multinational corporations, governments, NGOs and education institutions. Deeply focused on social-emotional learning amid rapid technological change and systemic global risks.',
+        'Over 10 years of experience in project management, building global education programs, and coordinating partnerships between multinational corporations, governments, NGOs and education institutions. PhD in Education at <strong>Sophia University</strong> and MA in International Relations at <strong>Waseda University (Japan)</strong>, with in-depth research on social partnerships, global citizenship education, education for sustainable development, and social-emotional learning amid rapid technological change and systemic global risks. Education content & scientific-publishing lead at <strong>Oddly Normal Podcast</strong>.',
       ],
     },
-    highlights: [
-      {
-        icon: 'graduation-cap',
-        text: {
-          vi: 'Tiến sỹ Giáo dục — <strong>Đại học Sophia</strong>, Nhật Bản',
-          en: 'PhD in Education — <strong>Sophia University</strong>, Japan',
-        },
-      },
-      {
-        icon: 'award',
-        text: {
-          vi: 'Thạc sĩ Quan hệ Quốc tế — <strong>Đại học Waseda</strong>, Nhật Bản',
-          en: 'MA in International Relations — <strong>Waseda University</strong>, Japan',
-        },
-      },
-      {
-        icon: 'book-open',
-        text: {
-          vi: 'Nghiên cứu hợp tác xã hội, giáo dục công dân toàn cầu và phát triển bền vững',
-          en: 'Research on social partnerships, global citizenship education and sustainable development',
-        },
-      },
-      {
-        icon: 'mic',
-        text: {
-          vi: 'Quản lý nội dung giáo dục & xuất bản khoa học tại <a href="https://oddly-podcast.com/" target="_blank" rel="noopener noreferrer"><strong>Oddly Normal Podcast</strong></a>',
-          en: 'Education content & scientific publishing lead at <a href="https://oddly-podcast.com/" target="_blank" rel="noopener noreferrer"><strong>Oddly Normal Podcast</strong></a>',
-        },
-      },
-    ],
   },
   {
     initials: 'PHC',
@@ -111,42 +73,12 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
     },
     bio: {
       vi: [
-        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975.',
+        'Hơn 16 năm kinh nghiệm trong lĩnh vực học thuật và thực tế, hiện giảng dạy tại Đại học Anh Quốc. Tiến sĩ Truyền thông tại <strong>Đại học Bournemouth (Anh Quốc)</strong>, Thạc sĩ Báo chí Quốc tế tại <strong>Đại học Baptist Hồng Kông (Hồng Kông)</strong>, nghiên cứu viên tại <strong>Trường Harvard Kennedy, Đại học Harvard (Mỹ)</strong>. Nghiên cứu tiến sĩ tập trung vào văn hóa tiêu dùng và hành vi sử dụng các phương tiện truyền thông của thế hệ công chúng sinh sau năm 1975. Đã và đang tham gia viết bài cho các tờ báo lớn như <strong>Financial Times</strong>, <strong>VnExpress</strong> và các tạp chí khoa học có uy tín tại Châu Âu.',
       ],
       en: [
-        'Over 16 years of academic and applied experience, currently teaching at a UK university. Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975.',
+        'Over 16 years of academic and applied experience, currently teaching at a UK university. PhD in Communications at <strong>Bournemouth University (UK)</strong>, MA in International Journalism at <strong>Hong Kong Baptist University (Hong Kong)</strong>, and Research Fellow at <strong>Harvard Kennedy School, Harvard University (USA)</strong>. Doctoral research focused on consumption culture and media-use behaviour of audiences born after 1975. Has contributed to major outlets such as <strong>Financial Times</strong>, <strong>VnExpress</strong> and reputable European academic journals.',
       ],
     },
-    highlights: [
-      {
-        icon: 'graduation-cap',
-        text: {
-          vi: 'Tiến sĩ Truyền thông — <strong>Đại học Bournemouth</strong>, Anh Quốc',
-          en: 'PhD in Communications — <strong>Bournemouth University</strong>, UK',
-        },
-      },
-      {
-        icon: 'award',
-        text: {
-          vi: 'Thạc sĩ Báo chí Quốc tế — <strong>Đại học Baptist</strong>, Hồng Kông',
-          en: 'MA in International Journalism — <strong>Hong Kong Baptist University</strong>',
-        },
-      },
-      {
-        icon: 'landmark',
-        text: {
-          vi: 'Nghiên cứu viên — <strong>Trường Harvard Kennedy, Đại học Harvard</strong>',
-          en: 'Research Fellow — <strong>Harvard Kennedy School, Harvard University</strong>',
-        },
-      },
-      {
-        icon: 'newspaper',
-        text: {
-          vi: 'Cộng tác <strong>Financial Times</strong>, <strong>VnExpress</strong> và tạp chí khoa học uy tín tại Châu Âu',
-          en: 'Contributing writer at <strong>Financial Times</strong>, <strong>VnExpress</strong> and leading European academic journals',
-        },
-      },
-    ],
   },
   {
     initials: 'VTL',

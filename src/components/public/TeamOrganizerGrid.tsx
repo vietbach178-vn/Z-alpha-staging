@@ -9,14 +9,15 @@ interface Props {
   organizers: FallbackOrganizer[];
   lang: Lang;
   closeLabel: string;
-  pastRolesLabel: string;
-  highlightsLabel: string;
 }
 
 const TONES = ['teal', 'blue', 'orange'] as const;
-const ROLE_ICONS = ['briefcase', 'building-2', 'landmark'] as const;
 
-export default function TeamOrganizerGrid({ organizers, lang, closeLabel, pastRolesLabel, highlightsLabel }: Props) {
+/** Tan initials placeholder — matches the researcher/collaborator cards below. */
+const placeholder = (initials: string) =>
+  `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
+
+export default function TeamOrganizerGrid({ organizers, lang, closeLabel }: Props) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const active = activeIdx !== null ? organizers[activeIdx] : null;
   const activeTone = activeIdx !== null ? TONES[activeIdx % TONES.length] : undefined;
@@ -34,13 +35,7 @@ export default function TeamOrganizerGrid({ organizers, lang, closeLabel, pastRo
             aria-label={`${p.name} — ${p.role[lang]}`}
           >
             <div className="person-photo">
-              {p.avatar ? (
-                <img src={p.avatar} alt={p.name} />
-              ) : (
-                <div className="modal-dialog__avatar-tile" style={{ width: '100%', height: '100%', borderRadius: 0, border: 0 }} aria-hidden="true">
-                  {p.initials}
-                </div>
-              )}
+              <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
             </div>
             <div className="person-body">
               <p className="person-name">{p.name}</p>
@@ -77,51 +72,14 @@ export default function TeamOrganizerGrid({ organizers, lang, closeLabel, pastRo
               {active.bio[lang].map((para, i) => (
                 <p key={i} dangerouslySetInnerHTML={{ __html: para }} />
               ))}
-            </div>
-
-            {active.highlights && active.highlights.length > 0 && (
-              <>
-                <hr className="modal-dialog__rule" />
-                <p className="modal-dialog__past-h">
-                  <span className="modal-dialog__past-pip" aria-hidden="true">
-                    <i data-lucide="graduation-cap" className="icon-sm" />
-                  </span>
-                  {highlightsLabel}
-                </p>
-                <ul className="bullet-list">
-                  {active.highlights.map((h, i) => (
-                    <li key={i} className="bullet-item">
-                      <span className="glyph" aria-hidden="true">
-                        <i data-lucide={h.icon} className="icon" />
-                      </span>
-                      <p dangerouslySetInnerHTML={{ __html: h.text[lang] }} />
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-            {active.bullets && active.bullets[lang].length > 0 && (
-              <>
-                <hr className="modal-dialog__rule" />
-                <p className="modal-dialog__past-h">
-                  <span className="modal-dialog__past-pip" aria-hidden="true">
-                    <i data-lucide="briefcase" className="icon-sm" />
-                  </span>
-                  {pastRolesLabel}
-                </p>
-                <ul className="bullet-list">
+              {active.bullets && active.bullets[lang].length > 0 && (
+                <ul className="modal-dialog__bullets">
                   {active.bullets[lang].map((b, i) => (
-                    <li key={i} className="bullet-item">
-                      <span className="glyph" aria-hidden="true">
-                        <i data-lucide={ROLE_ICONS[i % ROLE_ICONS.length]} className="icon" />
-                      </span>
-                      <p dangerouslySetInnerHTML={{ __html: b }} />
-                    </li>
+                    <li key={i} dangerouslySetInnerHTML={{ __html: b }} />
                   ))}
                 </ul>
-              </>
-            )}
+              )}
+            </div>
           </>
         )}
       </Modal>

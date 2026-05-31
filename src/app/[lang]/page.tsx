@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { isLang, getDictionary, localizedHref, t, type Lang } from '@/lib/i18n';
 import { notFound } from 'next/navigation';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]'>): Promise<Metadata> {
   const { lang } = await params;
@@ -224,7 +224,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         </div>
       </section>
 
-      <Newsletter dict={dict} muted />
+      <ContactCta dict={dict} lang={lang} muted />
     </>
   );
 }

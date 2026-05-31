@@ -7,7 +7,7 @@ import {
   FALLBACK_COLLABORATORS,
 } from '@/data/team-sample';
 import TeamOrganizerGrid from '@/components/public/TeamOrganizerGrid';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/about/team'>): Promise<Metadata> {
   const { lang } = await params;
@@ -58,8 +58,6 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/about/team
             organizers={FALLBACK_ORGANIZERS}
             lang={lang}
             closeLabel={lang === 'vi' ? 'Đóng' : 'Close'}
-            pastRolesLabel={t(dict, 'team.pastRoles')}
-            highlightsLabel={t(dict, 'team.highlights')}
           />
         </div>
       </section>
@@ -114,7 +112,7 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/about/team
         </section>
       )}
 
-      <Newsletter dict={dict} />
+      <ContactCta dict={dict} lang={lang} />
     </>
   );
 }

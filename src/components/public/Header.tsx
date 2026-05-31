@@ -72,6 +72,7 @@ export default function Header({ lang, dict }: Props) {
               href={aboutHref}
               className={`nav-dropdown__trigger ${aboutActive ? 'is-active' : ''}`}
               aria-haspopup="true"
+              aria-current={aboutActive ? 'page' : undefined}
             >
               {dict.nav.about}
               <span className="nav-dropdown__caret" aria-hidden="true">▾</span>
@@ -90,6 +91,7 @@ export default function Header({ lang, dict }: Props) {
               href={activitiesResearchHref}
               className={`nav-dropdown__trigger ${activitiesActive ? 'is-active' : ''}`}
               aria-haspopup="true"
+              aria-current={activitiesActive ? 'page' : undefined}
             >
               {dict.nav.activities}
               <span className="nav-dropdown__caret" aria-hidden="true">▾</span>

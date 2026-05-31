@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isLang, getDictionary, t, type Lang } from '@/lib/i18n';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/activities/policy'>): Promise<Metadata> {
   const { lang } = await params;
@@ -176,31 +176,25 @@ export default async function ActivitiesPolicyPage({ params }: PageProps<'/[lang
             <h2 className="section-title">{t(dict, 'activitiesPolicy.infoTitle')}</h2>
           </div>
 
-          <div className="what-grid" style={{ alignItems: 'start' }}>
-            <div className="focus-card t-blue">
-              <div className="icon-tile"><i data-lucide="calendar" className="icon-lg" /></div>
-              <h3>{t(dict, 'activitiesPolicy.infoTime')}</h3>
-              <p>{t(dict, 'activitiesPolicy.infoTimeValue')}</p>
-            </div>
-
-            <div>
-              <h3 style={{
-                fontSize: 12, fontWeight: 700, letterSpacing: '0.12em',
-                textTransform: 'uppercase', color: 'var(--fg-3)',
-                margin: '0 0 16px',
-              }}>
-                {t(dict, 'activitiesPolicy.infoAttendees')}
-              </h3>
-              <ul className="bullet-list">
-                {attendees.map((key) => (
-                  <li key={key} className="bullet-item">
-                    <span className="glyph"><i data-lucide="users" className="icon" /></span>
-                    <p>{t(dict, `activitiesPolicy.${key}`)}</p>
-                  </li>
-                ))}
-              </ul>
+          {/* Thời gian — banner ngang full-width */}
+          <div className="policy-timebar">
+            <span className="policy-timebar__icon"><i data-lucide="calendar" className="icon-md" /></span>
+            <div className="policy-timebar__body">
+              <span className="policy-timebar__label">{t(dict, 'activitiesPolicy.infoTime')}</span>
+              <strong className="policy-timebar__value">{t(dict, 'activitiesPolicy.infoTimeValue')}</strong>
             </div>
           </div>
+
+          {/* Thành phần tham dự — lưới thẻ 4 cột */}
+          <h3 className="policy-attendees__eyebrow">{t(dict, 'activitiesPolicy.infoAttendees')}</h3>
+          <ul className="policy-attendees">
+            {attendees.map((key) => (
+              <li key={key} className="policy-attendee">
+                <span className="policy-attendee__icon"><i data-lucide="users" className="icon" /></span>
+                <p>{t(dict, `activitiesPolicy.${key}`)}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -232,7 +226,7 @@ export default async function ActivitiesPolicyPage({ params }: PageProps<'/[lang
         </div>
       </section>
 
-      <Newsletter dict={dict} />
+      <ContactCta dict={dict} lang={lang} />
     </>
   );
 }

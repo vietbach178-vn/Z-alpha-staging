@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { isLang, getDictionary, localizedHref, type Lang } from '@/lib/i18n';
 import { getNewsBySlug, listNewsSlugs, pickBody, pickL } from '@/lib/repos';
 import BlockRenderer from '@/components/editor/BlockRenderer';
-import Newsletter from '@/components/public/Newsletter';
+import ContactCta from '@/components/public/ContactCta';
 
 export const dynamic = 'force-dynamic';
 
@@ -86,7 +86,7 @@ export default async function NewsDetailPage({ params }: PageProps<'/[lang]/news
         </div>
       </article>
 
-      <Newsletter dict={dict} muted />
+      <ContactCta dict={dict} lang={lang} muted />
     </>
   );
 }

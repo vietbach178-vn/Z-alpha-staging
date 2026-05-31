@@ -714,6 +714,19 @@ body.is-menu-open { overflow: hidden; }
   margin: 0 0 var(--space-4);
 }
 .modal-dialog__body p:last-child { margin-bottom: 0; }
+.modal-dialog__bullets {
+  margin: var(--space-4) 0 0;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+.modal-dialog__bullets li {
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--fg-2);
+  margin: 0 0 var(--space-3);
+}
+.modal-dialog__bullets li:last-child { margin-bottom: 0; }
+.modal-dialog__bullets li::marker { color: var(--fg-4); }
 .modal-dialog strong { font-weight: 700; color: var(--fg-1); }
 
 /* Inline links inside modal — tone-accented, underlined */
@@ -1238,3 +1251,376 @@ body.is-menu-open { overflow: hidden; }
   color: var(--fg-1);
   font-weight: 700;
 }
+
+/* =========================================================================
+   ABOUT — "Great Rewiring" narrative (Bối cảnh → Vấn đề → Giải pháp)
+   ========================================================================= */
+
+/* --- Numbered section eyebrow (01 · Bối cảnh) ------------------------- */
+.s-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.s-eyebrow__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: var(--r-md);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.s-eyebrow__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+.s-eyebrow.t-teal   .s-eyebrow__num { background: var(--teal-50);   color: var(--teal-600); }
+.s-eyebrow.t-teal   .s-eyebrow__label { color: var(--teal-700); }
+.s-eyebrow.t-blue   .s-eyebrow__num { background: var(--blue-50);   color: var(--blue-600); }
+.s-eyebrow.t-blue   .s-eyebrow__label { color: var(--blue-700); }
+.s-eyebrow.t-orange .s-eyebrow__num { background: var(--orange-50); color: var(--orange-600); }
+.s-eyebrow.t-orange .s-eyebrow__label { color: var(--orange-600); }
+
+.about-prose {
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--fg-2);
+}
+.about-prose + .about-prose { margin-top: 20px; }
+.about-prose strong { color: var(--fg-1); font-weight: 600; }
+.about-en { font-style: italic; color: var(--fg-4); }
+
+/* --- Three trait labels (Always-on / Digital-first / Blurred) -------- */
+.trait-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 36px 0 8px;
+}
+@media (min-width: 768px) { .trait-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.trait-card {
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  border-top: 3px solid var(--border-2);
+}
+.trait-card__num {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.trait-card h3 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+.trait-card p { margin: 0; font-size: 14px; font-style: italic; color: var(--fg-4); }
+.trait-card.t-teal   { border-top-color: var(--teal-500); }
+.trait-card.t-teal   .trait-card__num { color: var(--teal-600); }
+.trait-card.t-blue   { border-top-color: var(--blue-500); }
+.trait-card.t-blue   .trait-card__num { color: var(--blue-600); }
+.trait-card.t-orange { border-top-color: var(--orange-500); }
+.trait-card.t-orange .trait-card__num { color: var(--orange-600); }
+
+/* --- Impact columns (direct vs indirect) ----------------------------- */
+.impact-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.impact-head--teal { color: var(--teal-700); }
+.impact-head--red  { color: var(--red-600); }
+.bullet-item .term { color: var(--fg-1); font-weight: 600; }
+.bullet-item .en   { color: var(--fg-4); font-style: italic; font-size: 14px; }
+/* single-accent overrides — placed after the nth-child rules so they win */
+.bullet-list--teal .bullet-item .glyph { background: var(--teal-50); color: var(--teal-600); }
+.bullet-list--red  .bullet-item .glyph { background: var(--red-50);  color: var(--red-600); }
+
+/* --- Alternating media↔text rows (challenges / solutions) ----------- */
+.media-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.media-row + .media-row { margin-top: 48px; }
+@media (min-width: 860px) {
+  .media-row { grid-template-columns: 320px 1fr; gap: 56px; }
+  .media-row--rev { grid-template-columns: 1fr 320px; }
+  .media-row--rev .media-row__media { order: 2; }
+}
+.media-row__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.media-row.t-teal   .media-row__media { background: var(--teal-50); color: var(--teal-600); }
+.media-row.t-blue   .media-row__media { background: var(--blue-50); color: var(--blue-600); }
+.media-row.t-orange .media-row__media { background: var(--orange-50); color: var(--orange-600); }
+.media-row.t-red    .media-row__media { background: var(--red-50); color: var(--red-600); }
+.media-row.t-purple .media-row__media { background: var(--purple-50); color: var(--purple-600); }
+.media-row__body h3 { font-size: 22px; font-weight: 700; margin: 0 0 12px; }
+.media-row__body p { font-size: 16px; line-height: 1.7; color: var(--fg-2); margin: 0; }
+.media-row.t-teal   .media-row__body h3 { color: var(--teal-700); }
+.media-row.t-blue   .media-row__body h3 { color: var(--blue-700); }
+.media-row.t-orange .media-row__body h3 { color: var(--orange-600); }
+.media-row.t-red    .media-row__body h3 { color: var(--red-600); }
+.media-row.t-purple .media-row__body h3 { color: var(--purple-700); }
+.media-row__body .about-en { display: block; font-size: 14px; margin: -6px 0 12px; }
+
+/* --- Policy event-info: time bar + attendee card grid (4/hàng) ------ */
+.policy-timebar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  background: var(--blue-50);
+  border: 1px solid var(--blue-200);
+  border-radius: var(--r-lg);
+  margin-bottom: 40px;
+}
+.policy-timebar__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: var(--white);
+  border: 1px solid var(--blue-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-600);
+}
+.policy-timebar__body { display: flex; flex-direction: column; gap: 2px; }
+.policy-timebar__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+}
+.policy-timebar__value { font-size: 18px; font-weight: 700; color: var(--blue-700); }
+
+.policy-attendees__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin: 0 0 16px;
+}
+.policy-attendees {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 600px)  { .policy-attendees { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .policy-attendees { grid-template-columns: repeat(4, 1fr); } }
+
+.policy-attendee {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--t-med) var(--ease-out),
+              transform var(--t-med) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out);
+}
+.policy-attendee:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.policy-attendee__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.policy-attendee p {
+  margin: 0;
+  color: var(--fg-1);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+/* tone rotation — 4 màu lặp theo cột */
+.policy-attendee:nth-child(4n+1) .policy-attendee__icon { background: var(--teal-50);   color: var(--teal-600); }
+.policy-attendee:nth-child(4n+2) .policy-attendee__icon { background: var(--blue-50);   color: var(--blue-600); }
+.policy-attendee:nth-child(4n+3) .policy-attendee__icon { background: var(--orange-50); color: var(--orange-600); }
+.policy-attendee:nth-child(4n+4) .policy-attendee__icon { background: var(--purple-50); color: var(--purple-600); }
+.policy-attendee:nth-child(4n+1):hover { border-color: var(--teal-200); }
+.policy-attendee:nth-child(4n+2):hover { border-color: var(--blue-200); }
+.policy-attendee:nth-child(4n+3):hover { border-color: var(--orange-200); }
+.policy-attendee:nth-child(4n+4):hover { border-color: var(--purple-200); }
+@media (max-width: 640px) {
+  .policy-timebar { padding: 16px 18px; gap: 14px; }
+  .policy-timebar__value { font-size: 16px; }
+}
+
+/* --- Pullquote (Haidt, closing each section) ------------------------- */
+.about-quote {
+  margin: 56px auto 0;
+  max-width: 760px;
+  text-align: center;
+}
+.about-quote blockquote {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--fg-1);
+}
+.about-quote cite {
+  display: block;
+  margin-top: 16px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--fg-4);
+}
+.about-quote.t-teal   blockquote { color: var(--teal-700); }
+.about-quote.t-blue   blockquote { color: var(--blue-700); }
+.about-quote.t-orange blockquote { color: var(--orange-600); }
+
+/* --- Intro split: ảnh + chữ (section Bối cảnh phần A) --------------- */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+@media (min-width: 900px) {
+  .intro-grid { grid-template-columns: 0.82fr 1.18fr; gap: 56px; }
+}
+.intro-figure {
+  position: relative;
+  min-height: 280px;
+  border-radius: var(--r-xl);
+  background: linear-gradient(150deg, var(--teal-50), var(--blue-50));
+  border: 1px solid var(--teal-100);
+  color: var(--teal-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media (min-width: 900px) { .intro-figure { min-height: 100%; } }
+.intro-figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.intro-figure .icon-2xl { width: 56px; height: 56px; opacity: 0.85; }
+
+/* impact column — orange variant (tác động gián tiếp) */
+.impact-head--orange { color: var(--orange-600); }
+.bullet-list--orange .bullet-item .glyph { background: var(--orange-50); color: var(--orange-600); }
+
+/* =========================================================================
+   EDUCATION (/activities/education)
+   ========================================================================= */
+.focus-card .focus-label {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--fg-4);
+  margin: -6px 0 10px;
+}
+
+/* Digital-skills competency groups (I–V) */
+/* Layout D — danh sách editorial, số La Mã lớn bên trái (Trụ cột 2) */
+.skill-rows {
+  background: var(--bg-card);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.skill-row {
+  --sg-50: var(--blue-50);
+  --sg-600: var(--blue-600);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding: 28px 32px;
+  border-top: 1px solid var(--border-1);
+  transition: background var(--t-fast) var(--ease-out);
+}
+.skill-row:first-child { border-top: 0; }
+.skill-row.t-teal   { --sg-50: var(--teal-50);   --sg-600: var(--teal-600); }
+.skill-row.t-blue   { --sg-50: var(--blue-50);   --sg-600: var(--blue-600); }
+.skill-row.t-orange { --sg-50: var(--orange-50); --sg-600: var(--orange-600); }
+.skill-row.t-purple { --sg-50: var(--purple-50); --sg-600: var(--purple-600); }
+.skill-row.t-cyan   { --sg-50: var(--cyan-50);   --sg-600: var(--cyan-600); }
+.skill-row:hover { background: var(--sg-50); }
+.skill-row__roman {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sg-600);
+}
+.skill-row__title { font-size: 18px; font-weight: 700; color: var(--fg-1); margin: 0 0 16px; line-height: 1.3; }
+.skill-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+}
+@media (max-width: 720px) {
+  .skill-row { grid-template-columns: 52px 1fr; gap: 18px; padding: 22px; }
+  .skill-row__roman { font-size: 34px; }
+  .skill-list { grid-template-columns: 1fr; }
+}
+.skill-item { display: flex; gap: 12px; align-items: center; font-size: 16px; color: var(--fg-2); line-height: 1.5; }
+.skill-item__ico {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  background: var(--sg-50);
+  color: var(--sg-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill-item__ico .icon-sm { width: 16px; height: 16px; }
+
+/* Overview pillar cards — icon + eyebrow trên cùng một hàng, nội dung căn lề trên */
+.focus-card__top { display: flex; align-items: center; gap: 14px; }
+.focus-card__top .icon-tile { margin: 0; }
+.focus-eyebrow {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.focus-card.t-teal   .focus-eyebrow { color: var(--teal-600); }
+.focus-card.t-blue   .focus-eyebrow { color: var(--blue-600); }
+.focus-card.t-orange .focus-eyebrow { color: var(--orange-600); }
+.focus-card--overview { gap: 14px; justify-content: flex-start; }
+.focus-card--overview p { flex: 0 0 auto; }   /* không giãn → title & body căn lề trên */
