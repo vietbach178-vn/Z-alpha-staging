@@ -75,7 +75,9 @@ export default async function NewsDetailPage({ params }: PageProps<'/[lang]/news
             )}
           </header>
 
-          <BlockRenderer blocks={blocks} />
+          <div className="research-body">
+            <BlockRenderer blocks={blocks} />
+          </div>
 
           <div className="research-article__cta">
             <Link href={localizedHref('news', lang)} className="btn btn-outline">
