@@ -4,15 +4,36 @@ import { auth, signOut } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-const NAV = [
-  { href: '/admin',            label: 'Dashboard',  icon: 'layout-dashboard' },
-  { href: '/admin/research',   label: 'Nghiên cứu', icon: 'flask-conical' },
-  { href: '/admin/news',       label: 'Tin tức',    icon: 'newspaper' },
-  { href: '/admin/library',    label: 'Thư viện',   icon: 'library' },
-  { href: '/admin/contacts',   label: 'Liên hệ',    icon: 'inbox' },
-  { href: '/admin/topics',     label: 'Chủ đề',     icon: 'tag' },
-  { href: '/admin/categories', label: 'Danh mục',   icon: 'folder' },
-  { href: '/admin/media',      label: 'Media',      icon: 'image' },
+type NavItem = { href: string; label: string; icon: string };
+type NavGroup = { title?: string; items: NavItem[] };
+
+const NAV: NavGroup[] = [
+  {
+    items: [
+      { href: '/admin', label: 'Dashboard', icon: 'layout-dashboard' },
+    ],
+  },
+  {
+    title: 'Nghiên cứu',
+    items: [
+      { href: '/admin/research', label: 'Nghiên cứu', icon: 'flask-conical' },
+      { href: '/admin/topics',   label: 'Chủ đề',     icon: 'tag' },
+    ],
+  },
+  {
+    title: 'Tin tức',
+    items: [
+      { href: '/admin/news',       label: 'Tin tức',  icon: 'newspaper' },
+      { href: '/admin/categories', label: 'Danh mục', icon: 'folder' },
+    ],
+  },
+  {
+    items: [
+      { href: '/admin/library',  label: 'Thư viện', icon: 'library' },
+      { href: '/admin/contacts', label: 'Liên hệ',  icon: 'inbox' },
+      { href: '/admin/media',    label: 'Media',    icon: 'image' },
+    ],
+  },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -47,24 +68,46 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           Z & Alpha
           <div style={{ fontSize: '.75rem', fontWeight: 400, color: '#64748b', marginTop: 4 }}>Admin</div>
         </div>
-        {NAV.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            style={{
-              padding: '10px 12px',
-              borderRadius: 8,
-              color: '#cbd5e1',
-              textDecoration: 'none',
-              fontSize: '.95rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-            }}
+        {NAV.map((group, gi) => (
+          <div
+            key={group.title ?? `group-${gi}`}
+            style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: gi === 0 ? 0 : 12 }}
           >
-            <i data-lucide={item.icon} className="icon-sm" />
-            {item.label}
-          </Link>
+            {group.title && (
+              <div
+                style={{
+                  padding: '0 12px',
+                  fontSize: '.7rem',
+                  fontWeight: 600,
+                  letterSpacing: '.05em',
+                  textTransform: 'uppercase',
+                  color: '#64748b',
+                  marginBottom: 2,
+                }}
+              >
+                {group.title}
+              </div>
+            )}
+            {group.items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                style={{
+                  padding: '10px 12px',
+                  borderRadius: 8,
+                  color: '#cbd5e1',
+                  textDecoration: 'none',
+                  fontSize: '.95rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                }}
+              >
+                <i data-lucide={item.icon} className="icon-sm" />
+                {item.label}
+              </Link>
+            ))}
+          </div>
         ))}
         <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid #1e293b' }}>
           <div style={{ fontSize: '.8rem', color: '#64748b', padding: '0 8px', marginBottom: 8 }}>

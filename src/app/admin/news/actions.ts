@@ -45,7 +45,15 @@ export async function saveNews(input: z.infer<typeof schema>): Promise<ActionRes
     return { ok: false, error: issue.message, field: String(issue.path[0] ?? '') };
   }
   const data = parsed.data;
-  const slug = (data.slug && data.slug.trim()) || slugify(data.titleVi);
+  const manualSlug = data.slug?.trim();
+  if (manualSlug && slugify(manualSlug) !== manualSlug) {
+    return {
+      ok: false,
+      field: 'slug',
+      error: 'Slug không hợp lệ — chỉ dùng chữ thường, số và dấu gạch ngang (không khoảng trắng, dấu).',
+    };
+  }
+  const slug = manualSlug || slugify(data.titleVi);
 
   const common = {
     slug,
