@@ -772,6 +772,18 @@ section { position: relative; }
   height: 100%;
   object-fit: cover;
 }
+.person-photo__initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d4b896;
+  color: #1a1a1a;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
 .person-body {
   padding: 18px 18px 20px;
   display: flex;

@@ -16,9 +16,6 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/about/team
   return { title: t(dict, 'team.metaTitle') };
 }
 
-const placeholder = (initials: string) =>
-  `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
-
 export default async function TeamPage({ params }: PageProps<'/[lang]/about/team'>) {
   const { lang: rawLang } = await params;
   if (!isLang(rawLang)) notFound();
@@ -68,21 +65,16 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/about/team
           <div className="container">
             <div className="section-header">
               <h2 className="section-title">{t(dict, 'team.researcher')}</h2>
+              <p className="section-lead">
+                {lang === 'vi' ? 'Nhấn vào từng thành viên để xem thông tin chi tiết.' : 'Click each member to view bio.'}
+              </p>
             </div>
 
-            <div className="people-grid">
-              {FALLBACK_RESEARCHERS.map((p) => (
-                <div key={p.initials} className="person-card">
-                  <div className="person-photo">
-                    <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
-                  </div>
-                  <div className="person-body">
-                    <p className="person-name">{p.name}</p>
-                    <p className="person-role">{p.role[lang]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <TeamOrganizerGrid
+              organizers={FALLBACK_RESEARCHERS}
+              lang={lang}
+              closeLabel={lang === 'vi' ? 'Đóng' : 'Close'}
+            />
           </div>
         </section>
       )}
@@ -99,7 +91,11 @@ export default async function TeamPage({ params }: PageProps<'/[lang]/about/team
               {FALLBACK_COLLABORATORS.map((p) => (
                 <div key={p.initials} className="person-card">
                   <div className="person-photo">
-                    <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
+                    {p.avatar ? (
+                      <img src={p.avatar} alt={p.name} />
+                    ) : (
+                      <span className="person-photo__initials" aria-hidden="true">{p.initials}</span>
+                    )}
                   </div>
                   <div className="person-body">
                     <p className="person-name">{p.name}</p>

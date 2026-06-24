@@ -25,6 +25,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
   {
     initials: 'CHN',
     name: 'ThS. Cao Hoàng Nam',
+    avatar: '/assets/team/cao-hoang-nam.jpg',
     role: {
       vi: 'Sáng lập viên – Giám đốc điều hành',
       en: 'Co-founder – Executive Director',
@@ -51,6 +52,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
   {
     initials: 'NTV',
     name: 'TS. Nguyễn Thanh Vân',
+    avatar: '/assets/team/nguyen-thanh-van.jpg',
     role: {
       vi: 'Sáng lập viên – Giám đốc chuyên môn',
       en: 'Co-founder – Director of Programs',
@@ -67,6 +69,7 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
   {
     initials: 'PHC',
     name: 'TS. Phạm Hải Chung',
+    avatar: '/assets/team/pham-hai-chung.jpg',
     role: {
       vi: 'Sáng lập viên – Cố vấn chuyên môn',
       en: 'Co-founder – Senior Advisor',
@@ -80,50 +83,66 @@ export const FALLBACK_ORGANIZERS: FallbackOrganizer[] = [
       ],
     },
   },
+];
+
+export const FALLBACK_RESEARCHERS: FallbackOrganizer[] = [
   {
-    initials: 'VTL',
-    name: 'Vũ Thùy Linh',
+    initials: 'HCBN',
+    name: 'Hà Châu Bảo Nhi',
+    avatar: '/assets/team/ha-chau-bao-nhi.jpg',
     role: {
-      vi: 'Quản lý Vận hành',
-      en: 'Operations Manager',
+      vi: 'Nghiên cứu viên – New Media Art',
+      en: 'Researcher – New Media Art',
     },
     bio: {
       vi: [
-        'Hơn 14 năm kinh nghiệm trong lĩnh vực quản trị nhân sự, phát triển nhân tài, tuyển dụng tại các tập đoàn lớn trong và ngoài nước. Đã tổ chức và tham gia nhiều chuỗi chương trình định hướng nghề nghiệp cho gần 1000 sinh viên và người đi làm, sinh viên tại các trường đại học. Là diễn giả, ban giám khảo của nhiều chương trình được tổ chức nhằm hỗ trợ các bạn sinh viên chuẩn bị hành trang để chinh phục sự nghiệp.',
+        'Nghệ sĩ nghệ thuật thị giác và nghiên cứu sinh tiến sĩ chuyên ngành New Media Art tại <em>Đại học Tsukuba</em> (Nhật Bản). Đặt trong tương quan so sánh với Device Art của Nhật Bản, nghiên cứu tiến sỹ của Hà Châu Bảo Nhi lý thuyết hóa “bricolage” (tư duy ứng biến lắp ráp) như một phương pháp luận đặc thù trong thực hành New Media Art tại Việt Nam, tạo tiền đề và khung lý thuyết cho việc sử dụng công nghệ, thiết bị và trải nghiệm tương tác như chất liệu và ngôn ngữ biểu đạt.',
+        'Song song với sáng tác và nghiên cứu, Hà Châu Bảo Nhi còn tham gia vào các hoạt động giáo dục nghệ thuật, góp phần đưa thực hành nghệ thuật và công nghiệp sáng tạo Việt Nam vào những thảo luận rộng hơn của khu vực và quốc tế. Hà Châu Bảo Nhi hiện giảng dạy với vai trò giảng viên khách mời về New Media Art tại Vinschool, Trường Khoa học Liên ngành và Nghệ thuật (Đại học Quốc gia Hà Nội) và Trường Đại học Ngoại thương Hà Nội.',
       ],
       en: [
-        'Over 14 years of experience in HR management, talent development and recruitment at major domestic and international corporations. Has organised and participated in many career-orientation programs for nearly 1,000 students and young professionals. Frequent speaker and judge for programs supporting university students preparing for their careers.',
-      ],
-    },
-    bullets: {
-      vi: [
-        'Cựu Giám đốc Nhân sự tại <em>Satom Venture Studio</em>',
-        'Cựu Quản lý Thu hút và Phát triển nhân tài tại <em>Vingroup</em>, <em>Carlsberg Việt Nam</em>',
-        'Cựu Trưởng phòng Phát triển tổ chức tại <em>DVG</em>',
-      ],
-      en: [
-        'Former HR Director at <strong>Satom Venture Studio</strong>',
-        'Former Talent Acquisition & Development Manager at <strong>Vingroup</strong>, <strong>Carlsberg Vietnam</strong>',
-        'Former Head of Organizational Development at <strong>DVG</strong>',
+        'A visual artist and PhD candidate in New Media Art at <strong>the University of Tsukuba</strong> (Japan). In comparison with the Device Art of Japan, her doctoral research theorizes “bricolage” (improvisational assembly) as a distinctive methodology for New Media Art practice in Vietnam, laying the groundwork and theoretical framework for using technology, devices and interactive experience as material and expressive language.',
+        'Alongside her artistic practice and research, Hà Châu Bảo Nhi is also active in art education, helping bring Vietnamese artistic practice and creative industries into broader regional and international conversations. She currently teaches as a guest lecturer in New Media Art at Vinschool, the School of Interdisciplinary Sciences and Arts (Vietnam National University, Hanoi) and Foreign Trade University, Hanoi.',
       ],
     },
   },
-];
-
-export const FALLBACK_RESEARCHERS: FallbackPerson[] = [
   {
-    initials: 'NPL',
-    name: 'ThS. Nguyễn Phương Liên',
+    initials: 'DLMC',
+    name: 'Đoàn Lê Minh Châu',
+    avatar: '/assets/team/doan-le-minh-chau.jpg',
     role: {
-      vi: 'Nghiên cứu viên Ban Internet & Truyền thông',
-      en: 'Researcher, Internet & Media Division',
+      vi: 'Nghiên cứu viên – Nghiên cứu Phát triển',
+      en: 'Researcher – Development Studies',
+    },
+    bio: {
+      vi: [
+        'Nghiên cứu sinh Tiến sĩ chuyên ngành Nghiên cứu Phát triển Quốc tế tại <em>Đại học Hankuk University of Foreign Studies</em> (Hàn Quốc). Hơn 5 năm kinh nghiệm giảng dạy, nghiên cứu và phát triển chương trình đào tạo ở bậc Đại học, cùng nhiều năm kinh nghiệm tham gia các dự án hợp tác quốc tế về đổi mới xã hội, trách nhiệm xã hội doanh nghiệp và nghiên cứu, đánh giá dự án liên quan đến phát triển bền vững. Với nền tảng chuyên môn về xã hội học và nghiên cứu phát triển, nghiên cứu của Đoàn Lê Minh Châu tập trung vào các vấn đề về văn hóa, phát triển, không gian đô thị và quyền lực.',
+      ],
+      en: [
+        'A PhD candidate in International Development Studies at <strong>Hankuk University of Foreign Studies</strong> (South Korea). More than 5 years of experience teaching, researching and developing undergraduate curricula, together with several years working on international cooperation projects in social innovation, corporate social responsibility, and the research and evaluation of sustainable-development projects. With a background in sociology and development studies, her research focuses on issues of culture, development, urban space and power.',
+      ],
+    },
+  },
+  {
+    initials: 'BTH',
+    name: 'Bùi Thanh Huyền',
+    avatar: '/assets/team/bui-thanh-huyen.jpg',
+    role: {
+      vi: 'Nghiên cứu viên – Sinh học phân tử',
+      en: 'Researcher – Molecular Biology',
+    },
+    bio: {
+      vi: [
+        'Tiến sĩ chuyên ngành Sinh học phân tử tại <em>Đại học Utah</em> (University of Utah). Hơn 15 năm kinh nghiệm nghiên cứu và giảng dạy Sinh học phân tử và Di truyền học tại Viện nghiên cứu Cold Spring Harbor (Cold Spring Harbor Laboratory), Đại Học Utah, và Đại học bang Montana (Montana State University). Hiện tại, Bùi Thanh Huyền công tác tại Công ty phi lợi nhuận ARUP Laboratories, quản lý các đề tài Nghiên cứu và Phát triển trong kỹ thuật chẩn đoán bệnh di truyền bằng giải trình tự gen.',
+      ],
+      en: [
+        'A PhD in Molecular Biology from <strong>the University of Utah</strong>. More than 15 years of research and teaching experience in molecular biology and genetics at <strong>Cold Spring Harbor Laboratory</strong>, the University of Utah, and Montana State University. She currently works at the non-profit <strong>ARUP Laboratories</strong>, managing Research and Development projects in gene-sequencing techniques for diagnosing genetic diseases.',
+      ],
     },
   },
 ];
 
 export const FALLBACK_COLLABORATORS: FallbackPerson[] = [
   { initials: 'LHKC', name: 'Lưu Hồ Khánh Chi', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
-  { initials: 'TML', name: 'Trần Mỹ Linh', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
   { initials: 'CAL', name: 'Cao An Lê', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
   { initials: 'LKM', name: 'Lý Khải Minh', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },
   { initials: 'NVHN', name: 'Nguyễn Văn Hoàng Nhân', role: { vi: 'Cộng tác viên', en: 'Collaborator' } },

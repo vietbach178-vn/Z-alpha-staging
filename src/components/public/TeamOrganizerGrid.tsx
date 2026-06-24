@@ -13,10 +13,6 @@ interface Props {
 
 const TONES = ['teal', 'blue', 'orange'] as const;
 
-/** Tan initials placeholder — matches the researcher/collaborator cards below. */
-const placeholder = (initials: string) =>
-  `https://placehold.co/300x300/d4b896/1a1a1a?text=${encodeURIComponent(initials)}`;
-
 export default function TeamOrganizerGrid({ organizers, lang, closeLabel }: Props) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const active = activeIdx !== null ? organizers[activeIdx] : null;
@@ -35,7 +31,11 @@ export default function TeamOrganizerGrid({ organizers, lang, closeLabel }: Prop
             aria-label={`${p.name} — ${p.role[lang]}`}
           >
             <div className="person-photo">
-              <img src={p.avatar ?? placeholder(p.initials)} alt={p.name} />
+              {p.avatar ? (
+                <img src={p.avatar} alt={p.name} />
+              ) : (
+                <span className="person-photo__initials" aria-hidden="true">{p.initials}</span>
+              )}
             </div>
             <div className="person-body">
               <p className="person-name">{p.name}</p>
